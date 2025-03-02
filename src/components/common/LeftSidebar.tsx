@@ -48,7 +48,7 @@ const LeftSidebar: React.FC = () => {
               align="start"
               sideOffset={6}
             >
-              <p className="text-2xs">사이드바 {isPinned ? "닫기" : "열기"}</p>
+              <p className="text-2xs">사이드바 {isPinned ? "닫기" : "고정"}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

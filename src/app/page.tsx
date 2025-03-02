@@ -1,14 +1,16 @@
-import LeftSidebar from "@/components/LeftSidebar";
+"use client";
+
+import BackToTopButton from "@/components/common/BackToTopButton";
+import { useRef } from "react";
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
-    <>
-      <LeftSidebar />
-      <section>
-        <div className="h-[200vh]">
-          <h1>HOME</h1>
-        </div>
-      </section>
-    </>
+    <article ref={containerRef}>
+      <h1>HOME</h1>
+      <section className="h-[200vh]"></section>
+      <BackToTopButton containerRef={containerRef} />
+    </article>
   );
 }

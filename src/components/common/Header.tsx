@@ -13,7 +13,7 @@ const Header: React.FC = () => {
               height={36}
               className="hover:brightness-100 hover:invert-0;"
             />
-            <h4 className="font-extrabold">oh-note</h4>
+            <h5 className="font-extrabold">oh-note</h5>
           </a>
         </h1>
       </div>
