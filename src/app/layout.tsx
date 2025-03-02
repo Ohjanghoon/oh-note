@@ -9,6 +9,7 @@ import "./globals.css";
 // components
 import Header from "@/components/common/Header";
 import LeftSidebar from "@/components/common/LeftSidebar";
+import Main from "@/components/common/Main";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +39,7 @@ export default function RootLayout({
         <Header />
         <div className="layout-container">
           <LeftSidebar />
-          <main>{children}</main>
+          <Main children={children} />
         </div>
       </body>
     </html>
