@@ -3,7 +3,7 @@ import React from "react";
 const Header: React.FC = () => {
   return (
     <header>
-      <div className="px-4 md:px-6 flex items-center">
+      <div className="flex items-center px-4 md:px-6">
         <h1>
           <a href="/" className="flex items-center justify-center gap-3">
             <img
@@ -11,7 +11,6 @@ const Header: React.FC = () => {
               alt="oh-note logo"
               width={36}
               height={36}
-              className="hover:brightness-100 hover:invert-0;"
             />
             <h5 className="font-extrabold">oh-note</h5>
           </a>
