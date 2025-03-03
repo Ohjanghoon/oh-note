@@ -12,6 +12,8 @@ import {
 // icons
 import { MdOutlineHome, MdOutlineCategory, MdSettings } from "react-icons/md";
 import { RiPushpinFill } from "react-icons/ri";
+import Category from "../Category";
+import Link from "next/link";
 
 const LeftSidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true); // 사이드바 확장
@@ -21,8 +23,9 @@ const LeftSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`relative h-full bg-secondary border-r border-gray-200 transition-all duration-300 ease-in-out shadow-lg rounded-r-3xl 
-      ${isOpen || isPinned ? "min-w-60 w-60" : "min-w-16 w-16"}`}
+      className={`fixed z-10 h-screen space-y-2 rounded-r-3xl border-r border-gray-300 bg-gray-300/50 py-12 shadow-lg transition-all duration-200 ease-in ${
+        isPinned ? "" : ""
+      } ${isOpen || isPinned ? "w-60 min-w-60" : "w-16 min-w-16"}`}
       onMouseEnter={() => !isPinned && setIsOpen(true)}
       onMouseLeave={() => !isPinned && setIsOpen(false)}
     >
@@ -32,18 +35,18 @@ const LeftSidebar: React.FC = () => {
           <Tooltip>
             <TooltipTrigger asChild>
               <button
-                className="absolute top-3 right-3  bg-gray-200 p-2 rounded-full shadow-md hover:scale-110 transition group"
+                className="group absolute top-3 right-3 rounded-full bg-gray-200 p-2 shadow-md transition hover:scale-110"
                 onClick={toggleSidebar}
               >
                 <RiPushpinFill
-                  className={`transition group-hover:scale-110 group-hover:text-accent-primary ${
-                    isPinned ? "-rotate-45 text-accent-primary" : ""
+                  className={`group-hover:text-accent-primary transition group-hover:scale-110 ${
+                    isPinned ? "text-accent-primary -rotate-45" : ""
                   }`}
                 />
               </button>
             </TooltipTrigger>
             <TooltipContent
-              className="text-gray-100 p-1 rounded-lg bg-black/70"
+              className="rounded-lg bg-black/70 p-1 text-gray-100"
               side="bottom"
               align="start"
               sideOffset={6}
@@ -53,36 +56,61 @@ const LeftSidebar: React.FC = () => {
           </Tooltip>
         </TooltipProvider>
       )}
-
+      {/* <div className="flex items-center p-4 border-b-[1px]">
+        <a href="/" className="flex items-center justify-center gap-3">
+          <img
+            src="/logo_oh-note.png"
+            alt="oh-note logo"
+            width={36}
+            height={36}
+            className="hover:brightness-100 hover:invert-0;"
+          />
+          <h5 className={`font-extrabold ${isOpen ? "visible" : "hidden"}`}>
+            oh-note
+          </h5>
+        </a>
+      </div> */}
       {/* 사이드바 메뉴 */}
-      <nav className="flex flex-col items-start px-4 py-12">
+      <nav className="flex w-full flex-col items-start px-4">
         <NavItem
           icon={<MdOutlineHome />}
           label="Home"
           isOpen={isOpen || isPinned}
+          path="/"
         />
         <NavItem
           icon={<MdOutlineCategory />}
-          label="Categories"
+          label="Blog"
           isOpen={isOpen || isPinned}
+          path="/blog"
         />
         <NavItem
           icon={<MdSettings />}
           label="Settings"
           isOpen={isOpen || isPinned}
+          path="/"
         />
       </nav>
     </aside>
   );
 };
 
-type NavItemProps = { icon: React.ReactNode; label: string; isOpen: boolean };
+type NavItemProps = {
+  icon: React.ReactNode;
+  label: string;
+  path: string;
+  isOpen: boolean;
+};
 
-const NavItem: React.FC<NavItemProps> = ({ icon, label, isOpen }) => (
-  <div className="flex items-center w-full p-2 my-1 rounded-lg hover:bg-gray-200 transition">
-    <span className="text-xl">{icon}</span>
-    {isOpen && <span className="ml-3 text-md font-medium">{label}</span>}
-  </div>
+const NavItem: React.FC<NavItemProps> = ({ icon, label, isOpen, path }) => (
+  <Link href={path} className="w-full cursor-pointer">
+    <div className="my-2 flex items-center rounded-lg p-1 transition hover:bg-gray-300">
+      <span className="text-accent-primary bg-icon-bg rounded-[50%] p-1 text-2xl">
+        {icon}
+      </span>
+      {isOpen && <span className="ml-3 text-sm font-medium">{label}</span>}
+    </div>
+  </Link>
 );
 
 export default LeftSidebar;

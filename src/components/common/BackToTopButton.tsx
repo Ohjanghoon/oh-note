@@ -11,37 +11,36 @@ const BackToTopButton: React.FC<Props> = ({ containerRef }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const scrollContainer = containerRef.current;
-    if (!scrollContainer) return;
-
     const scrollVisibleFunction = () => {
-      if (scrollContainer.scrollTop > 20) {
+      if (window.scrollY > 20) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
     };
 
-    scrollContainer.addEventListener("scroll", scrollVisibleFunction);
+    window.addEventListener("scroll", scrollVisibleFunction);
 
     return () => {
-      scrollContainer.removeEventListener("scroll", scrollVisibleFunction);
+      window.removeEventListener("scroll", scrollVisibleFunction);
     };
-  });
+  }, []);
 
   const backToTop = () => {
-    containerRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <button
-      onClick={backToTop}
-      className={`absolute bottom-5 right-5 text-accent-primary transition-opacity duration-300 ${
-        isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
-    >
-      <FaCircleArrowUp className="text-4xl" />
-    </button>
+    <>
+      <button
+        onClick={backToTop}
+        className={`fixed bottom-5 right-5 text-accent-primary transition-[opacity_scale] duration-300 ${
+          isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+        } hover:scale-105`}
+      >
+        <FaCircleArrowUp className="text-4xl bg-primary rounded-[50%]" />
+      </button>
+    </>
   );
 };
 
