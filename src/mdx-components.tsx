@@ -1,11 +1,11 @@
 import type { MDXComponents } from "mdx/types";
 
-import BlogHeader from "@/components/BlogHeader";
+import BlogContentHeader from "@/components/BlogContentHeader";
 import CodeBlock from "./components/mdx/CodeBlock";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    BlogHeader,
+    BlogHeader: BlogContentHeader,
     code: CodeBlock,
     ...components,
   };

@@ -1,6 +1,6 @@
 import { PostMetadata } from "@/types/postTypes";
 
-async function BlogHeader({
+async function BlogContentHeader({
   title,
   publishDate,
   thumbnailUrl,
@@ -8,7 +8,7 @@ async function BlogHeader({
 }: PostMetadata) {
   console.log("여기로??");
   return (
-    <header className="w-full space-y-6">
+    <header className="w-full space-y-8">
       <div className="bg-gradient-to-r from-transparent via-[#4cc3ff]/30 to-transparent py-14 text-center backdrop-blur-2xl">
         <h2 className="py-3 align-middle font-extrabold">{title}</h2>
         <div className="flex flex-col items-center justify-center gap-4 text-sm font-medium">
@@ -27,7 +27,7 @@ async function BlogHeader({
           </div>
         </div>
       </div>
-      <div className="mx-auto h-[520px] max-w-3xl overflow-hidden p-5">
+      <div className="mx-auto h-[520px] max-w-4xl overflow-hidden px-5">
         <img
           src={thumbnailUrl}
           className="h-full w-full rounded-lg object-cover object-center"
@@ -37,4 +37,4 @@ async function BlogHeader({
   );
 }
 
-export default BlogHeader;
+export default BlogContentHeader;

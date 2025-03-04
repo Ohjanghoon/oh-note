@@ -12,7 +12,7 @@ import {
 // icons
 import { MdOutlineHome, MdOutlineCategory, MdSettings } from "react-icons/md";
 import { RiPushpinFill } from "react-icons/ri";
-import Category from "../Category";
+import Tag from "../Tag";
 import Link from "next/link";
 
 const LeftSidebar: React.FC = () => {
