@@ -1,6 +1,19 @@
+export const metadata = {
+  title: "Hello world",
+  publishDate: "2024-01-01T00:00:00Z",
+  thumbnailUrl: "/image.png",
+  categories: ["회고"],
+};
+
+<BlogHeader {...metadata} />
+
+<article className="post-article">
+
 ---
+
 title: "내 첫 블로그 글"
 date: "2025-02-28"
+
 ---
 
 # MDX로 만든 블로그 글 🚀
@@ -11,9 +24,4 @@ date: "2025-02-28"
 console.log("123");
 ```
 
-export const metadata = {
-  title: "Hello world",
-  publishDate: "2024-01-01T00:00:00Z",
-  thumbnailUrl: "/image.png",
-  categories: ["회고"],
-};
+</article>
