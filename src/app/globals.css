@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-/* @import "./typography.css";
- */
 @plugin "@tailwindcss/typography";
-
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
@@ -182,7 +179,7 @@
   }
 
   .blog-content-container {
-    @apply mx-auto w-full;
+    @apply mx-auto w-full overflow-x-hidden;
   }
 
   .post-article {
@@ -236,18 +233,18 @@
     li::marker {
       @apply text-black;
     }
-
+    /* 
     pre {
       @apply prose;
-    }
-
+    } */
+    /* 
     code {
       @apply rounded-sm bg-[#87837826] px-1 py-[2px] font-medium text-[#eb5757];
     }
     code::before,
     code::after {
       content: "" !important;
-    }
+    } */
   }
 }
 
@@ -322,4 +319,32 @@
 /* #2f4858 */
 
 .post-article {
+}
+
+pre.shiki {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  background-color: #00ff00; /* Notion 라이트 모드 배경색 */
+  color: #24292e; /* 기본 텍스트 색상 */
+}
+
+pre.shiki .comment {
+  color: #6a737d; /* 주석 */
+}
+
+pre.shiki .keyword {
+  color: #d73a49; /* 키워드 (빨간색) */
+}
+
+pre.shiki .string {
+  color: #032f62; /* 문자열 (진한 파란색) */
+}
+
+pre.shiki .function {
+  color: #005cc5; /* 함수 (파란색) */
+}
+
+pre.shiki .variable {
+  color: #e36209; /* 변수 (주황색) */
 }
