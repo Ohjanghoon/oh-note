@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
@@ -11,23 +12,11 @@
   html,
   body,
   main {
-    @apply h-full w-full;
+    @apply w-full;
   }
 
   body {
     @apply font-medium;
-  }
-
-  header {
-    @apply fixed z-50 flex h-16 w-full bg-gray-300/10 shadow-md backdrop-blur-2xl;
-  }
-
-  article {
-    @apply w-full overflow-scroll p-6 md:p-10;
-  }
-
-  section {
-    @apply mx-auto w-full max-w-5xl px-16;
   }
 
   footer {
@@ -58,7 +47,7 @@
   }
 
   :root {
-    --background: #f1f1f1;
+    --background: #fafafa;
     --foreground: #171717;
 
     --primary: #ededed;
@@ -99,8 +88,8 @@
   }
 
   .dark {
-    /* --background: #10172a; */
-    --background: #1d232a;
+    --background: #10172a;
+    /* --background: #1d232a; */
     --foreground: #ebf9ff;
 
     --primary: oklch(0.985 0 0);
@@ -185,8 +174,77 @@
 }
 
 @layer components {
-  .layout-container {
-    @apply flex w-screen pt-16;
+  .root-container {
+    @apply flex w-screen pt-16; /* fixed된 header 높이만큼 밑으로*/
+  }
+
+  .blog-content-container {
+    @apply mx-auto w-full overflow-x-hidden;
+  }
+
+  .post-article {
+    @apply mx-auto min-h-[70vh] max-w-3xl border-r-[0.3px] p-5;
+
+    hr {
+      @apply border-border my-1 border-t-2;
+    }
+
+    h1 {
+      @apply py-2 text-2xl leading-loose font-extrabold md:text-3xl;
+    }
+    h2 {
+      @apply py-2 text-2xl leading-loose font-medium md:text-3xl;
+    }
+    h3 {
+      @apply py-1 text-xl leading-loose font-extrabold md:text-2xl;
+    }
+    h4 {
+      @apply py-1 text-xl leading-loose font-medium md:text-2xl;
+    }
+    h5 {
+      @apply text-lg leading-loose font-extrabold md:text-xl;
+    }
+    h6 {
+      @apply text-lg leading-loose font-medium md:text-xl;
+    }
+
+    p {
+      @apply prose;
+    }
+    blockquote {
+      @apply border-l-4 border-gray-800 bg-gray-200/40 py-1 pl-4 text-gray-600;
+    }
+
+    ol * {
+      @apply prose list-inside list-decimal;
+    }
+    ul * {
+      @apply prose list-inside list-disc;
+    }
+
+    li > ul {
+      margin-top: 4px !important;
+    }
+
+    li {
+      margin-top: 3px !important;
+      padding-inline-start: 0 !important;
+    }
+    li::marker {
+      @apply text-black;
+    }
+    /* 
+    pre {
+      @apply prose;
+    } */
+    /* 
+    code {
+      @apply rounded-sm bg-[#87837826] px-1 py-[2px] font-medium text-[#eb5757];
+    }
+    code::before,
+    code::after {
+      content: "" !important;
+    } */
   }
 }
 
@@ -218,7 +276,9 @@
   --color-dark-primary: #10172a;
   --color-dark-secondary: #23232a;
 
-  --color-accent-primary: #2b8479;
+  /* --color-accent-primary: #2b8479; */
+  /* --color-accent-primary: #8dc1e6; */
+  --color-accent-primary: #3986f2;
 
   --color-ring-DEFAULT: #475569;
 
@@ -257,3 +317,34 @@
 }
 
 /* #2f4858 */
+
+.post-article {
+}
+
+pre.shiki {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  background-color: #00ff00; /* Notion 라이트 모드 배경색 */
+  color: #24292e; /* 기본 텍스트 색상 */
+}
+
+pre.shiki .comment {
+  color: #6a737d; /* 주석 */
+}
+
+pre.shiki .keyword {
+  color: #d73a49; /* 키워드 (빨간색) */
+}
+
+pre.shiki .string {
+  color: #032f62; /* 문자열 (진한 파란색) */
+}
+
+pre.shiki .function {
+  color: #005cc5; /* 함수 (파란색) */
+}
+
+pre.shiki .variable {
+  color: #e36209; /* 변수 (주황색) */
+}

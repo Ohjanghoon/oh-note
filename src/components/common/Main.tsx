@@ -12,13 +12,14 @@ export default function Main({
   children: React.ReactNode;
 }>) {
   const containerRef = useRef<HTMLDivElement>(null);
-
+  console.log("2");
   return (
     <main ref={containerRef}>
-      <article>
-        <section>{children}</section>
-        <BackToTopButton containerRef={containerRef} />
-      </article>
+      {children}
+      <BackToTopButton containerRef={containerRef} />
+      {/* <article className="w-full overflow-scroll p-6 md:p-10">
+        <section className="mx-auto w-full max-w-6xl px-30"></section>
+      </article> */}
     </main>
   );
 }

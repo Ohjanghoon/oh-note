@@ -1,0 +1,146 @@
+export const metadata = {
+  title: "Markdown 종류",
+  publishDate: "2025-03-03T00:00:00Z",
+  description:
+    "lorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consectetur",
+  thumbnailUrl:
+    "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2019/12/markdown-logo-on-a-blue-background.png",
+  categories: ["React", "TypeScript"],
+};
+
+<BlogHeader {...metadata} />
+
+<article className="post-article">
+<small>저의 블로그 페이지에 사용된 마크다운 스타일입니다.</small>
+
+### Heading 태그
+
+---
+
+# Heading 1
+
+- 태그
+  - \<h1\>
+- 크기
+  - PC: text-3xl(1.875rem = 30px), 모바일: text-2xl(1.5rem = 24px)
+- 두께
+  - font-extrabold (가장 두꺼운 스타일, 800)
+  - notion 제목1 표현
+- 높이
+  - py-2(0.5rem = 8px)
+
+## Heading 2
+
+- 태그
+  - \<h2\>
+- 크기
+  - PC: text-3xl(1.875rem = 30px), 모바일: text-2xl(1.5rem = 24px)
+- 두께
+  - font-medium (보통 굵기, 500)
+  - notion 제목1 보통 굵기 표현
+- 높이
+  - py-2(0.5rem = 8px)
+
+### Heading 3
+
+- 태그
+  - \<h3\>
+- 크기
+  - PC: text-2xl(1.5rem = 24px), 모바일: text-xl(1.25rem = 20px)
+- 두께
+  - font-extrabold (가장 두꺼운 스타일, 800)
+  - notion 제목2 표현
+- 높이
+  - py-1(0.25rem = 4px)
+
+#### Heading 4
+
+- 태그
+  - \<h4\>
+- 크기
+  - PC: text-2xl(1.5rem = 24px), 모바일: text-xl(1.25rem = 20px)
+- 두께
+  - font-medium (보통 굵기, 500)
+  - notion 제목2 보통 굵기 표현
+- 높이
+  - py-1(0.25rem = 4px)
+
+##### Heading 5
+
+- 태그
+  - \<h5\>
+- 크기
+  - PC: text-xl(1.25rem = 20px), 모바일: text-lg(1.125rem = 18px)
+- 두께
+  - font-extrabold (가장 두꺼운 스타일, 800)
+  - notion 제목3 표현
+
+###### Heading 6
+
+- 태그
+  - \<h6\>
+- 크기
+  - PC: text-xl(1.25rem = 20px), 모바일: text-lg(1.125rem = 18px)
+- 두께
+  - font-medium (보통 굵기, 500)
+  - notion 제목3 표현
+
+<br />
+
+### Typography 태그
+
+---
+
+**bold text**
+
+_italicized text_
+
+<br />
+### Block 태그
+
+---
+
+> blockquote
+
+<br />
+
+> ### h1
+>
+> blockquote 내용
+
+<br />
+
+1. First item
+2. Second item
+3. Third item
+
+<br />
+
+- First item
+  - 22
+    - 33
+      - 44
+- Second item
+- Third item
+
+<br />
+
+---
+
+[Link](https://www.example.com)
+
+![alt text](https://images.unsplash.com/photo-1660950543634-37b5e4f75c36)
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+```javascript
+console.log("aaa");
+```
+
+</article>
