@@ -12,7 +12,7 @@ const BackToTopButton: React.FC<Props> = ({ containerRef }) => {
 
   useEffect(() => {
     const scrollVisibleFunction = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 100) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -34,11 +34,11 @@ const BackToTopButton: React.FC<Props> = ({ containerRef }) => {
     <>
       <button
         onClick={backToTop}
-        className={`fixed bottom-5 right-5 text-accent-primary transition-[opacity_scale] duration-300 ${
-          isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+        className={`text-accent-primary fixed right-5 bottom-5 transition-[opacity_scale] duration-300 ${
+          isVisible ? "opacity-100" : "pointer-events-none opacity-0"
         } hover:scale-105`}
       >
-        <FaCircleArrowUp className="text-4xl bg-primary rounded-[50%]" />
+        <FaCircleArrowUp className="bg-primary rounded-[50%] text-4xl" />
       </button>
     </>
   );

@@ -8,6 +8,7 @@ import {
   MdOutlineViewModule,
   MdOutlineViewList,
   MdAccessTime,
+  MdGridView,
 } from "react-icons/md";
 
 interface Props {
@@ -20,12 +21,12 @@ const PostCard: React.FC<Props> = ({ posts }) => {
     <>
       <div className="py-2 text-end">
         <button
-          className={`text-text-dark-primary rounded-[50%] p-1 text-2xl transition-all duration-200 hover:rounded-lg ${
+          className={`text-text-dark-primary rounded-[50%] p-[0.4rem] text-xl transition-all duration-200 hover:rounded-lg ${
             viewMode === "gallery" ? "bg-[#798897]/20" : ""
           }`}
           onClick={() => setViewMode("gallery")}
         >
-          <MdOutlineViewModule />
+          <MdGridView />
         </button>
         <button
           className={`text-text-dark-primary rounded-[50%] p-1 text-2xl transition-all duration-200 hover:rounded-lg ${
@@ -78,7 +79,7 @@ const PostCard: React.FC<Props> = ({ posts }) => {
                     <p className="text-text-dark-secondary inline-flex items-center gap-1 text-xs">
                       <MdAccessTime />
 
-                      {post.publishDate}
+                      {new Date(post.publishDate).toDateString()}
                     </p>
                     <div className="flex items-center gap-1">
                       {post.categories &&

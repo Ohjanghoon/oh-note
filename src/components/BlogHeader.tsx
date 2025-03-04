@@ -8,22 +8,32 @@ async function BlogHeader({
 }: PostMetadata) {
   console.log("여기로??");
   return (
-    <div className={`h-52 w-full space-y-6 bg-emerald-500 p-3`}>
-      <div className="border-b-2">
-        <h4 className="py-4 align-middle font-extrabold">{title}</h4>
-        <div className="flex items-center">
-          <p className="text-sm font-light">
-            <span>{new Date(publishDate).toLocaleDateString()}</span>
-          </p>
+    <header className="w-full space-y-6">
+      <div className="bg-gradient-to-r from-transparent via-[#4cc3ff]/30 to-transparent py-14 text-center backdrop-blur-2xl">
+        <h2 className="py-3 align-middle font-extrabold">{title}</h2>
+        <div className="flex flex-col items-center justify-center gap-4 text-sm font-medium">
+          <p>{new Date(publishDate).toLocaleDateString()}</p>
+          <div className="space-x-2 text-end">
+            {categories.map((cat) => {
+              return (
+                <span
+                  key={cat}
+                  className="ring-ring rounded-full px-2 py-[2px] font-extralight ring-[0.4px]"
+                >
+                  {cat}
+                </span>
+              );
+            })}
+          </div>
         </div>
       </div>
-      <div className="h-[520px] w-full overflow-hidden p-5">
+      <div className="mx-auto h-[520px] max-w-3xl overflow-hidden p-5">
         <img
           src={thumbnailUrl}
           className="h-full w-full rounded-lg object-cover object-center"
         />
       </div>
-    </div>
+    </header>
   );
 }
 

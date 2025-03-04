@@ -25,7 +25,7 @@ const LeftSidebar: React.FC = () => {
     <aside
       className={`fixed z-10 h-screen space-y-2 rounded-r-3xl border-r border-gray-300 bg-gray-300/50 py-12 shadow-lg transition-all duration-200 ease-in ${
         isPinned ? "" : ""
-      } ${isOpen || isPinned ? "w-60 min-w-60" : "w-16 min-w-16"}`}
+      } ${isOpen || isPinned ? "w-60 min-w-60" : "w-18 min-w-18"}`}
       onMouseEnter={() => !isPinned && setIsOpen(true)}
       onMouseLeave={() => !isPinned && setIsOpen(false)}
     >
