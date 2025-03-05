@@ -1,10 +1,7 @@
-import Tag from "@/components/Tag";
-import PostCard from "@/components/PostCard";
-import { getPosts } from "@/lib/blog";
+import TagList from "@/components/TagList";
+import PostCardList from "@/components/PostCardList";
 
-export default async function Blog() {
-  const posts = await getPosts();
-  console.log(posts);
+export default async function Home() {
   return (
     <section className="main-section">
       <div>
@@ -15,8 +12,7 @@ export default async function Blog() {
         </h2>
       </div>
       <p className="mt-2 text-sm">개발 블로그 포스팅 공간입니다.</p>
-      <PostCard posts={posts} />
-      <Tag />
+      {/* <PostCard posts={posts} /> */}
     </section>
   );
 }

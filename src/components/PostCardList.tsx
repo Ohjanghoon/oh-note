@@ -1,9 +1,18 @@
 "use client";
 
-import { PostMetadata } from "@/types/postTypes";
+// node modules
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+// types
+import { PostMetadata } from "@/types/postTypes";
+
+// store
+import { AppDispatch, RootState } from "@/store/store";
+import { getPosts } from "@/store/slices/blogPostSlice";
+
+// icons
 import {
   MdOutlineViewModule,
   MdOutlineViewList,
@@ -11,11 +20,15 @@ import {
   MdGridView,
 } from "react-icons/md";
 
-interface Props {
-  posts: PostMetadata[];
-}
+function PostCardList() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { posts, status, error } = useSelector(
+    (state: RootState) => state.post,
+  );
 
-const PostCard: React.FC<Props> = ({ posts }) => {
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
   const [viewMode, setViewMode] = useState("gallery");
   return (
     <>
@@ -103,6 +116,6 @@ const PostCard: React.FC<Props> = ({ posts }) => {
       </ul>
     </>
   );
-};
+}
 
-export default PostCard;
+export default PostCardList;
