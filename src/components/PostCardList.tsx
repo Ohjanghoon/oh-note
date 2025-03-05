@@ -19,16 +19,26 @@ import {
   MdAccessTime,
   MdGridView,
 } from "react-icons/md";
+import { useSearchParams } from "next/navigation";
 
 function PostCardList() {
   const dispatch = useDispatch<AppDispatch>();
+
+  const searchParams = useSearchParams();
+  const searchTag = searchParams.get("tag");
+
   const { posts, status, error } = useSelector(
     (state: RootState) => state.post,
   );
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+    if (searchTag) {
+      dispatch(getPosts(searchTag));
+    } else {
+      dispatch(getPosts());
+    }
+  }, [searchTag, dispatch]);
+
   const [viewMode, setViewMode] = useState("gallery");
   return (
     <>
