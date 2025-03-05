@@ -19,7 +19,7 @@ import {
   MdAccessTime,
   MdGridView,
 } from "react-icons/md";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 function PostCardList() {
   const dispatch = useDispatch<AppDispatch>();
@@ -105,8 +105,8 @@ function PostCardList() {
                       {new Date(post.publishDate).toDateString()}
                     </p>
                     <div className="flex items-center gap-1">
-                      {post.categories &&
-                        post.categories.map((category) => {
+                      {post.tags &&
+                        post.tags.map((category) => {
                           return (
                             <span
                               key={category}

@@ -7,9 +7,7 @@ async function getTags(): Promise<any> {
 
   // Set으로 변환하여 중복 제거, Array.from()로 다시 배열로 변환
   const tags = Array.from(
-    new Set(
-      posts.flatMap((post) => post.categories).filter((t) => t !== undefined),
-    ),
+    new Set(posts.flatMap((post) => post.tags).filter((t) => t !== undefined)),
   );
   return tags;
 }

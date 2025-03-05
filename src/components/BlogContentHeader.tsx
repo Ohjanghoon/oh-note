@@ -4,7 +4,7 @@ async function BlogContentHeader({
   title,
   publishDate,
   thumbnailUrl,
-  categories,
+  tags,
 }: PostMetadata) {
   console.log("여기로??");
   return (
@@ -23,13 +23,13 @@ async function BlogContentHeader({
             <div className="space-x-3">
               <span className="text-xs text-gray-700">Tags</span>
               <div className="inline space-x-0.5">
-                {categories.map((cat) => {
+                {tags.map((tag) => {
                   return (
                     <span
-                      key={cat}
+                      key={tag}
                       className="ring-ring bg-background rounded-full px-2 py-[1.4px] text-sm font-medium ring-[0.4px]"
                     >
-                      {cat}
+                      {tag}
                     </span>
                   );
                 })}

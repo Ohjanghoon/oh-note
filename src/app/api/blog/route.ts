@@ -34,8 +34,7 @@ async function getPostsByTag(tag: string): Promise<PostMetadata[]> {
 
   return posts.filter(
     (post) =>
-      post.categories &&
-      post.categories.some((tag) => tag.toLowerCase() === lowerCaseTag),
+      post.tags && post.tags.some((tag) => tag.toLowerCase() === lowerCaseTag),
   );
 }
 
