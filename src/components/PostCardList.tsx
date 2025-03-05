@@ -1,21 +1,44 @@
 "use client";
 
-import { PostMetadata } from "@/types/postTypes";
+// node modules
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+// types
+import { PostMetadata } from "@/types/postTypes";
+
+// store
+import { AppDispatch, RootState } from "@/store/store";
+import { getPosts } from "@/store/slices/blogPostSlice";
+
+// icons
 import {
   MdOutlineViewModule,
   MdOutlineViewList,
   MdAccessTime,
   MdGridView,
 } from "react-icons/md";
+import { useSearchParams } from "next/navigation";
 
-interface Props {
-  posts: PostMetadata[];
-}
+function PostCardList() {
+  const dispatch = useDispatch<AppDispatch>();
 
-const PostCard: React.FC<Props> = ({ posts }) => {
+  const searchParams = useSearchParams();
+  const searchTag = searchParams.get("tag");
+
+  const { posts, status, error } = useSelector(
+    (state: RootState) => state.post,
+  );
+
+  useEffect(() => {
+    if (searchTag) {
+      dispatch(getPosts(searchTag));
+    } else {
+      dispatch(getPosts());
+    }
+  }, [searchTag, dispatch]);
+
   const [viewMode, setViewMode] = useState("gallery");
   return (
     <>
@@ -103,6 +126,6 @@ const PostCard: React.FC<Props> = ({ posts }) => {
       </ul>
     </>
   );
-};
+}
 
-export default PostCard;
+export default PostCardList;

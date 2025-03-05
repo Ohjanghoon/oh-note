@@ -8,8 +8,7 @@ import "./globals.css";
 
 // components
 import Header from "@/components/common/Header";
-import LeftSidebar from "@/components/common/LeftSidebar";
-import Main from "@/components/common/Main";
+import ClientLayout from "@/components/common/ClientLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,10 +34,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <div className="root-container">
-          <LeftSidebar />
-          <Main>{children}</Main>
-        </div>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

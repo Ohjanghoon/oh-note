@@ -12,7 +12,7 @@ import {
 // icons
 import { MdOutlineHome, MdOutlineCategory, MdSettings } from "react-icons/md";
 import { RiPushpinFill } from "react-icons/ri";
-import Category from "../Category";
+import TagList from "../TagList";
 import Link from "next/link";
 
 const LeftSidebar: React.FC = () => {
@@ -23,9 +23,7 @@ const LeftSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`fixed z-10 h-screen space-y-2 rounded-r-3xl border-r border-gray-300 bg-gray-300/50 py-12 shadow-lg transition-all duration-200 ease-in ${
-        isPinned ? "" : ""
-      } ${isOpen || isPinned ? "w-60 min-w-60" : "w-18 min-w-18"}`}
+      className={`fixed z-10 h-screen space-y-2 rounded-r-3xl border-r border-gray-300 bg-gray-300/50 py-12 shadow-lg ${isOpen || isPinned ? "w-60 min-w-60" : "w-18 min-w-18 opacity-0"}`}
       onMouseEnter={() => !isPinned && setIsOpen(true)}
       onMouseLeave={() => !isPinned && setIsOpen(false)}
     >
@@ -90,6 +88,7 @@ const LeftSidebar: React.FC = () => {
           isOpen={isOpen || isPinned}
           path="/"
         />
+        {isOpen && <TagList />}
       </nav>
     </aside>
   );

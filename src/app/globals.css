@@ -178,12 +178,12 @@
     @apply flex w-screen pt-16; /* fixed된 header 높이만큼 밑으로*/
   }
 
-  .blog-content-container {
-    @apply mx-auto w-full overflow-x-hidden;
+  .main-section {
+    @apply mx-auto w-full max-w-4xl;
   }
 
   .post-article {
-    @apply mx-auto min-h-[70vh] max-w-3xl border-r-[0.3px] p-5;
+    @apply mx-auto min-h-[70vh] max-w-4xl border-r-[0.3px] p-5;
 
     hr {
       @apply border-border my-1 border-t-2;
@@ -314,11 +314,6 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-/* #2f4858 */
-
-.post-article {
 }
 
 pre.shiki {
