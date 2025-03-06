@@ -12,7 +12,7 @@
   html,
   body,
   main {
-    @apply w-full;
+    @apply w-full scroll-smooth;
   }
 
   body {
@@ -183,7 +183,7 @@
   }
 
   .post-article {
-    @apply mx-auto min-h-[70vh] max-w-4xl border-r-[0.3px] p-5;
+    @apply mx-auto min-h-[70vh] max-w-4xl p-5;
 
     hr {
       @apply border-border my-1 border-t-2;

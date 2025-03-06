@@ -4,5 +4,5 @@ export interface PostMetadata {
   description: string;
   publishDate: string;
   thumbnailUrl: string;
-  categories: string[];
+  tags: string[];
 }
