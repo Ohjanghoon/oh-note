@@ -32,7 +32,7 @@ function TagList() {
   }, [dispatch]);
 
   return (
-    <nav className="tag-wrapper flex w-full items-center gap-2 overflow-x-auto p-1 whitespace-nowrap">
+    <nav className="blog-tag_list flex w-full items-center gap-2 overflow-x-auto p-1 whitespace-nowrap">
       {tags.map((tag: Tag) => {
         const { tagName, count } = tag;
         const href =
@@ -42,19 +42,22 @@ function TagList() {
             ? !searchTag
             : tagName.toLowerCase() === searchTag?.toLowerCase();
         return (
-          <Tag props={{ tagName, count, href, isSelected }} key={tag.tagName} />
+          <TagLink
+            props={{ tagName, count, href, isSelected }}
+            key={tag.tagName}
+          />
         );
       })}
     </nav>
   );
 }
 
-function Tag({ props }: { props: TagProps }) {
+function TagLink({ props }: { props: TagProps }) {
   const { tagName, count, href, isSelected } = props;
   return (
     <Link
       href={href}
-      className={`border-primary flex max-w-full items-center justify-center gap-1 rounded-full border-1 px-3 py-1 transition-colors duration-200 ${isSelected ? "bg-primary text-text-light pointer-events-none" : "hover:bg-link-light hover:text-text-light"}`}
+      className={`tag_link border-primary flex max-w-full items-center justify-center gap-1 rounded-full border-1 px-3 py-1 transition-colors duration-200 ${isSelected ? "bg-primary text-text-light pointer-events-none" : "hover:bg-link-light hover:text-text-light"}`}
     >
       <span>{tagName}</span>
       <span className="text-sm">({count})</span>

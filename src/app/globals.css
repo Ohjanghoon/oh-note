@@ -21,10 +21,6 @@
     @apply bg-background text-foreground min-h-screen text-sm leading-relaxed font-medium transition-colors duration-300;
   }
 
-  main {
-    @apply col-span-4 md:col-span-12;
-  }
-
   footer {
     @apply my-6 h-10 w-full bg-transparent;
   }
