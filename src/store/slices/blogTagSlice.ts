@@ -1,8 +1,9 @@
+import { Tag } from "@/types/postTypes";
 import { InitialState } from "@/types/sliceTypes";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface TagState extends InitialState {
-  tags: string[];
+  tags: Tag[];
 }
 
 const initialState: TagState = {

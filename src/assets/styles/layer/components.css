@@ -18,7 +18,11 @@
     @apply fixed z-50 mx-auto grid w-full grid-cols-[1fr_3fr_1fr] place-content-between place-items-center gap-x-5 bg-transparent px-10 py-5;
   }
   .main-section {
-    @apply mx-auto w-full pt-42;
+    @apply mx-auto w-full space-y-10 pt-42;
+  }
+
+  .blog-section {
+    @apply mx-auto w-full space-y-10;
   }
 
   .blog-content-container {

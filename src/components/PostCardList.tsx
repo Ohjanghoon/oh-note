@@ -41,8 +41,8 @@ function PostCardList() {
 
   const [viewMode, setViewMode] = useState("gallery");
   return (
-    <>
-      <div className="py-2 text-end">
+    <div className="postcard-list">
+      {/* <div className="py-2 text-end">
         <button
           className={`text-text-dark-primary rounded-[50%] p-[0.4rem] text-xl transition-all duration-200 hover:rounded-lg ${
             viewMode === "gallery" ? "bg-[#798897]/20" : ""
@@ -59,52 +59,56 @@ function PostCardList() {
         >
           <MdOutlineViewList />
         </button>
-      </div>
-      <ul
-        className={`grid grid-cols-1 ${
-          viewMode === "gallery" ? "md:grid-cols-2" : "md:grid-cols-1"
-        } gap-6`}
-      >
+      </div> */}
+      <ul className={"grid grid-cols-3 gap-x-5 gap-y-10"}>
         {posts.map((post) => {
           return (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
               <li
-                className={`bg-card group ring-ring grid w-full grid-rows-[2fr_1.2fr] overflow-hidden rounded-md p-2 shadow-sm ring-[0.2px] ${
-                  viewMode === "gallery"
-                    ? "h-[480px] flex-col"
-                    : "h-[140px] flex-row md:h-[180px]"
-                } `}
+                className={`postcard group w-full space-y-4 overflow-hidden rounded-xl`}
               >
-                <div className="order-2 h-full w-full overflow-hidden rounded-sm">
+                <div className="postcard-img_wraaper relative order-2 h-44 w-full overflow-hidden rounded-xl">
                   <img
                     src={post.thumbnailUrl}
                     alt=""
-                    width={1200}
-                    height={630}
-                    className={`h-full w-full object-cover object-center transition-[scale] duration-300 group-hover:scale-105`}
+                    loading="eager"
+                    className={`h-full w-full object-cover object-center transition-[scale] duration-300 ease-in-out group-hover:scale-105`}
                   />
                 </div>
                 <div
-                  className={`mt-1 flex h-full flex-col justify-between space-y-1 p-2 align-top ${
+                  className={`postcard-container flex h-full flex-col justify-between space-y-1 p-1 align-top ${
                     viewMode === "gallery" ? "order-2" : "order-1"
                   }`}
                 >
-                  <div>
-                    <h5 className="line-clamp-1 overflow-hidden text-ellipsis">
+                  <div className="postcard-container-content space-y-2">
+                    <h6 className="postcard-container-content-header group-hover:text-link-hover line-clamp-1 overflow-hidden text-ellipsis transition-colors duration-300">
                       {post.title}
-                    </h5>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ad, vel.
+                    </h6>
+                    <p className="postcard-container-content-article text-text-muted line-clamp-2 h-16 overflow-hidden text-sm font-medium text-ellipsis">
+                      <span>{post.description}</span>
                     </p>
                   </div>
-                  <div className="flex items-center justify-between justify-self-end">
-                    <p className="text-text-dark-secondary inline-flex items-center gap-1 text-xs">
+                  <div className="postcard-container-footer text-text-dark-secondary flex items-center justify-between gap-2 text-xs">
+                    <span className="flex items-center gap-1">
                       <MdAccessTime />
-
                       {new Date(post.publishDate).toDateString()}
-                    </p>
-                    <div className="flex items-center gap-1">
+                    </span>
+                    {post.tags?.length > 0 && (
+                      <div className="space-x-1">
+                        {post.tags.map((tag) => {
+                          return (
+                            <span
+                              key={tag}
+                              className="bg-muted/10 ring-ring text-primary-light rounded-full px-2 py-[1px] text-xs ring-1"
+                            >
+                              {tag}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* <div className="flex items-center gap-1">
                       {post.tags &&
                         post.tags.map((category) => {
                           return (
@@ -116,7 +120,7 @@ function PostCardList() {
                             </span>
                           );
                         })}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </li>
@@ -124,7 +128,7 @@ function PostCardList() {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }
 

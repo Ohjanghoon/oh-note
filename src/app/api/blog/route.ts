@@ -32,10 +32,12 @@ async function getPostsByTag(tag: string): Promise<PostMetadata[]> {
 
   const lowerCaseTag = tag.toLowerCase();
 
-  return posts.filter(
-    (post) =>
-      post.tags && post.tags.some((tag) => tag.toLowerCase() === lowerCaseTag),
-  );
+  return posts.filter((post) => {
+    if (!post.tags) return false;
+
+    const lowerCaseTags = new Set(post.tags.map((t) => t.toLowerCase()));
+    return lowerCaseTags.has(lowerCaseTag);
+  });
 }
 
 /** 🍎 GET 요청 핸들러 */
