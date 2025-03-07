@@ -30,11 +30,9 @@
     @apply mx-auto w-full space-y-10 pt-42;
   }
 
-  .blog-content-container {
+  .blog-content {
+    @apply max-w-screen-md;
   }
-  /* .main-container {
-    @apply flex w-screen pt-16;
-  } */
 
   .blog-content-article {
     @apply mx-auto min-h-[70vh] py-5;

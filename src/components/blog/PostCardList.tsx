@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "next/navigation";
 
 // types
 import { PostMetadata } from "@/types/postTypes";
@@ -14,7 +15,6 @@ import { getPosts } from "@/store/slices/blogPostSlice";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
-import { useSearchParams } from "next/navigation";
 
 /** PostCardList 컴포넌트 */
 function PostCardList() {
@@ -92,7 +92,7 @@ function PostCardContent({
   );
 }
 
-// 푸터 컴포넌트
+/** PostCardFooter 컴포넌트 */
 function PostCardFooter({
   publishDate,
   tags,

@@ -4,7 +4,7 @@ import TableOfContents from "./BlogContentToc";
 
 function BlogWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <section className="blog-content max-w-screen-md">
+    <section className="blog-content">
       {children}
 
       {/* TOC 사이드바 */}
