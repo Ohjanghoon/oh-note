@@ -6,3 +6,8 @@ export interface PostMetadata {
   thumbnailUrl: string;
   tags: string[];
 }
+
+export interface Tag {
+  tagName: string;
+  count: number;
+}
