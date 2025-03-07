@@ -1,18 +1,16 @@
 "use client"; // 클라이언트 컴포넌트로 설정
 
 import { useEffect, useState } from "react";
-import { FaCircleArrowUp } from "react-icons/fa6";
 
-interface Props {
-  containerRef: React.RefObject<HTMLDivElement | null>;
-}
+// icons
+import { MdOutlineVerticalAlignTop } from "react-icons/md";
 
-const BackToTopButton: React.FC<Props> = ({ containerRef }) => {
+function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const scrollVisibleFunction = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 40) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -31,17 +29,15 @@ const BackToTopButton: React.FC<Props> = ({ containerRef }) => {
   };
 
   return (
-    <>
-      <button
-        onClick={backToTop}
-        className={`text-accent-primary fixed right-5 bottom-5 transition-[opacity_scale] duration-300 ${
-          isVisible ? "opacity-100" : "pointer-events-none opacity-0"
-        } hover:scale-105`}
-      >
-        <FaCircleArrowUp className="bg-primary rounded-[50%] text-4xl" />
-      </button>
-    </>
+    <button
+      onClick={backToTop}
+      className={`text-primary ring-primary fixed right-10 bottom-10 overflow-hidden rounded-lg ring-2 transition-[opacity,scale] duration-300 ${
+        isVisible ? "opacity-100" : "pointer-events-none opacity-0"
+      } hover:bg-link-hover/80 hover:text-text-light hover:scale-105`}
+    >
+      <MdOutlineVerticalAlignTop className="p-1 text-3xl font-extrabold" />
+    </button>
   );
-};
+}
 
 export default BackToTopButton;
