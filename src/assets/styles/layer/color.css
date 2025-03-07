@@ -1,0 +1,222 @@
+/*****************************************\
+ * color layer
+\*****************************************/
+@layer color {
+  /* :root {
+
+    --background: #f7f6f3;
+    --foreground: #171717;
+
+    --primary: "#3986f2";
+    --primary-darken: "#2c6cd6";
+    --primary-pressed: "#1f56a8";
+    --primary-light: "#62a1f7";
+    --muted: "#aab9d2";
+    --border: "#dce3eb";
+    
+
+
+    --primary: #ededed;
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+
+    --icon-background: #fefefe;
+
+    --card: #ededed;
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: #a1a1a1;
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  } */
+
+  :root {
+    --background: #f7f6f3;
+    --foreground: #171717;
+    --primary: #3986f2;
+    --primary-darken: #2c6cd6;
+    --primary-pressed: #1f56a8;
+    --primary-light: #62a1f7;
+    --muted: #aab9d2;
+    --border: #dce3eb;
+    --ring: #ededeb;
+    --card: #f7f6f3;
+
+    /* 배경 색상 */
+    --bg-muted: #eae9e5;
+    --bg-border: #dce3eb;
+    --bg-dark: #171717;
+    --bg-darker: #0f0f0f;
+
+    /* 텍스트 색상 */
+    --text-dark: #0f0f0f;
+    --text-dark-secondary: #505050;
+    --text-muted: #505050;
+    --text-light: #f7f6f3;
+    --text-on-dark: #ffffff;
+    --text-on-muted: #aab9d2;
+
+    /* 링크 색상 */
+    --link-default: #3986f2;
+    --link-hover: #2c6cd6;
+    --link-pressed: #1f56a8;
+    --link-light: #62a1f7;
+
+    /* 상태 색상 */
+    --success: #2ecc71;
+    --error: #e63946;
+
+    /* 그림자 & 테두리 */
+    --shadow: rgba(57, 134, 242, 0.25);
+  }
+
+  /* .dark {
+    
+    --foreground: #ebf9ff;
+
+    --primary: oklch(0.985 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+
+    --icon-background: #00ff00;
+
+    --card: oklch(0.145 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.145 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --border: oklch(0.269 0 0);
+    --input: oklch(0.269 0 0);
+    --ring: oklch(0.439 0 0);
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(0.269 0 0);
+    --sidebar-ring: oklch(0.439 0 0);
+  } */
+
+  /* --background: #10172a;
+    --background: #1d232a; */
+  .dark {
+    /* ✅ 기본 색상 */
+    --background: #191919;
+    --foreground: #dedede;
+    --primary: #62a1f7;
+    --primary-darken: #3986f2;
+    --primary-pressed: #2c6cd6;
+    --primary-light: #8dc1ff;
+    --muted: #5f748e;
+    --border: #2a2a2a;
+    --ring: #4a4a4a;
+    --card: #262626;
+
+    /* ✅ 배경 색상 */
+    --bg-muted: #181818;
+    --bg-border: #2a2a2a;
+    --bg-dark: #121212;
+    --bg-darker: #0b0b0b;
+
+    /* ✅ 텍스트 색상 */
+    --text-dark: #f7f6f3;
+    --text-muted: #aab9d2;
+    --text-light: #101010;
+    --text-on-dark: #ffffff;
+    --text-on-muted: #c7d1e0;
+
+    /* ✅ 링크 색상 */
+    --link-default: #8dc1ff;
+    --link-hover: #62a1f7;
+    --link-pressed: #3986f2;
+    --link-light: #2c6cd6;
+
+    /* ✅ 상태 색상 */
+    --success: #27ae60;
+    --error: #e74c3c;
+
+    /* ✅ 그림자 & 테두리 */
+    --shadow: rgba(57, 134, 242, 0.45);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-darken: var(--primary-darken);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-primary-light: var(--primary-light);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+
+  /* ✅ 배경 색상 */
+  --color-bg-light: var(--bg-light);
+  --color-bg-muted: var(--bg-muted);
+  --color-bg-border: var(--bg-border);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-darker: var(--bg-darker);
+
+  /* ✅ 텍스트 색상 */
+  --color-text-default: var(--text-default);
+  --color-text-dark: var(--text-dark);
+  --color-text-dark-secondary: var(--text-dark-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-light: var(--text-light);
+  --color-text-on-dark: var(--text-on-dark);
+  --color-text-on-muted: var(--text-on-muted);
+
+  /* ✅ 링크 색상 */
+  --color-link-default: var(--link-default);
+  --color-link-hover: var(--link-hover);
+  --color-link-pressed: var(--link-pressed);
+  --color-link-light: var(--link-light);
+
+  /* ✅ 상태 색상 */
+  --color-success: var(--success);
+  --color-error: var(--error);
+
+  /* ✅ 그림자 */
+  --color-shadow: var(--shadow);
+
+  /* ✅ 그라디언트 */
+  --color-bg-gradient: var(--background-gradient);
+}

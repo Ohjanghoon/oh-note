@@ -1,0 +1,92 @@
+/*****************************************\
+ * components layer
+\*****************************************/
+@layer components {
+  .root-container {
+    /* @apply grid w-full grid-cols-12 px-8 mx-auto gap-x-8; */
+    @apply mx-auto w-full;
+  }
+
+  .main-container {
+    @apply mx-auto grid w-full max-w-screen-lg grid-cols-4 gap-x-5 px-10 md:grid-cols-12;
+  }
+  /* .main-container {
+    @apply flex w-screen pt-16;
+  } */
+
+  .main-header {
+    @apply fixed z-50 mx-auto grid w-full grid-cols-[1fr_3fr_1fr] place-content-between place-items-center gap-x-5 bg-transparent px-10 py-5;
+  }
+  .main-section {
+    @apply mx-auto w-full pt-42;
+  }
+
+  .blog-content-container {
+    @apply mx-auto flex w-full max-w-4xl justify-center gap-10 px-10;
+  }
+
+  .blog-content-article {
+    @apply mx-auto min-h-[70vh] py-5;
+
+    hr {
+      @apply border-border my-1 border-t-2;
+    }
+
+    h1 {
+      @apply py-2 text-2xl leading-loose font-extrabold md:text-3xl;
+    }
+    h2 {
+      @apply py-2 text-2xl leading-loose font-medium md:text-3xl;
+    }
+    h3 {
+      @apply py-1 text-xl leading-loose font-extrabold md:text-2xl;
+    }
+    h4 {
+      @apply py-1 text-xl leading-loose font-medium md:text-2xl;
+    }
+    h5 {
+      @apply text-lg leading-loose font-extrabold md:text-xl;
+    }
+    h6 {
+      @apply text-lg leading-loose font-medium md:text-xl;
+    }
+
+    p {
+      @apply prose;
+    }
+    blockquote {
+      @apply border-l-4 border-gray-800 bg-gray-200/40 py-1 pl-4 text-gray-600;
+    }
+
+    ol * {
+      @apply prose list-inside list-decimal;
+    }
+    ul * {
+      @apply prose list-inside list-disc;
+    }
+
+    li > ul {
+      margin-top: 4px !important;
+    }
+
+    li {
+      margin-top: 3px !important;
+      padding-inline-start: 0 !important;
+    }
+    li::marker {
+      @apply text-black;
+    }
+    /* 
+    pre {
+      @apply prose;
+    } */
+    /* 
+    code {
+      @apply rounded-sm bg-[#87837826] px-1 py-[2px] font-medium text-[#eb5757];
+    }
+    code::before,
+    code::after {
+      content: "" !important;
+    } */
+  }
+}
