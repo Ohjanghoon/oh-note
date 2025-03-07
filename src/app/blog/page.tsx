@@ -1,18 +1,22 @@
 // components
-import PostCardList from "@/components/PostCardList";
-import TagList from "@/components/TagList";
+import PostCardList from "@/components/blog/PostCardList";
+import TagList from "@/components/blog/TagList";
 import TitleHeader from "@/components/common/TitleHeader";
 import Image from "next/image";
 
 export default function Blog() {
   return (
-    <section className="main-section">
-      <TitleHeader
-        title="Blog"
-        description="개발하며 배운 지식을 기록하는 블로그 공간입니다."
-      />
-      <section className="blog-section">
-        <TagList />
+    <section className="blog">
+      <header className="blog-header">
+        <TitleHeader
+          title="Blog"
+          description="개발하며 배운 지식을 기록하는 블로그 공간입니다."
+        />
+      </header>
+
+      <TagList />
+
+      <section className="blog-card_list">
         <PostCardList />
       </section>
     </section>

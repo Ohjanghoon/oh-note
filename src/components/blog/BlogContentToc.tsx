@@ -16,7 +16,7 @@ const BlogContentToc = () => {
   const [toc, setToc] = useState<TocItem[]>([]);
 
   useEffect(() => {
-    const postArticle = document.querySelector(".post-article");
+    const postArticle = document.querySelector(".blog-content-article");
     if (!postArticle) return;
 
     const headings = postArticle.querySelectorAll("h1, h2, h3");

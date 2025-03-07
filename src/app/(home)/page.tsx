@@ -1,5 +1,5 @@
-import TagList from "@/components/TagList";
-import PostCardList from "@/components/PostCardList";
+import TagList from "@/components/blog/TagList";
+import PostCardList from "@/components/blog/PostCardList";
 import TitleHeader from "@/components/common/TitleHeader";
 
 export default async function Home() {

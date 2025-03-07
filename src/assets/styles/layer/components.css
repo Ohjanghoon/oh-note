@@ -10,10 +10,6 @@
     .root-header {
       @apply fixed z-50 mx-auto grid w-full grid-cols-[1fr_3fr_1fr] place-content-between place-items-center gap-x-5 bg-transparent px-10 py-5;
     }
-
-    .gradient-background {
-      @apply absolute top-0 left-0 -z-50 h-[40vh] w-full overflow-hidden bg-[linear-gradient(135deg,#62a1f7,#aab9d2,#62a1f7,#aab9d2,#62a1f7,#aab9d2,transparent)] opacity-30 blur-3xl;
-    }
   }
 
   .layout-container {
