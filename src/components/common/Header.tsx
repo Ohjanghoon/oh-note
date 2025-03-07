@@ -1,21 +1,23 @@
 import React from "react";
+import Navigation from "./Navigation";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
-    <header className="fixed z-50 flex h-16 w-full bg-gray-300/10 shadow-md backdrop-blur-2xl">
-      <div className="flex items-center px-4 md:px-6">
-        <h1>
-          <a href="/" className="flex items-center justify-center gap-3">
-            <img
-              src="/logo_oh-note.png"
-              alt="oh-note logo"
-              width={36}
-              height={36}
-            />
-            <h5 className="font-extrabold">oh-note</h5>
-          </a>
-        </h1>
+    <header className="main-header">
+      {/* Logo 영역 */}
+      <div className="main-header_logo justify-self-start">
+        <Link href="/" className="flex items-center justify-center gap-3">
+          <img src="/logo_oh-note.png" alt="oh-note logo" className="h-8 w-8" />
+          <h5 className="font-extrabold tracking-tight">oh-note</h5>
+        </Link>
       </div>
+      {/* Nav 영역 */}
+      <div className="main-header_nav justify-self-center">
+        <Navigation />
+      </div>
+      {/* Settings 영역 */}
+      <div className="main-header_settings justify-self-end">Settings</div>
     </header>
   );
 };
