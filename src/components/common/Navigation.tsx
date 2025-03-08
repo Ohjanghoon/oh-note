@@ -42,7 +42,7 @@ function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="header-nav-wrapper ring-ring flex items-center justify-center gap-10 rounded-xl bg-transparent px-8 py-2 shadow-md backdrop-blur-xl">
+    <nav className="header-nav-wrapper ring-ring bg-background/70 flex items-center justify-center gap-10 rounded-xl px-8 py-2 shadow-md backdrop-blur-xl">
       {NavList.map((nav) => {
         // 현재 경로에 따른 active 상태 설정
         const isActive =

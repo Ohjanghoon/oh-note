@@ -32,7 +32,7 @@ function TagList() {
   }, [dispatch]);
 
   return (
-    <nav className="blog-tag_list flex w-full items-center gap-2 overflow-x-auto p-1 whitespace-nowrap">
+    <nav className="blog-tag_list flex w-full items-center gap-1 overflow-x-auto p-1 whitespace-nowrap">
       {tags.map((tag: Tag) => {
         const { tagName, count } = tag;
         const href =

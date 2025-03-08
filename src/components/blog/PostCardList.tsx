@@ -61,14 +61,14 @@ function PostCard({ post }: { post: PostMetadata }) {
 /** PostCardImage 컴포넌트 */
 function PostCardImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <div className="postcard-img_wraaper relative h-44 w-full overflow-hidden rounded-xl">
+    <figure className="postcard-img_wraaper relative h-44 w-full overflow-hidden rounded-xl">
       <img
         src={thumbnailUrl}
         alt="Post Thumbnail"
         loading="eager"
         className="h-full w-full object-cover object-center transition-[scale] duration-300 ease-in-out group-hover:scale-105"
       />
-    </div>
+    </figure>
   );
 }
 
@@ -85,7 +85,7 @@ function PostCardContent({
       <h6 className="postcard-content-header group-hover:text-link-hover line-clamp-1 overflow-hidden text-ellipsis transition-colors duration-300">
         {title}
       </h6>
-      <p className="postcard-content-article text-text-muted line-clamp-2 h-16 overflow-hidden text-sm font-medium text-ellipsis">
+      <p className="postcard-content-article text-text-muted line-clamp-2 h-10 overflow-hidden text-sm font-medium text-ellipsis">
         {description}
       </p>
     </div>
