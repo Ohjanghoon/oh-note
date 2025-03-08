@@ -1,20 +1,25 @@
 // types
 import { PostMetadata } from "@/types/postTypes";
+import { parseDate } from "@/utils/utls";
+import Link from "next/link";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
+import BlogWritter from "./BlogWritter";
 
 function BlogContentHeader({ props }: { props: PostMetadata }) {
   const { title, publishDate, tags, thumbnailUrl } = props;
 
   return (
-    <header className="blog-content-header mx-auto w-full max-w-screen-md justify-center space-y-10">
+    <header className="blog-content-header mx-auto w-full max-w-screen-md space-y-10">
       <BlogContentTitle title={title} publishDate={publishDate} tags={tags} />
       <BlogContentImage thumbnailUrl={thumbnailUrl} />
+      <BlogContentBackground thumbnailUrl={thumbnailUrl} />
     </header>
   );
 }
 
+/** 블로그 콘텐츠 주제목 컴포넌트 */
 function BlogContentTitle({
   title,
   publishDate,
@@ -25,17 +30,27 @@ function BlogContentTitle({
   tags: string[];
 }) {
   return (
-    <div className="title-container border-muted space-y-5 border-b pb-5 text-center">
-      {/* <p className="font-extrabold text-accent-primary">category</p> */}
-      <h2 className="font-extrabold">{title}</h2>
-      <p className="text-text-dark-secondary flex items-center justify-center gap-1 text-sm font-semibold">
-        <MdAccessTime />
-        <span>{new Date(publishDate).toDateString()}</span>
+    <div className="title-container space-y-3">
+      <p className="text-link-default text-lg font-bold">
+        <Link href={"/blog"}> /blog</Link>
       </p>
+      <h2 className="title text-text-dark leading-tight font-extrabold">
+        {title}
+      </h2>
+
+      <div className="text-text-dark-secondary flex items-center gap-4 text-sm">
+        <BlogWritter />
+
+        <p className="flex items-center gap-0.5 text-sm">
+          <MdAccessTime className="h-5 w-5" />
+          <span>{parseDate(publishDate)}</span>
+        </p>
+      </div>
     </div>
   );
 }
 
+/** 블로그 콘텐츠 썸네일 컴포넌트 */
 function BlogContentImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
     <div className="mx-auto h-120 w-full overflow-hidden">
@@ -47,10 +62,22 @@ function BlogContentImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   );
 }
 
+/** 블로그 콘텐츠 백그라운드 컴포넌트 */
+function BlogContentBackground({ thumbnailUrl }: { thumbnailUrl: string }) {
+  return (
+    <>
+      <div
+        style={{ backgroundImage: `url(${thumbnailUrl})` }}
+        className={`absolute top-0 left-0 -z-10 h-[50vh] w-full bg-cover bg-center bg-no-repeat`}
+      ></div>
+      <div className="from-background via-background/80 to-background/70 absolute top-0 left-0 -z-9 h-[50vh] w-full bg-gradient-to-t backdrop-blur-md"></div>
+    </>
+  );
+}
+
 export default BlogContentHeader;
 
 {
-  /* <div className="from-accent-primary/50 absolute top-0 left-0 -z-10 h-[60vh] w-full bg-gradient-to-b via-[#4cc3ff]/30 to-transparent"></div> */
 }
 
 // {tags.length > 0 && (

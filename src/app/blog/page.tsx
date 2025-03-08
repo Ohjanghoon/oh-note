@@ -13,10 +13,8 @@ export default function Blog() {
           description="개발하며 배운 지식을 기록하는 블로그 공간입니다."
         />
       </header>
-
-      <TagList />
-
-      <section className="blog-card_list">
+      <section className="blog-section">
+        <TagList />
         <PostCardList />
       </section>
     </section>

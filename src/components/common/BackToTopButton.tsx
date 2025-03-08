@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 // icons
-import { MdOutlineVerticalAlignTop } from "react-icons/md";
+import { TbArrowBigUpLineFilled } from "react-icons/tb";
 
 function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,9 +33,9 @@ function BackToTopButton() {
       onClick={backToTop}
       className={`back_to_top-btn text-primary ring-primary overflow-hidden rounded-full ring-2 transition-[opacity,scale] duration-300 ${
         isVisible ? "opacity-100" : "pointer-events-none opacity-0"
-      } hover:bg-link-hover/80 hover:text-text-light hover:scale-105`}
+      } hover:bg-primary hover:text-text-light hover:scale-105`}
     >
-      <MdOutlineVerticalAlignTop className="p-1 text-3xl font-extrabold" />
+      <TbArrowBigUpLineFilled className="p-1 text-4xl font-extrabold" />
     </button>
   );
 }
