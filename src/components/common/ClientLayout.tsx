@@ -14,10 +14,12 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   return (
     <Provider store={store}>
-      <div className="main-container">
+      <div className="layout-container">
         {/* <LeftSidebar /> */}
-        <main>{children}</main>
-        <BackToTopButton />
+        <main className="layout-main">{children}</main>
+        <aside className="back_to_top">
+          <BackToTopButton />
+        </aside>
       </div>
     </Provider>
   );

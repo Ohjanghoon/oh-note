@@ -1,27 +1,77 @@
 export const metadata = {
-  title: "Hello world",
-  publishDate: "2024-01-01T00:00:00Z",
-  thumbnailUrl: "/image.png",
+  title: "Next.js + MDX 블로그 제작기 (1)",
+  description: "Next.js + MDX를 활용하여 개발 블로그 제작 과정입니다.",
+  publishDate: "2025-03-09T01:22:00Z",
+  thumbnailUrl: "/assets/blog/thumbnail-blog.webp",
   tags: ["회고"],
 };
 
-<BlogHeader {...metadata} />
+<BlogHeader props={{ ...metadata }} />
 
 <article className="blog-content-article">
+# 코드 블럭
 
----
+```json json:text.json
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "Hello world",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
 
-title: "내 첫 블로그 글"
-date: "2025-02-28"
+<br />
 
----
+```ts title="index.js"
+function hello() {
+  const text = "Hello world";
+  console.log(
+    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos reiciendis voluptatem tenetur facilis, unde, deserunt necessitatibus totam voluptate, quidem eos itaque delectus est! Unde dolorum dignissimos hic dicta esse praesentium. ",
+    text,
+  ); // Hello world
+}
+```
 
-# MDX로 만든 블로그 글 🚀
+위의 코드는 ts 코드입니다.
 
-이제 **React 컴포넌트도 함께 사용할 수 있습니다!**
+```plain
+"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos reiciendis voluptatem tenetur facilis, unde, deserunt necessitatibus totam voluptate, quidem eos itaque delectus est! Unde dolorum dignissimos hic dicta esse praesentium. " Hello world
+```
 
-```JavaScript
-console.log("123");
+위의 코드는 plain text입니다.
+
+```js title="index.js"
+function hello() {
+  const text = "Hello world";
+  console.log(
+    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos reiciendis voluptatem tenetur facilis, unde, deserunt necessitatibus totam voluptate, quidem eos itaque delectus est! Unde dolorum dignissimos hic dicta esse praesentium. ",
+    text,
+  ); // Hello world
+}
+```
+
+위의 코드는 js입니다.
+
+```css
+html,
+body,
+main {
+  @apply w-full;
+}
+
+body {
+  @apply bg-background text-foreground min-h-screen text-sm leading-relaxed font-medium transition-colors duration-300;
+}
+
+footer {
+  @apply my-6 h-10 w-full bg-transparent;
+}
 ```
 
 </article>

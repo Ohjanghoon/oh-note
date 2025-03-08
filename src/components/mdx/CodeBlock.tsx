@@ -11,15 +11,26 @@ export default function CodeBlock({
   const code = children?.toString() || "";
 
   const [highlightedCode, setHighlightedCode] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
 
   useEffect(() => {
-    highlightCode(code, language).then(setHighlightedCode);
+    console.log("🤔 CodeBlock 실행", new Date().toLocaleString());
+
+    highlightCode(code, language).then((html) => {
+      // ✅ `data-title` 속성 읽기
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = html;
+      const preElement = tempDiv.querySelector("pre");
+      const extractedTitle = preElement?.getAttribute("data-title") || "";
+      setTitle(extractedTitle);
+      setHighlightedCode(html);
+    });
   }, [code, language]);
 
   return (
-    <div
+    <pre
       data-language={language}
-      className="w-full overflow-x-scroll rounded-md"
+      className="w-full overflow-x-scroll rounded-md py-5"
       dangerouslySetInnerHTML={{ __html: highlightedCode }}
     />
   );

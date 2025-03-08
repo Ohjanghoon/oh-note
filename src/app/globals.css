@@ -18,11 +18,7 @@
   }
 
   body {
-    @apply bg-background text-foreground min-h-screen text-sm leading-relaxed font-medium transition-colors duration-300;
-  }
-
-  main {
-    @apply col-span-4 md:col-span-12;
+    @apply bg-background text-foreground min-h-screen text-sm leading-relaxed font-medium transition-colors duration-100 ease-in;
   }
 
   footer {
@@ -30,10 +26,10 @@
   }
 
   h1 {
-    @apply text-5xl leading-[1.1] font-extrabold xl:text-6xl;
+    @apply text-5xl leading-[1.1] font-extrabold xl:text-[44px];
   }
   h2 {
-    @apply text-4xl leading-[1.1] font-semibold xl:text-5xl;
+    @apply text-4xl leading-[1.1] font-semibold xl:text-[40px];
   }
   h3 {
     @apply text-3xl leading-[1.1] font-semibold xl:text-4xl;
@@ -155,26 +151,20 @@ pre.shiki {
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
-  background-color: #00ff00; /* Notion 라이트 모드 배경색 */
-  color: #24292e; /* 기본 텍스트 색상 */
+
+  pre::-webkit-scrollbar {
+    display: none;
+  }
+  /* Fenced Code block - hide horizontal scrollbar: mozila */
+  pre {
+    scrollbar-width: none;
+  }
 }
 
-pre.shiki .comment {
-  color: #6a737d; /* 주석 */
-}
-
-pre.shiki .keyword {
-  color: #d73a49; /* 키워드 (빨간색) */
-}
-
-pre.shiki .string {
-  color: #032f62; /* 문자열 (진한 파란색) */
-}
-
-pre.shiki .function {
-  color: #005cc5; /* 함수 (파란색) */
-}
-
-pre.shiki .variable {
-  color: #e36209; /* 변수 (주황색) */
+.scrollbar-hide {
+  scrollbar-width: none;
+  /* Fenced Code block - hide horizontal scrollbar: webkit */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
