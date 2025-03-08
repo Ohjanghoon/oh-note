@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "../assets/styles/layer/color.css";
-@import "../assets/styles/layer/components.css";
+@import "../styles/layer/color.css";
+@import "../styles/layer/components.css";
 
 @plugin "@tailwindcss/typography";
 
