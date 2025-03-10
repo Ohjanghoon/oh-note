@@ -18,7 +18,6 @@ import { MdAccessTime } from "react-icons/md";
 
 /** PostCardList 컴포넌트 */
 function PostCardList() {
-  const dispatch = useDispatch<AppDispatch>();
   const searchParams = useSearchParams();
   const searchTag = searchParams.get("tag");
 
@@ -26,17 +25,21 @@ function PostCardList() {
     (state: RootState) => state.post,
   );
 
-  useEffect(() => {
-    if (searchTag) {
-      dispatch(getPosts(searchTag));
-    } else {
-      dispatch(getPosts());
-    }
-  }, [searchTag, dispatch]);
+  // 이미 불러온 posts에서 태그별 필터링
+  const filteredPosts = searchTag
+    ? posts.filter((post) => post.tags.includes(searchTag))
+    : posts;
+  // useEffect(() => {
+  //   if (searchTag) {
+  //     dispatch(getPosts(searchTag));
+  //   } else {
+  //     dispatch(getPosts());
+  //   }
+  // }, [searchTag, dispatch]);
 
   return (
     <ul className="grid grid-cols-3 gap-x-5 gap-y-10">
-      {posts.map((post) => (
+      {filteredPosts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
     </ul>

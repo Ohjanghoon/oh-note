@@ -5,17 +5,21 @@ import { Provider } from "react-redux";
 // store
 import store from "@/store/store";
 
+// hooks
+import usePostsInitializer from "@/hooks/usePostsInitializer";
+
 // components
 import LeftSidebar from "@/components/common/LeftSidebar";
 import BackToTopButton from "@/components/common/BackToTopButton";
-import GradientBackground from "../ui/GradientBackground";
-import Header from "./Header";
+import GradientBackground from "@/components/ui/GradientBackground";
+import Header from "@/components/common/Header";
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   return (
     <Provider store={store}>
+      <PostsInitializer />
       <div className="root-container">
         <GradientBackground />
         <Header />
@@ -30,5 +34,10 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
     </Provider>
   );
 };
+
+function PostsInitializer() {
+  usePostsInitializer();
+  return null;
+}
 
 export default ClientLayout;
