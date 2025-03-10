@@ -7,9 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/assets/styles/globals.css";
 
 // components
-import Header from "@/components/common/Header";
 import ClientLayout from "@/components/common/ClientLayout";
-import GradientBackground from "@/components/ui/GradientBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,11 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="root-container">
-          <GradientBackground />
-          <Header />
-          <ClientLayout>{children}</ClientLayout>
-        </div>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
