@@ -41,7 +41,7 @@
     @apply text-xl leading-[1.1] font-semibold xl:text-2xl;
   }
   h6 {
-    @apply text-lg leading-[1.1] font-semibold xl:text-xl;
+    @apply text-lg leading-[1.1] font-semibold xl:text-lg;
   }
 
   button,

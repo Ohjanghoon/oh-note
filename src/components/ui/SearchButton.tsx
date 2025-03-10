@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 // icons
 import { FiSearch } from "react-icons/fi";
-import SearchModal from "./SearchModal";
+
+// components
+import SearchModal from "@/components/ui/SearchModal";
 
 function SearchButton() {
   const [shortcut, setShortcut] = useState<string>("");
