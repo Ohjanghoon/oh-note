@@ -42,7 +42,9 @@ function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="header-nav-wrapper ring-ring bg-background/70 flex items-center justify-center gap-10 rounded-xl px-8 py-2 shadow-md backdrop-blur-xl">
+    <nav
+      className={`header-nav-wrapper flex items-center justify-end gap-3 rounded-xl bg-transparent px-5 py-2`}
+    >
       {NavList.map((nav) => {
         // 현재 경로에 따른 active 상태 설정
         const isActive =
@@ -53,10 +55,10 @@ function Navigation() {
             target={nav.isBlank ? "_blank" : undefined}
             rel={nav.isBlank ? "noopener noreferrer" : undefined}
             key={nav.name}
-            className={`${isActive ? "pointer-events-none font-semibold" : "text-text-dark-secondary"} hover:text-text-dark flex items-center gap-1 p-2 duration-200 hover:transition-all`}
+            className={`${isActive ? "text-primary pointer-events-none font-semibold" : "text-text-dark-secondary hover:text-text-dark"} flex items-center gap-1 p-2.5`}
           >
             {nav.name}
-            {nav.icon && <span className="text-2xs">{nav.icon}</span>}
+            {nav.icon && <span className="text-xs">{nav.icon}</span>}
           </Link>
         );
       })}
