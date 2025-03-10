@@ -8,7 +8,7 @@
 
 @layer base {
   * {
-    @apply scroll-smooth focus-visible:outline-none;
+    @apply focus-visible:outline-none;
   }
 
   html,
@@ -44,7 +44,8 @@
     @apply text-lg leading-[1.1] font-semibold xl:text-xl;
   }
 
-  button {
+  button,
+  a {
     @apply cursor-pointer;
   }
 }

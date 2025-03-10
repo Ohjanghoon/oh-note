@@ -66,7 +66,7 @@
     --card: #f7f6f3;
 
     /* 배경 색상 */
-    --bg-muted: #eae9e5;
+    --bg-muted: #bdc6cd;
     --bg-border: #dce3eb;
     --bg-dark: #171717;
     --bg-darker: #0f0f0f;
@@ -156,6 +156,7 @@
 
     /* ✅ 텍스트 색상 */
     --text-dark: #f7f6f3;
+    --text-dark-secondary: #e0dfdd;
     --text-muted: #aab9d2;
     --text-light: #101010;
     --text-on-dark: #ffffff;
@@ -172,7 +173,7 @@
     --error: #e74c3c;
 
     /* ✅ 그림자 & 테두리 */
-    --shadow: rgba(57, 134, 242, 0.45);
+    --shadow: #ffffff;
   }
 }
 
