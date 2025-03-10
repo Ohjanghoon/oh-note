@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "../assets/styles/layer/color.css";
-@import "../assets/styles/layer/components.css";
+@import "../styles/layer/color.css";
+@import "../styles/layer/components.css";
 
 @plugin "@tailwindcss/typography";
 
@@ -8,7 +8,7 @@
 
 @layer base {
   * {
-    @apply scroll-smooth focus-visible:outline-none;
+    @apply focus-visible:outline-none;
   }
 
   html,
@@ -41,10 +41,11 @@
     @apply text-xl leading-[1.1] font-semibold xl:text-2xl;
   }
   h6 {
-    @apply text-lg leading-[1.1] font-semibold xl:text-xl;
+    @apply text-lg leading-[1.1] font-semibold xl:text-lg;
   }
 
-  button {
+  button,
+  a {
     @apply cursor-pointer;
   }
 }

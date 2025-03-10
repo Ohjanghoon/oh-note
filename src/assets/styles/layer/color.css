@@ -65,8 +65,11 @@
     --ring: #ededeb;
     --card: #f7f6f3;
 
+    --hover: #f7fafc;
+
     /* 배경 색상 */
-    --bg-muted: #eae9e5;
+    --bg-subtle: #f2f1ed;
+    --bg-muted: #bdc6cd;
     --bg-border: #dce3eb;
     --bg-dark: #171717;
     --bg-darker: #0f0f0f;
@@ -74,7 +77,7 @@
     /* 텍스트 색상 */
     --text-dark: #0f0f0f;
     --text-dark-secondary: #505050;
-    --text-muted: #364153;
+    --text-muted: #878785;
     --text-light: #f7f6f3;
     --text-on-dark: #ffffff;
     --text-on-muted: #aab9d2;
@@ -156,6 +159,7 @@
 
     /* ✅ 텍스트 색상 */
     --text-dark: #f7f6f3;
+    --text-dark-secondary: #e0dfdd;
     --text-muted: #aab9d2;
     --text-light: #101010;
     --text-on-dark: #ffffff;
@@ -172,7 +176,7 @@
     --error: #e74c3c;
 
     /* ✅ 그림자 & 테두리 */
-    --shadow: rgba(57, 134, 242, 0.45);
+    --shadow: #ffffff;
   }
 }
 
@@ -190,6 +194,7 @@
 
   /* ✅ 배경 색상 */
   --color-bg-light: var(--bg-light);
+  --color-bg-subtle: var(--bg-subtle);
   --color-bg-muted: var(--bg-muted);
   --color-bg-border: var(--bg-border);
   --color-bg-dark: var(--bg-dark);
