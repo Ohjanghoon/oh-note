@@ -18,7 +18,6 @@ interface TagProps extends Tag {
 }
 
 function TagList() {
-  const dispatch = useDispatch<AppDispatch>();
   const { tags } = useSelector((state: RootState) => state.tag);
 
   const searchParams = useSearchParams();
@@ -27,10 +26,6 @@ function TagList() {
   const [showLeftShadow, setShowLeftShadow] = useState(false);
   const [showRightShadow, setShowRightShadow] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    dispatch(getTags());
-  }, [dispatch]);
 
   const handleScroll = () => {
     if (!scrollContainerRef.current) return;
@@ -44,7 +39,7 @@ function TagList() {
     <div className="relative w-full">
       {/* 왼쪽 그림자 (showLeftShadow가 true일 때만 보이도록 처리) */}
       {showLeftShadow && (
-        <div className="from-primary-light/20 l pointer-events-none absolute top-0 left-0 h-full w-5 bg-gradient-to-r to-transparent py-1"></div>
+        <div className="from-primary-light/20 l pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r to-transparent py-1"></div>
       )}
 
       {/* 스크롤 가능한 태그 리스트 */}
@@ -72,7 +67,7 @@ function TagList() {
 
       {/* 오른쪽 그림자 (showRightShadow가 true일 때만 보이도록 처리) */}
       {showRightShadow && (
-        <div className="from-bg-dark/20 pointer-events-none absolute top-0 right-0 h-full w-15 bg-gradient-to-l to-transparent py-1"></div>
+        <div className="from-primary-light/20 pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l to-transparent py-1"></div>
       )}
     </div>
   );
