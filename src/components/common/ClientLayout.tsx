@@ -13,6 +13,7 @@ import LeftSidebar from "@/components/common/LeftSidebar";
 import BackToTopButton from "@/components/common/BackToTopButton";
 import GradientBackground from "@/components/ui/GradientBackground";
 import Header from "@/components/common/Header";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -20,16 +21,18 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   return (
     <Provider store={store}>
       <PostsInitializer />
-      <div className="root-container">
-        <GradientBackground />
-        <Header />
-        <div className="layout-container">
-          <main className="layout-main">{children}</main>
-          <aside className="back_to_top">
-            <BackToTopButton />
-          </aside>
+      <ThemeProvider>
+        <div className="root-container">
+          <GradientBackground />
+          <Header />
+          <div className="layout-container">
+            <main className="layout-main">{children}</main>
+            <aside className="back_to_top">
+              <BackToTopButton />
+            </aside>
+          </div>
         </div>
-      </div>
+      </ThemeProvider>
     </Provider>
   );
 };

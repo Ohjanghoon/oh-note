@@ -54,7 +54,7 @@ function SearchButton() {
   return (
     <>
       <button
-        className="search_btn bg-bg-muted/40 ring-text-muted/60 text-text-dark-secondary/50 flex w-48 items-center justify-between gap-2 rounded-lg px-2 py-1.5 ring-1"
+        className="search_btn bg-bg-muted/40 ring-text-muted/60 text-text-dark-muted flex w-48 items-center justify-between gap-2 rounded-lg px-2 py-1.5 ring-1"
         onClick={onModalOpen}
       >
         <div className="search_btn-text flex items-center gap-1">

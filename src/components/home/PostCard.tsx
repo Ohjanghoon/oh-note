@@ -42,7 +42,7 @@ function PostCard({ post }: { post: PostMetadata }) {
           <h4 className="post_card-title font-bold tracking-tight">
             {post.title}
           </h4>
-          <p>{post.description}</p>
+          <p className="text-text-dark-secondary"> {post.description}</p>
           <p className="post_card-publishDate flex items-center gap-1">
             <MdAccessTime />
             {formattingDate}

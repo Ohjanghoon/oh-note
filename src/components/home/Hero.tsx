@@ -32,12 +32,12 @@ function Hero() {
   }, [posts]);
 
   return (
-    <>
+    <div className="hero-section relative z-10">
       <HeroSection />
       <RecentPostsSection recentPosts={recentPosts} />
 
       {/* <SearchBar /> */}
-    </>
+    </div>
   );
 }
 
@@ -55,16 +55,16 @@ function HeroSection() {
       {/* 히어로 섹션 */}
       <div className="hero-heading_container flex h-full flex-col items-start justify-end">
         {/* <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-[60px] tracking-tight text-transparent"> */}
-        <h1 className="heading_container-title text-6xl tracking-tight">
+        <h1 className="heading_container-title text-text-dark text-6xl tracking-tight">
           oh-note
         </h1>
-        <p className="heading_container-subtle text-text-dark-secondary mt-2 text-lg">
+        <p className="heading_container-subtle text-text-dark-secondary mt-2 text-[16px]">
           개발 기록과 학습한 내용을 정리하는 개인 블로그 공간입니다. <br />
           Next.js & TailwindCSS 기반으로 제작되었습니다.
         </p>
         <Link
           href="/blog"
-          className="heading_container-link bg-primary text-text-light mt-5 rounded-lg px-6 py-3 font-semibold shadow-lg transition hover:bg-blue-500"
+          className="heading_container-link bg-primary text-text-light mt-5 rounded-lg px-6 py-3 font-semibold shadow-lg hover:bg-blue-500"
         >
           Go to Blog →
         </Link>
@@ -76,9 +76,9 @@ function HeroSection() {
 function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
   return (
     <section className="home-recent_posts mx-auto">
-      <h4 className="recent_posts-title flex items-center gap-2 font-bold">
+      <h5 className="recent_posts-title flex items-center gap-2 font-bold">
         <RiSignpostFill className="text-primary" /> 최신 게시글
-      </h4>
+      </h5>
       <div className="recent_posts-carousel_container mt-5 grid grid-cols-1 gap-5">
         <Carousel>
           {recentPosts.map((post) => {
@@ -99,10 +99,10 @@ function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
 //       <div className="mt-5">
 //         {recentPosts.map((post) => (
 //           <a href={`/blog/${post.slug}`} key={post.slug} className="group">
-//             <div className="img_wrapper relative mx-auto h-full w-full max-w-screen-lg overflow-hidden rounded-2xl">
+//             <div className="relative w-full h-full max-w-screen-lg mx-auto overflow-hidden img_wrapper rounded-2xl">
 //               <img src={post.thumbnailUrl} alt="" className="" />
-//               <div className="absolute top-0 left-0 h-full w-full bg-black/60 backdrop-blur-xs transition-all duration-200">
-//                 <div className="text-text-light absolute bottom-10 left-10">
+//               <div className="absolute top-0 left-0 w-full h-full transition-all duration-200 bg-black/60 backdrop-blur-xs">
+//                 <div className="absolute text-text-light bottom-10 left-10">
 //                   <h2 className="font-extrabold">{post.title}</h2>
 //                   <p className="mt-2 text-sm">{parseDate(post.publishDate)}</p>
 //                 </div>
@@ -117,13 +117,13 @@ function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
 
 // function SearchBar() {
 //   return (
-//     <div className="relative mx-auto max-w-lg">
+//     <div className="relative max-w-lg mx-auto">
 //       <input
 //         type="text"
 //         placeholder="검색어를 입력하세요..."
-//         className="w-full rounded-lg border p-3 pl-10 shadow-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+//         className="w-full p-3 pl-10 border rounded-lg shadow-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
 //       />
-//       <span className="absolute top-3 left-3 text-gray-400">🔍</span>
+//       <span className="absolute text-gray-400 top-3 left-3">🔍</span>
 //     </div>
 //   );
 // }

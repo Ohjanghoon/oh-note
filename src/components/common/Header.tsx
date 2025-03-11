@@ -6,7 +6,7 @@ import Link from "next/link";
 // components
 import Navigation from "./Navigation";
 import SearchButton from "@/components/ui/SearchButton";
-import ThemeButton from "../ui/ThemeButton";
+import ThemeButton from "./ThemeButton";
 
 // icons
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -23,7 +23,7 @@ function Header() {
   }, []);
   return (
     <header
-      className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-all duration-200 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
+      className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-[background-color] duration-300 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
     >
       {/* <header
       className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-all duration-200 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
@@ -32,16 +32,16 @@ function Header() {
       <div className="header-logo justify-self-start">
         {/* <GiHamburgerMenu className="text-xl" /> */}
         <Link href="/" className="flex items-center justify-center gap-3">
-          {/* <img src="/assets/logo-oh-note.webp" alt="logo" className="h-8 w-8" /> */}
+          {/* <img src="/assets/logo-oh-note.webp" alt="logo" className="w-8 h-8" /> */}
           <img
             src="/assets/logo/logo_light.ico"
             alt="logo"
-            className="block h-10 w-10 rounded-lg dark:hidden"
+            className="h-10 w-10 rounded-lg"
           />
           {/* <img
             src="/assets/logo/logo_dark.ico"
             alt="logo"
-            className="hidden h-8 w-10 rounded-lg dark:block"
+            className="hidden w-10 h-8 rounded-lg dark:block"
           /> */}
 
           <h5 className="font-bold tracking-tight">oh-note</h5>

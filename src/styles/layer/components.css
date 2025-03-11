@@ -5,7 +5,7 @@
 @layer components {
   .root-container {
     /* @apply grid w-full grid-cols-12 px-8 mx-auto gap-x-8; */
-    @apply mx-auto w-full max-w-screen-2xl;
+    @apply bg-background text-foreground mx-auto min-h-screen w-full max-w-screen-2xl transition-colors duration-300;
 
     .root-header {
       @apply z-50 mx-auto w-full;
@@ -13,7 +13,7 @@
   }
 
   .layout-container {
-    @apply mx-auto grid w-full max-w-screen-lg grid-cols-4 gap-x-5 px-10 md:grid-cols-12;
+    @apply z-10 mx-auto grid w-full max-w-screen-lg grid-cols-4 gap-x-5 px-10 md:grid-cols-12;
 
     .layout-main {
       @apply col-span-4 md:col-span-12;
@@ -30,9 +30,10 @@
     @apply mx-auto min-h-screen w-full space-y-10 pt-36;
   }
 
-  .home {
+  .hero-section {
     @apply space-y-36;
   }
+
   .blog-section {
     @apply mx-auto w-full space-y-5;
   }
@@ -76,30 +77,40 @@
       @apply text-lg leading-loose font-medium md:text-xl;
     }
 
-    p {
-      @apply prose;
-    }
     blockquote {
       @apply border-l-4 border-gray-800 bg-gray-200/40 py-1 pl-4 text-gray-600;
     }
 
-    ol * {
-      @apply prose list-inside list-decimal;
+    ol {
+      @apply list-inside list-decimal;
     }
-    ul * {
-      @apply prose list-inside list-disc;
+
+    ul {
+      @apply list-inside list-disc;
+    }
+
+    /* ✅ 2단계 `ul` */
+    ul ul {
+      list-style-type: circle !important;
+    }
+
+    /* ✅ 3단계 이상 `ul` */
+    ul ul ul {
+      list-style-type: square !important;
+    }
+
+    /* ✅ 리스트 간격 조정 */
+    li {
+      @apply mt-4;
     }
 
     li > ul {
-      margin-top: 4px !important;
+      @apply mt-4 pl-4;
     }
 
-    li {
-      margin-top: 3px !important;
-      padding-inline-start: 0 !important;
-    }
+    /* ✅ 리스트 마커 색상 설정 */
     li::marker {
-      @apply text-black;
+      @apply text-text-dark;
     }
   }
 }

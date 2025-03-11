@@ -34,7 +34,6 @@ function SearchModal({ onClose }: { onClose: (isOpen: boolean) => void }) {
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        console.log("검색 모달창 닫기");
         onModalClose();
       }
     };
@@ -47,19 +46,19 @@ function SearchModal({ onClose }: { onClose: (isOpen: boolean) => void }) {
 
   return (
     <section
-      className="search_modal bg-bg-dark/20 fixed inset-0 z-100 flex h-screen w-full items-center justify-center p-5"
+      className="search_modal bg-bg-darker/40 fixed inset-0 z-100 flex h-screen w-full items-center justify-center p-5"
       onClick={onModalClose}
     >
       <div
-        className="search_modal-container bg-background grid h-full w-full max-w-screen-sm grid-rows-[0.5fr_5.5fr] rounded-xl p-5 md:max-h-120 md:max-w-screen-md"
+        className="search_modal-container bg-background grid h-full w-full max-w-screen-sm grid-rows-[0.5fr_5.5fr] rounded-xl pt-3 pb-5 ring-[0.2px] md:max-h-170 md:max-w-screen-md"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="search_modal-input_container flex w-full items-center gap-2 border-b-1">
+        <div className="search_modal-input_container ring-ring border-muted flex w-full items-center gap-2 border-b-1 px-10 py-2">
           <FiSearch className="text-text-muted text-2xl" />
           <input
             type="text"
             placeholder="검색어를 입력해주세요"
-            className="w-full rounded-xl py-2"
+            className="w-full py-2"
             onChange={(e) => setSearchTermKeyword(e.target.value)}
           />
           <button
@@ -69,7 +68,7 @@ function SearchModal({ onClose }: { onClose: (isOpen: boolean) => void }) {
             ESC
           </button>
         </div>
-        <section className="search_modal-section h-full overflow-auto p-5">
+        <section className="search_modal-section h-full overflow-auto px-10 py-5">
           <SearchPosts
             filteredPosts={filteredPosts}
             onModalClose={onModalClose}
@@ -96,17 +95,29 @@ function SearchPosts({
           return (
             <li
               key={slug}
-              className="group bg-bg-subtle rounded-xl hover:bg-[#e8e7e3]"
+              className="group bg-bg-subtle hover:bg-bg-subtle-hover rounded-xl"
             >
               <Link href={`/blog/${slug}`} onClick={onModalClose}>
                 <div className="flex w-full items-center gap-1 p-5">
-                  <div className="w-full">
+                  <div className="w-full space-y-3">
                     <h6 className="">{title}</h6>
-                    <p>{description}</p>
-                    <p>{tags}</p>
+                    <p className="text-text-dark-muted">{description}</p>
+                    <div className="flex items-center gap-2">
+                      {tags.length > 0 &&
+                        tags.map((tag) => {
+                          return (
+                            <span
+                              key={tag}
+                              className="ring-ring dark:ring-primary bg-muted/10 text-primary-light rounded-full px-2 py-0.5 text-xs ring-1"
+                            >
+                              {tag}
+                            </span>
+                          );
+                        })}
+                    </div>
                   </div>
-                  <button className="group-hover:bg-link-light group-hover:text-text-light rounded-full p-1 font-extrabold">
-                    <IoIosArrowForward className="text-xl" />
+                  <button className="group-hover:text-link-light rounded-full p-1 text-xl font-extrabold transition-[background-color,font-size] duration-300 ease-in-out group-hover:text-2xl">
+                    <IoIosArrowForward />
                   </button>
                 </div>
               </Link>

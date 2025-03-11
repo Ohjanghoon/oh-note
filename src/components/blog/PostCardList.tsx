@@ -85,7 +85,7 @@ function PostCardContent({
 }) {
   return (
     <div className="postcard-content flex h-full flex-col justify-between space-y-2 p-1">
-      <h6 className="postcard-content-header group-hover:text-link-hover line-clamp-1 overflow-hidden text-ellipsis transition-colors duration-300">
+      <h6 className="postcard-content-header group-hover:text-link-hover line-clamp-1 overflow-hidden text-ellipsis group-hover:transition-colors group-hover:duration-300">
         {title}
       </h6>
       <p className="postcard-content-article text-text-muted line-clamp-2 h-10 overflow-hidden text-sm font-medium text-ellipsis">
