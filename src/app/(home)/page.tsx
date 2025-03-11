@@ -1,14 +1,14 @@
 import TagList from "@/components/blog/TagList";
 import PostCardList from "@/components/blog/PostCardList";
 import TitleHeader from "@/components/common/TitleHeader";
+import GridBackground from "@/components/ui/GridBackground";
+import Hero from "@/components/home/Hero";
 
 export default async function Home() {
   return (
-    <section className="home-section">
-      <header className="home__header">
-        <TitleHeader title="Oh-note" description="개인 블로그입니다." />
-      </header>
-      {/* <PostCard posts={posts} /> */}
+    <section className="home">
+      <GridBackground />
+      <Hero />
     </section>
   );
 }

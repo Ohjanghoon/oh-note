@@ -24,7 +24,6 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
         <GradientBackground />
         <Header />
         <div className="layout-container">
-          {/* <LeftSidebar /> */}
           <main className="layout-main">{children}</main>
           <aside className="back_to_top">
             <BackToTopButton />
