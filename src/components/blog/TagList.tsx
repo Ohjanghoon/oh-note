@@ -78,7 +78,7 @@ function TagLink({ props }: { props: TagProps }) {
   return (
     <Link
       href={href}
-      className={`tag_link border-primary hover:bg-link-light group hover:text-text-light inline-flex max-w-full items-center justify-center gap-1 rounded-full border-1 px-3 py-1 ${
+      className={`tag_link ring-primary hover:bg-link-light group hover:text-text-light inline-flex max-w-full items-center justify-center gap-1 rounded-full px-3 py-1 ring-1 transition-[background-color] duration-300 ${
         isSelected ? "bg-primary text-text-light pointer-events-none" : ""
       }`}
     >
