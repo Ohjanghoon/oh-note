@@ -29,9 +29,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setMounted(true);
 
     if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark");
+      document.body.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
     }
   }, []);
 
@@ -43,19 +43,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("theme", newTheme);
 
     if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
+      document.body.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
     }
   };
 
   return (
     <ThemeContext.Provider value={{ theme: theme ?? "light", toggleTheme }}>
-      <div
-        className={`${mounted ? "transition-colors duration-100" : undefined}`}
-      >
-        {theme !== null && children}
-      </div>
+      {theme !== null && children}
     </ThemeContext.Provider>
   );
 }

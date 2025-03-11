@@ -10,6 +10,7 @@ import Link from "next/link";
 // icons
 import { MdAccessTime } from "react-icons/md";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 function BlogContentHeader({ props }: { props: PostMetadata }) {
   const { title, publishDate, tags, thumbnailUrl } = props;
@@ -33,12 +34,20 @@ function BlogContentTitle({
   publishDate: string;
   tags: string[];
 }) {
+  const router = useRouter();
+
   const goBack = (e: MouseEvent) => {
     e.preventDefault();
-    history.back();
+    if (document.referrer && document.referrer.includes("/blog")) {
+      console.log("뒤로 가기");
+      router.back(); // 이전 블로그 페이지로 이동 (스크롤 위치 유지 가능)
+    } else {
+      console.log("블로그 가기");
+      router.push("/blog"); // 블로그 목록 페이지로 이동
+    }
   };
   return (
-    <div className="title-container space-y-3 px-1">
+    <div className="title-container relative z-10 space-y-3 px-1">
       {/* <Link
         href={"/blog"}
         onClick={(e) => goBack(e)}
@@ -47,9 +56,15 @@ function BlogContentTitle({
         <IoIosArrowRoundBack />
         Back
       </Link> */}
-      <p className="text-primary text-semibold hover:text-blue-500">
-        <button onClick={(e) => goBack(e)}> ← Back to blog</button>
-      </p>
+
+      <button
+        className="text-primary text-semibold hover:text-primary-hover"
+        onClick={(e) => goBack(e)}
+      >
+        {" "}
+        ← blog
+      </button>
+
       <h2 className="title text-text-dark leading-tight font-extrabold">
         {title}
       </h2>
@@ -83,7 +98,7 @@ function BlogWritter() {
 /** 블로그 콘텐츠 썸네일 컴포넌트 */
 function BlogContentImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <div className="mx-auto h-120 w-full overflow-hidden">
+    <div className="relative z-10 mx-auto h-120 w-full overflow-hidden">
       <img
         src={thumbnailUrl}
         className="h-full w-full rounded-3xl object-cover object-center"
@@ -97,10 +112,23 @@ function BlogContentBackground({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
     <>
       <div
-        style={{ backgroundImage: `url(${thumbnailUrl})` }}
-        className={`absolute top-0 left-0 -z-10 h-[60vh] w-full bg-cover bg-center bg-no-repeat`}
+        style={{
+          backgroundImage: `url(${thumbnailUrl})`,
+          WebkitMaskImage:
+            "linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))",
+          maskImage:
+            "linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))",
+        }}
+        className={`absolute top-0 left-0 z-1 h-[60vh] w-full bg-cover bg-center bg-no-repeat opacity-30 blur-sm`}
       ></div>
-      <div className="from-background via-background/90 to-background/60 absolute top-0 left-0 -z-9 h-[60vh] w-full bg-gradient-to-t backdrop-blur-sm"></div>
+
+      {/* <div className="dutaion-1000 absolute top-0 left-0 z-2 h-[60vh] w-full bg-gradient-to-b from-[#f7f6f3]/60 via-[#f7f6f3]/90 to-[#f7f6f3] backdrop-blur-sm transition-colors dark:from-[#1d232a]/60 dark:via-[#1d232a]/90 dark:to-[#1d232a]"></div> */}
+      {/* <div
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.5), var(--background)), url(${thumbnailUrl})`,
+        }}
+        className={`absolute top-0 left-0 z-1 h-[60vh] w-full bg-cover bg-center bg-no-repeat dark:brightness-50`}
+      ></div> */}
     </>
   );
 }

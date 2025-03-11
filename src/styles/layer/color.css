@@ -2,64 +2,16 @@
  * color layer
 \*****************************************/
 @layer color {
-  /* :root {
-
-    --background: #f7f6f3;
-    --foreground: #171717;
-
-    --primary: "#3986f2";
-    --primary-darken: "#2c6cd6";
-    --primary-pressed: "#1f56a8";
-    --primary-light: "#62a1f7";
-    --muted: "#aab9d2";
-    --border: "#dce3eb";
-    
-
-
-    --primary: #ededed;
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-
-    --icon-background: #fefefe;
-
-    --card: #ededed;
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: #a1a1a1;
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-  } */
-
   :root {
-    --background: #f7f6f3;
+    /* --background: #f7f6f3; */
+    --background: #f5f4f1;
     --foreground: #171717;
+
     --primary: #3986f2;
     --primary-darken: #2c6cd6;
-    --primary-pressed: #1f56a8;
+    --primary-hover: #2b7fff;
     --primary-light: #62a1f7;
+
     --muted: #aab9d2;
     --border: #dce3eb;
     --ring: #ededeb;
@@ -68,7 +20,8 @@
     --hover: #f7fafc;
 
     /* 배경 색상 */
-    --bg-subtle: #f2f1ed;
+    --bg-subtle: #eeedea;
+    --bg-subtle-hover: #e8e7e3;
     --bg-muted: #bdc6cd;
     --bg-border: #dce3eb;
     --bg-dark: #171717;
@@ -77,6 +30,8 @@
     /* 텍스트 색상 */
     --text-dark: #0f0f0f;
     --text-dark-secondary: #505050;
+    --text-dark-muted: #50505088;
+
     --text-muted: #878785;
     --text-light: #f7f6f3;
     --text-on-dark: #ffffff;
@@ -136,30 +91,37 @@
     --sidebar-ring: oklch(0.439 0 0);
   } */
 
-  /* --background: #10172a;
-    --background: #1d232a; */
   .dark {
-    /* ✅ 기본 색상 */
-    --background: #191919;
-    --foreground: #ffffff;
+    /* --background: #191919; */
+    --background: #1d232a;
+    --foreground: #f7f6f3;
+
     --primary: #62a1f7;
     --primary-darken: #3986f2;
-    --primary-pressed: #2c6cd6;
+    --primary-hover: #2b7fff;
+    /* --primary-pressed: #2c6cd6; */
     --primary-light: #8dc1ff;
+
     --muted: #5f748e;
     --border: #2a2a2a;
     --ring: #4a4a4a;
     --card: #262626;
 
-    /* ✅ 배경 색상 */
+    /* 배경 색상 */
+    --bg-subtle: #252b33;
+    /* --bg-subtle-hover: #2e343d; */
+    /* --bg-subtle-hover: #323841; */
+    --bg-subtle-hover: #383e47;
     --bg-muted: #181818;
     --bg-border: #2a2a2a;
     --bg-dark: #121212;
     --bg-darker: #0b0b0b;
 
-    /* ✅ 텍스트 색상 */
-    --text-dark: #f7f6f3;
-    --text-dark-secondary: #e0dfdd;
+    /* 텍스트 색상 */
+    --text-dark: #ffffff;
+    --text-dark-secondary: #dcdbd9;
+    --text-dark-muted: #dcdbd988;
+
     --text-muted: #aab9d2;
     --text-light: #101010;
     --text-on-dark: #ffffff;
@@ -183,9 +145,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-primary: var(--primary);
   --color-primary-darken: var(--primary-darken);
-  --color-primary-pressed: var(--primary-pressed);
+  --color-primary-hover: var(--primary-hover);
+
+  /* --color-primary-pressed: var(--primary-pressed); */
   --color-primary-light: var(--primary-light);
   --color-muted: var(--muted);
   --color-border: var(--border);
@@ -195,6 +160,7 @@
   /* ✅ 배경 색상 */
   --color-bg-light: var(--bg-light);
   --color-bg-subtle: var(--bg-subtle);
+  --color-bg-subtle-hover: var(--bg-subtle-hover);
   --color-bg-muted: var(--bg-muted);
   --color-bg-border: var(--bg-border);
   --color-bg-dark: var(--bg-dark);
@@ -204,6 +170,7 @@
   --color-text-default: var(--text-default);
   --color-text-dark: var(--text-dark);
   --color-text-dark-secondary: var(--text-dark-secondary);
+  --color-text-dark-muted: var(--text-dark-muted);
   --color-text-muted: var(--text-muted);
   --color-text-light: var(--text-light);
   --color-text-on-dark: var(--text-on-dark);
