@@ -27,9 +27,12 @@
   .home,
   .blog,
   .blog-content {
-    @apply mx-auto w-full space-y-10 pt-36;
+    @apply mx-auto min-h-screen w-full space-y-10 pt-36;
   }
 
+  .home {
+    @apply space-y-36;
+  }
   .blog-section {
     @apply mx-auto w-full space-y-5;
   }

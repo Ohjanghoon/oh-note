@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 // styles
-import "@/assets/styles/globals.css";
+import "@/styles/globals.css";
 
 // components
 import ClientLayout from "@/components/common/ClientLayout";
