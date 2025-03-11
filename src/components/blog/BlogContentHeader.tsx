@@ -1,11 +1,15 @@
+"use client";
+
+import { MouseEvent } from "react";
+
 // types
 import { PostMetadata } from "@/types/postTypes";
-import { parseDate } from "@/utils/utls";
+import { formatDate } from "@/utils/utls";
 import Link from "next/link";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
-import BlogWritter from "./BlogWritter";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 function BlogContentHeader({ props }: { props: PostMetadata }) {
   const { title, publishDate, tags, thumbnailUrl } = props;
@@ -29,10 +33,22 @@ function BlogContentTitle({
   publishDate: string;
   tags: string[];
 }) {
+  const goBack = (e: MouseEvent) => {
+    e.preventDefault();
+    history.back();
+  };
   return (
-    <div className="title-container space-y-3">
-      <p className="text-link-default text-lg font-bold">
-        <Link href={"/blog"}> /blog</Link>
+    <div className="title-container space-y-3 px-1">
+      {/* <Link
+        href={"/blog"}
+        onClick={(e) => goBack(e)}
+        className="flex items-center gap-1"
+      >
+        <IoIosArrowRoundBack />
+        Back
+      </Link> */}
+      <p className="text-primary text-semibold hover:text-blue-500">
+        <button onClick={(e) => goBack(e)}> ← Back to blog</button>
       </p>
       <h2 className="title text-text-dark leading-tight font-extrabold">
         {title}
@@ -43,9 +59,23 @@ function BlogContentTitle({
 
         <p className="flex items-center gap-0.5 text-sm">
           <MdAccessTime className="h-5 w-5" />
-          <span>{parseDate(publishDate)}</span>
+          <span>{formatDate(publishDate)}</span>
         </p>
       </div>
+    </div>
+  );
+}
+
+function BlogWritter() {
+  return (
+    <div className="inline-flex items-center gap-0.5">
+      <img
+        id="profile-avatar"
+        src="/assets/profile-avatar.webp"
+        alt="profile-avatar"
+        className="h-5 w-5 rounded-full"
+      />
+      <label htmlFor="profile-avatar">dev-oh</label>
     </div>
   );
 }
@@ -68,9 +98,9 @@ function BlogContentBackground({ thumbnailUrl }: { thumbnailUrl: string }) {
     <>
       <div
         style={{ backgroundImage: `url(${thumbnailUrl})` }}
-        className={`absolute top-0 left-0 -z-10 h-[50vh] w-full bg-cover bg-center bg-no-repeat`}
+        className={`absolute top-0 left-0 -z-10 h-[60vh] w-full bg-cover bg-center bg-no-repeat`}
       ></div>
-      <div className="from-background via-background/80 to-background/70 absolute top-0 left-0 -z-9 h-[50vh] w-full bg-gradient-to-t backdrop-blur-md"></div>
+      <div className="from-background via-background/90 to-background/60 absolute top-0 left-0 -z-9 h-[60vh] w-full bg-gradient-to-t backdrop-blur-sm"></div>
     </>
   );
 }

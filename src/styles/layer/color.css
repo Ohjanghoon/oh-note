@@ -141,7 +141,7 @@
   .dark {
     /* ✅ 기본 색상 */
     --background: #191919;
-    --foreground: #dedede;
+    --foreground: #ffffff;
     --primary: #62a1f7;
     --primary-darken: #3986f2;
     --primary-pressed: #2c6cd6;

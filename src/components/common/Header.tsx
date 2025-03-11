@@ -5,8 +5,11 @@ import Link from "next/link";
 
 // components
 import Navigation from "./Navigation";
-import SearchButton from "../ui/SearchButton";
+import SearchButton from "@/components/ui/SearchButton";
 import ThemeButton from "../ui/ThemeButton";
+
+// icons
+import { GiHamburgerMenu } from "react-icons/gi";
 
 function Header() {
   const [isScroll, setIsScroll] = useState(false);
@@ -20,12 +23,27 @@ function Header() {
   }, []);
   return (
     <header
-      className={`root-header border-border fixed flex items-center justify-between gap-x-10 px-10 backdrop-blur-sm transition-all duration-300 ${isScroll ? "bg-background border-b-1 py-1" : "bg-transparent py-3"}`}
+      className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-all duration-200 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
     >
+      {/* <header
+      className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-all duration-200 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
+    > */}
       {/* Logo 영역 */}
       <div className="header-logo justify-self-start">
+        {/* <GiHamburgerMenu className="text-xl" /> */}
         <Link href="/" className="flex items-center justify-center gap-3">
-          <img src="/assets/logo-oh-note.webp" alt="logo" className="h-8 w-8" />
+          {/* <img src="/assets/logo-oh-note.webp" alt="logo" className="h-8 w-8" /> */}
+          <img
+            src="/assets/logo/logo_light.ico"
+            alt="logo"
+            className="block h-10 w-10 rounded-lg dark:hidden"
+          />
+          {/* <img
+            src="/assets/logo/logo_dark.ico"
+            alt="logo"
+            className="hidden h-8 w-10 rounded-lg dark:block"
+          /> */}
+
           <h5 className="font-bold tracking-tight">oh-note</h5>
         </Link>
       </div>
