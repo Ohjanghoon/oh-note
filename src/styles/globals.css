@@ -2,8 +2,6 @@
 @import "../styles/layer/color.css";
 @import "../styles/layer/components.css";
 
-@plugin "@tailwindcss/typography";
-
 /* @custom-variant dark (&:is(.dark *)); */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -74,6 +72,7 @@
 }
 
 @theme typography {
+  --font-display: "roboto", "sans-serif";
   --text-2xs: 10px;
   --text-3xs: 8px;
 }
