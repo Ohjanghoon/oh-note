@@ -4,7 +4,6 @@
 import Link from "next/link";
 
 import { useSelector } from "react-redux";
-import { useSearchParams } from "next/navigation";
 
 // types
 import { PostMetadata } from "@/types/postTypes";
@@ -20,10 +19,7 @@ import ImageConvert from "../ui/ImageConvert";
 import { formatDate } from "@/utils/utls";
 
 /** PostCardList 컴포넌트 */
-function PostCardList() {
-  const searchParams = useSearchParams();
-  const searchTag = searchParams.get("tag");
-
+function PostCardList({ tag: searchTag }: { tag: string }) {
   const { posts } = useSelector((state: RootState) => state.post);
 
   // 이미 불러온 posts에서 태그별 필터링

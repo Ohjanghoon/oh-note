@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -16,11 +15,8 @@ interface TagProps extends Tag {
   isSelected: boolean;
 }
 
-function TagList() {
+function TagList({ tag: searchTag }: { tag: string | undefined }) {
   const { tags } = useSelector((state: RootState) => state.tag);
-
-  const searchParams = useSearchParams();
-  const searchTag = searchParams.get("tag");
 
   const [showLeftShadow, setShowLeftShadow] = useState(false);
   const [showRightShadow, setShowRightShadow] = useState(true);

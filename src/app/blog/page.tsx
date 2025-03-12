@@ -3,7 +3,14 @@ import PostCardList from "@/components/blog/PostCardList";
 import TagList from "@/components/blog/TagList";
 import TitleHeader from "@/components/common/TitleHeader";
 
-export default function Blog() {
+export default async function Blog({
+  searchParams,
+}: {
+  searchParams: Promise<{ tag: string }>;
+}) {
+  const params = await searchParams;
+  const searchTag = params.tag;
+
   return (
     <section className="blog">
       <header className="blog-header">
@@ -13,8 +20,8 @@ export default function Blog() {
         />
       </header>
       <section className="blog-section">
-        <TagList />
-        <PostCardList />
+        <TagList tag={searchTag} />
+        <PostCardList tag={searchTag} />
       </section>
     </section>
   );
