@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 
 // fonts
 import { Geist, Geist_Mono } from "next/font/google";
@@ -9,14 +10,16 @@ import "@/styles/globals.css";
 // components
 import ClientLayout from "@/components/common/ClientLayout";
 
-const geistSans = Geist({
+export const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  weight: "100 900",
 });
 
-const geistMono = Geist_Mono({
+export const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
