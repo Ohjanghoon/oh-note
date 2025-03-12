@@ -12,7 +12,7 @@ import {
 // icons
 import { MdOutlineHome, MdOutlineCategory, MdSettings } from "react-icons/md";
 import { RiPushpinFill } from "react-icons/ri";
-import TagList from "../blog/TagList";
+// import TagList from "../blog/TagList";
 import Link from "next/link";
 
 const LeftSidebar: React.FC = () => {
@@ -88,7 +88,7 @@ const LeftSidebar: React.FC = () => {
           isOpen={isOpen || isPinned}
           path="/"
         />
-        {isOpen && <TagList />}
+        {/* {isOpen && <TagList />} */}
       </nav>
     </aside>
   );
