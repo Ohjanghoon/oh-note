@@ -10,6 +10,10 @@
     @apply focus-visible:outline-none;
   }
 
+  html {
+    @apply font-sans;
+  }
+
   body {
     @apply bg-background;
 
