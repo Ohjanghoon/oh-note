@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 
 // fonts
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { Roboto } from "next/font/google";
 
 // styles
 import "@/styles/globals.css";
 
 // components
 import ClientLayout from "@/components/common/ClientLayout";
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["100", "400", "700", "900"],
+});
 
 export const metadata: Metadata = {
   title: "oh-note 개발 블로그",
@@ -20,9 +25,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body
-        className={`${GeistSans.className} ${GeistMono.className} antialiased`}
-      >
+      <body className={`${roboto.className} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
