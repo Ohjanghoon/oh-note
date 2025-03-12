@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 // store
-import { getTags } from "@/store/slices/blogTagSlice";
-import { AppDispatch, RootState } from "@/store/store";
+import { RootState } from "@/store/store";
 
 // icons
 import { Tag } from "@/types/postTypes";

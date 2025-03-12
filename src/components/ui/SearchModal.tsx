@@ -42,7 +42,7 @@ function SearchModal({ onClose }: { onClose: (isOpen: boolean) => void }) {
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  }, []);
+  });
 
   return (
     <section
@@ -86,7 +86,6 @@ function SearchPosts({
   filteredPosts: PostMetadata[];
   onModalClose: () => void;
 }) {
-  console.log("filteredPosts ===> ", filteredPosts);
   return (
     <ul className="space-y-3">
       {filteredPosts.length > 0 &&

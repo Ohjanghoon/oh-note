@@ -9,7 +9,6 @@ import store from "@/store/store";
 import usePostsInitializer from "@/hooks/usePostsInitializer";
 
 // components
-import LeftSidebar from "@/components/common/LeftSidebar";
 import BackToTopButton from "@/components/common/BackToTopButton";
 import GradientBackground from "@/components/ui/GradientBackground";
 import Header from "@/components/common/Header";

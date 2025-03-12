@@ -6,10 +6,8 @@ import Link from "next/link";
 // components
 import Navigation from "./Navigation";
 import SearchButton from "@/components/ui/SearchButton";
-import ThemeButton from "./ThemeButton";
-
-// icons
-import { GiHamburgerMenu } from "react-icons/gi";
+import ThemeButton from "@/components/common/ThemeButton";
+import ImageConvert from "@/components/ui/ImageConvert";
 
 function Header() {
   const [isScroll, setIsScroll] = useState(false);
@@ -33,10 +31,14 @@ function Header() {
         {/* <GiHamburgerMenu className="text-xl" /> */}
         <Link href="/" className="flex items-center justify-center gap-3">
           {/* <img src="/assets/logo-oh-note.webp" alt="logo" className="w-8 h-8" /> */}
-          <img
-            src="/assets/logo/logo_light.ico"
-            alt="logo"
-            className="h-10 w-10 rounded-lg"
+          <ImageConvert
+            props={{
+              width: 10,
+              height: 10,
+              src: "/assets/logo/logo_light.ico",
+              alt: "logo",
+              styleClassName: "h-10 w-10 rounded-lg",
+            }}
           />
           {/* <img
             src="/assets/logo/logo_dark.ico"

@@ -39,7 +39,6 @@ function SearchButton() {
         (isMac && event.metaKey && event.key === "k") ||
         (isWindows && event.ctrlKey && event.key === "k")
       ) {
-        console.log("검색 버튼 키 다운");
         onModalOpen();
       }
     };

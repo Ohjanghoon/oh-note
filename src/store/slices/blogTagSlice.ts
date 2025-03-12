@@ -14,7 +14,6 @@ const initialState: TagState = {
 
 export const getTags = createAsyncThunk("blog/getTags", async () => {
   const response = await fetch("/api/blog/tags");
-
   if (!response.ok) throw new Error("Failed to fetch tags");
   return response.json();
 });
@@ -25,7 +24,7 @@ const blogTagSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getTags.pending, (state, action) => {
+      .addCase(getTags.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })

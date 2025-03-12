@@ -2,7 +2,6 @@
 import PostCardList from "@/components/blog/PostCardList";
 import TagList from "@/components/blog/TagList";
 import TitleHeader from "@/components/common/TitleHeader";
-import Image from "next/image";
 
 export default function Blog() {
   return (

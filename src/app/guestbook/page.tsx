@@ -1,6 +1,3 @@
-import TagList from "@/components/TagList";
-import PostCardList from "@/components/PostCardList";
-
 export default async function Home() {
   return (
     <section className="main-section">

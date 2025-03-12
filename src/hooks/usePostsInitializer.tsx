@@ -10,7 +10,7 @@ function usePostsInitializer() {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    console.log("최초 1회 실행!");
+    console.log("Dispatch PostInitializer!");
     dispatch(getPosts());
     dispatch(getTags());
   }, [dispatch]);

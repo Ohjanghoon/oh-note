@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, ReactNode } from "react";
+import { useEffect, useState, ReactNode, useCallback } from "react";
 
 // icons
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -11,27 +11,29 @@ interface CarouselProps {
 }
 
 function Carousel({ children, intervalTime = 5000 }: CarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const totalSlides = children.length;
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
   };
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-  };
+  }, [totalSlides]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    const interval = setInterval(nextSlide, intervalTime);
+    return () => clearInterval(interval);
+  }, [nextSlide, intervalTime]);
+
+  useEffect(() => {
     if (currentIndex === totalSlides) {
       setCurrentIndex(0);
     }
-
-    const interval = setInterval(nextSlide, intervalTime);
-    return () => clearInterval(interval);
-  }, [currentIndex, intervalTime]);
+  }, [currentIndex, totalSlides]);
 
   return (
     <div className="group relative w-full overflow-hidden pb-8">

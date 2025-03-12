@@ -8,10 +8,6 @@ interface TocItem {
   level: number;
 }
 
-interface Props {
-  ref: React.RefObject<HTMLDivElement | null>;
-}
-
 const BlogContentToc = () => {
   const [toc, setToc] = useState<TocItem[]>([]);
 
@@ -22,7 +18,7 @@ const BlogContentToc = () => {
     const headings = postArticle.querySelectorAll("h1, h2, h3");
     const tocItems: TocItem[] = [];
 
-    headings.forEach((heading, index) => {
+    headings.forEach((heading) => {
       // id가 없는 경우 추가
       if (!heading.id) {
         heading.id = heading.textContent?.replace(/\s+/g, "-") || "";

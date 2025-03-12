@@ -7,8 +7,6 @@ import { createHighlighter } from "shiki";
  * @returns HTML 형태로 변환된 코드 문자열
  */
 export async function highlightCode(code: string, lang: string) {
-  console.log("🤔 skiki highlightCode 실행", new Date().toLocaleString());
-
   const highlighter = await createHighlighter({
     themes: ["one-dark-pro", "nord"],
     langs: [lang],

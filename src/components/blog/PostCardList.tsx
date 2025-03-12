@@ -2,28 +2,29 @@
 
 // node modules
 import Link from "next/link";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
 import { useSearchParams } from "next/navigation";
 
 // types
 import { PostMetadata } from "@/types/postTypes";
 
 // store
-import { AppDispatch, RootState } from "@/store/store";
-import { getPosts } from "@/store/slices/blogPostSlice";
+import { RootState } from "@/store/store";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
+
+// components
+import ImageConvert from "../ui/ImageConvert";
+import { formatDate } from "@/utils/utls";
 
 /** PostCardList 컴포넌트 */
 function PostCardList() {
   const searchParams = useSearchParams();
   const searchTag = searchParams.get("tag");
 
-  const { posts, status, error } = useSelector(
-    (state: RootState) => state.post,
-  );
+  const { posts } = useSelector((state: RootState) => state.post);
 
   // 이미 불러온 posts에서 태그별 필터링
   const filteredPosts = searchTag
@@ -65,11 +66,15 @@ function PostCard({ post }: { post: PostMetadata }) {
 function PostCardImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
     <figure className="postcard-img_wraaper relative h-44 w-full overflow-hidden rounded-xl">
-      <img
-        src={thumbnailUrl}
-        alt="Post Thumbnail"
-        loading="eager"
-        className="h-full w-full object-cover object-center transition-[scale] duration-300 ease-in-out group-hover:scale-105"
+      <ImageConvert
+        props={{
+          width: 1366,
+          height: 768,
+          src: thumbnailUrl,
+          alt: "post-thumbnail",
+          styleClassName:
+            "h-full w-full object-cover object-center transition-[scale] duration-300 ease-in-out group-hover:scale-105",
+        }}
       />
     </figure>
   );
@@ -85,7 +90,7 @@ function PostCardContent({
 }) {
   return (
     <div className="postcard-content flex h-full flex-col justify-between space-y-2 p-1">
-      <h6 className="postcard-content-header group-hover:text-link-hover line-clamp-1 overflow-hidden text-ellipsis group-hover:transition-colors group-hover:duration-300">
+      <h6 className="postcard-content-header group-hover:text-link-hover text-text-dark line-clamp-1 overflow-hidden font-bold text-ellipsis group-hover:transition-colors group-hover:duration-300">
         {title}
       </h6>
       <p className="postcard-content-article text-text-muted line-clamp-2 h-10 overflow-hidden text-sm font-medium text-ellipsis">
@@ -104,10 +109,10 @@ function PostCardFooter({
   tags: string[];
 }) {
   return (
-    <div className="postcard-footer text-text-dark-secondary flex items-center justify-between p-1 text-xs">
+    <div className="postcard-footer text-text-muted flex items-center justify-between p-1 text-xs">
       <span className="flex items-center gap-1">
         <MdAccessTime />
-        <span>{new Date(publishDate).toDateString()}</span>
+        <span>{formatDate(publishDate)}</span>
       </span>
       {tags?.length > 0 && (
         <div className="space-x-1">

@@ -13,17 +13,16 @@ import { PostMetadata } from "@/types/postTypes";
 // components
 import Carousel from "@/components/ui/Carousel";
 import PostCard from "@/components/home/PostCard";
+import ImageConvert from "../ui/ImageConvert";
 
 // icons
-import { FaFire } from "react-icons/fa6";
+// import { FaFire } from "react-icons/fa6";
 import { RiSignpostFill } from "react-icons/ri";
 
 function Hero() {
   const [recentPosts, setRecentPosts] = useState<PostMetadata[]>([]);
 
-  const { posts, status, error } = useSelector(
-    (state: RootState) => state.post,
-  );
+  const { posts } = useSelector((state: RootState) => state.post);
 
   useEffect(() => {
     if (posts.length > 0) {
@@ -46,10 +45,14 @@ function HeroSection() {
   return (
     <section className="home-hero mx-auto flex items-end justify-between">
       <div className="hero-image_wrapper order-2 h-full">
-        <img
-          src="/assets/logo_text.png"
-          alt=""
-          className="mx-auto h-80 opacity-5"
+        <ImageConvert
+          props={{
+            width: 411,
+            height: 302,
+            src: "/assets/logo_text.png",
+            alt: "logo_text",
+            styleClassName: "mx-auto w-full h-80 opacity-5",
+          }}
         />
       </div>
       {/* 히어로 섹션 */}
@@ -82,7 +85,7 @@ function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
       <div className="recent_posts-carousel_container mt-5 grid grid-cols-1 gap-5">
         <Carousel>
           {recentPosts.map((post) => {
-            return <PostCard post={post} />;
+            return <PostCard post={post} key={post.slug} />;
           })}
         </Carousel>
       </div>

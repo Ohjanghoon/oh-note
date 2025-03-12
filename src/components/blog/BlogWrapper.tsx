@@ -1,9 +1,8 @@
 "use client";
 
-import TableOfContents from "./BlogContentToc";
+// import TableOfContents from "./BlogContentToc";
 
 function BlogWrapper({ children }: { children: React.ReactNode }) {
-  console.log("children ===> ", children);
   return (
     <section className="blog-content">
       {children}
