@@ -38,12 +38,12 @@ const NavList: Navigation[] = [
   },
 ];
 
-function Navigation() {
+function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
   const pathname = usePathname();
 
   return (
     <nav
-      className={`header-nav-wrapper flex items-center justify-end gap-3 rounded-xl bg-transparent px-5 py-2`}
+      className={`header-nav-wrapper flex flex-col justify-end gap-3 rounded-xl bg-transparent py-2 md:flex-row md:items-center md:px-5`}
     >
       {NavList.map((nav) => {
         // 현재 경로에 따른 active 상태 설정
@@ -56,6 +56,7 @@ function Navigation() {
             rel={nav.isBlank ? "noopener noreferrer" : undefined}
             key={nav.name}
             className={`${isActive ? "text-primary pointer-events-none font-semibold" : "text-text-dark-secondary hover:text-text-dark"} flex items-center gap-1 p-2.5`}
+            onClick={toggleMenu}
           >
             {nav.name}
             {nav.icon && <span className="text-xs">{nav.icon}</span>}
