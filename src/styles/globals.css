@@ -25,7 +25,7 @@
   }
 
   h1 {
-    @apply text-5xl leading-[1.1] font-extrabold xl:text-[44px];
+    @apply text-[40px] leading-[1.1] font-extrabold xl:text-[44px];
   }
   h2 {
     @apply text-4xl leading-[1.1] font-semibold xl:text-[40px];
@@ -57,6 +57,7 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
 }
 
 @theme typography {
@@ -67,7 +68,7 @@
 pre.shiki {
   padding: 1rem;
   border-radius: 0.5rem;
-  overflow-x: auto;
+  overflow-x: scroll;
 
   pre::-webkit-scrollbar {
     display: none;
@@ -82,5 +83,13 @@ pre.shiki {
   /* Fenced Code block - hide horizontal scrollbar: webkit */
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+.swiper {
+  .swiper-pagination {
+    @apply !relative mt-7;
+  }
+  .swiper-pagination-bullet {
+    @apply p-[0.4rem] md:p-1.5;
   }
 }

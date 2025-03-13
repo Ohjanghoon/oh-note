@@ -53,14 +53,16 @@ function SearchButton() {
   return (
     <>
       <button
-        className="search_btn bg-bg-muted/40 ring-text-muted/60 text-text-dark-muted flex w-48 items-center justify-between gap-2 rounded-lg px-2 py-1.5 ring-1"
+        className="search_btn md:bg-bg-muted/40 md:ring-text-muted/60 md:text-text-dark-muted flex items-center justify-between gap-2 px-2 py-1.5 md:w-48 md:rounded-lg md:ring-1"
         onClick={onModalOpen}
       >
         <div className="search_btn-text flex items-center gap-1">
-          <FiSearch className="" />
-          <span className="justify-self-start">Search...</span>
+          <FiSearch className="text-xl md:text-base" />
+          <span className="hidden justify-self-start md:inline">Search...</span>
         </div>
-        <div className="search_btn-key text-xs">{shortcut}</div>
+        <span className="search_btn-key hidden text-xs md:inline">
+          {shortcut}
+        </span>
       </button>
 
       {isOpen && <SearchModal onClose={setIsOpen} />}

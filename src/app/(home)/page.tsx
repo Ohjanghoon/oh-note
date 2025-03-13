@@ -4,9 +4,9 @@ import Hero from "@/components/home/Hero";
 
 export default function Home() {
   return (
-    <section className="home">
+    <div className="home_container">
       <GridBackground />
       <Hero />
-    </section>
+    </div>
   );
 }

@@ -24,15 +24,15 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
       <PostsInitializer />
       <ThemeProvider>
         <div className="root-container">
-          <GradientBackground styleClassName="w-full top-0 left-0 h-[50vh] opacity-25 blur-3xl" />
+          {/* <GradientBackground styleClassName="w-full top-0 left-0 h-[50vh] opacity-25 blur-3xl" /> */}
+
           <Header />
-          <div className="layout-container">
-            <main className="layout-main">{children}</main>
-            <aside className="back_to_top">
-              <BackToTopButton />
-            </aside>
-            <Footer />
-          </div>
+          <main className="root-main">{children}</main>
+          <aside className="back_to_top z-50 hidden md:block">
+            <BackToTopButton />
+          </aside>
+          <Footer />
+
           <GradientBackground styleClassName="w-full -bottom-10 left-0 rotate-180 h-60 opacity-20 blur-2xl" />
         </div>
       </ThemeProvider>

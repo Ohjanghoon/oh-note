@@ -35,6 +35,7 @@
     "rehype-pretty-code": "^0.14.0",
     "rehype-prism-plus": "^2.0.0",
     "shiki": "^1.29.2",
+    "swiper": "^11.2.5",
     "tailwind-merge": "^3.0.2",
     "tailwind-scrollbar": "^4.0.1",
     "tailwindcss-animate": "^1.0.7"

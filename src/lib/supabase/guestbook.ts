@@ -13,6 +13,7 @@ export async function selectGuestbook() {
       nickname: entry.nickname,
       content: entry.content,
       createdAt: entry.created_at,
+      imoji: entry.imoji,
     })) || []
   );
 }
