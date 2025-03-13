@@ -26,6 +26,7 @@
 
   .home,
   .blog,
+  .guestbook,
   .blog-content {
     @apply mx-auto min-h-screen w-full space-y-10 pt-36;
   }
