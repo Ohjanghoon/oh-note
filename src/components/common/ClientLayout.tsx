@@ -7,13 +7,14 @@ import store from "@/store/store";
 
 // hooks
 import usePostsInitializer from "@/hooks/usePostsInitializer";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 // components
 import BackToTopButton from "@/components/common/BackToTopButton";
 import GradientBackground from "@/components/ui/GradientBackground";
 import Header from "@/components/common/Header";
-import { ThemeProvider } from "@/contexts/ThemeContext";
-import Footer from "./Footer";
+import Footer from "@/components/common/Footer";
+import Loading from "@/components/common/Loading";
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -40,8 +41,9 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
 };
 
 function PostsInitializer() {
-  usePostsInitializer();
-  return null;
+  const isLoading = usePostsInitializer();
+
+  return <>{!isLoading && <Loading />}</>;
 }
 
 export default ClientLayout;
