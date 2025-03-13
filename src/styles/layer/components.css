@@ -3,13 +3,132 @@
 \*****************************************/
 
 @layer components {
+  /*----------------------------*\
+   * root 영역
+  \*----------------------------*/
   .root-container {
     /* @apply grid w-full grid-cols-12 px-8 mx-auto gap-x-8; */
-    @apply bg-background text-foreground relative mx-auto min-h-screen w-full max-w-screen-2xl overflow-hidden transition-colors duration-300;
+    @apply bg-background text-foreground max-w-screen-3xl relative mx-auto min-h-screen w-full overflow-hidden transition-colors duration-300;
+  }
+  .root-header {
+    @apply z-50 mx-auto w-full;
+  }
+  .back_to_top {
+    @apply fixed right-10 bottom-10;
+  }
+  /* .root-main {
+    @apply;
+  } */
+  /* .root-footer {
+    @apply;
+  } */
 
-    .root-header {
-      @apply z-50 mx-auto w-full;
+  /*----------------------------*\
+   * /home 영역
+  \*----------------------------*/
+  .home_container {
+    @apply relative mx-auto w-full;
+
+    .home-hero {
+      @apply relative z-10 mx-auto w-full max-w-screen-xl px-10 pt-40 md:min-h-screen;
     }
+
+    .home-recent_posts {
+      @apply relative mx-auto grid min-h-screen w-full max-w-screen-lg grid-cols-4 gap-5 px-5 pt-20 md:grid-cols-12 md:px-10;
+
+      .recent_posts-grid {
+        @apply col-span-4 md:col-span-12;
+      }
+    }
+  }
+
+  /*----------------------------*\
+   * /blog 영역
+  \*----------------------------*/
+  .blog_container {
+    @apply relative mx-auto w-full max-w-screen-lg space-y-10 px-5 py-24 md:px-10 md:py-36;
+
+    .blog-posts {
+      @apply relative col-span-12 mx-auto grid min-h-screen grid-cols-4 gap-5 md:grid-cols-12;
+
+      .posts-grid {
+        @apply col-span-4 md:col-span-12;
+      }
+    }
+  }
+
+  .blog_content_container {
+    @apply relative mx-auto w-full px-5 py-24 md:px-10;
+
+    .blog-content-article {
+      @apply mx-auto min-h-screen max-w-screen-md pt-10 pb-20;
+
+      hr {
+        @apply border-border my-1 border-t-2;
+      }
+
+      h1 {
+        @apply py-2 text-2xl leading-loose font-extrabold md:text-3xl;
+      }
+      h2 {
+        @apply py-2 text-2xl leading-loose font-medium md:text-3xl;
+      }
+      h3 {
+        @apply py-1 text-xl leading-loose font-extrabold md:text-2xl;
+      }
+      h4 {
+        @apply py-1 text-xl leading-loose font-medium md:text-2xl;
+      }
+      h5 {
+        @apply text-lg leading-loose font-extrabold md:text-xl;
+      }
+      h6 {
+        @apply text-lg leading-loose font-medium md:text-xl;
+      }
+
+      blockquote {
+        @apply border-l-4 border-gray-800 bg-gray-200/40 py-1 pl-4 text-gray-600;
+      }
+
+      ol {
+        @apply list-inside list-decimal;
+      }
+
+      ul {
+        @apply list-inside list-disc;
+      }
+
+      /* ✅ 2단계 `ul` */
+      ul ul {
+        list-style-type: circle !important;
+      }
+
+      /* ✅ 3단계 이상 `ul` */
+      ul ul ul {
+        list-style-type: square !important;
+      }
+
+      /* ✅ 리스트 간격 조정 */
+      li {
+        @apply mt-4;
+      }
+
+      li > ul {
+        @apply mt-4 pl-4;
+      }
+
+      /* ✅ 리스트 마커 색상 설정 */
+      li::marker {
+        @apply text-text-dark;
+      }
+    }
+  }
+
+  /*----------------------------*\
+   * /guestbook 영역
+  \*----------------------------*/
+  .guestbook-container {
+    @apply relative mx-auto w-full max-w-screen-lg space-y-10 px-5 py-24 md:px-10 md:py-36;
   }
 
   .layout-container {
@@ -17,10 +136,6 @@
 
     .layout-main {
       @apply col-span-4 md:col-span-12;
-    }
-
-    .back_to_top {
-      @apply fixed right-10 bottom-10;
     }
   }
 
@@ -31,20 +146,8 @@
     @apply mx-auto min-h-screen w-full space-y-10 pt-24 pb-60 md:pt-36 md:pb-80;
   }
 
-  .hero-section {
-    @apply min-h-screen space-y-36;
-  }
-
-  .blog-section {
-    @apply mx-auto min-h-screen w-full space-y-5;
-  }
-
   .guestbook-section {
     @apply mx-auto min-h-screen w-full;
-  }
-
-  .blog-content {
-    @apply max-w-screen-md;
   }
 
   [data-rehype-pretty-code-figure] pre {
@@ -54,68 +157,5 @@
 
   [data-rehype-pretty-code-figure] [data-line] {
     padding: 0 1.5rem;
-  }
-
-  .blog-content-article {
-    @apply mx-auto min-h-[70vh] max-w-screen-md py-10;
-
-    hr {
-      @apply border-border my-1 border-t-2;
-    }
-
-    h1 {
-      @apply py-2 text-2xl leading-loose font-extrabold md:text-3xl;
-    }
-    h2 {
-      @apply py-2 text-2xl leading-loose font-medium md:text-3xl;
-    }
-    h3 {
-      @apply py-1 text-xl leading-loose font-extrabold md:text-2xl;
-    }
-    h4 {
-      @apply py-1 text-xl leading-loose font-medium md:text-2xl;
-    }
-    h5 {
-      @apply text-lg leading-loose font-extrabold md:text-xl;
-    }
-    h6 {
-      @apply text-lg leading-loose font-medium md:text-xl;
-    }
-
-    blockquote {
-      @apply border-l-4 border-gray-800 bg-gray-200/40 py-1 pl-4 text-gray-600;
-    }
-
-    ol {
-      @apply list-inside list-decimal;
-    }
-
-    ul {
-      @apply list-inside list-disc;
-    }
-
-    /* ✅ 2단계 `ul` */
-    ul ul {
-      list-style-type: circle !important;
-    }
-
-    /* ✅ 3단계 이상 `ul` */
-    ul ul ul {
-      list-style-type: square !important;
-    }
-
-    /* ✅ 리스트 간격 조정 */
-    li {
-      @apply mt-4;
-    }
-
-    li > ul {
-      @apply mt-4 pl-4;
-    }
-
-    /* ✅ 리스트 마커 색상 설정 */
-    li::marker {
-      @apply text-text-dark;
-    }
   }
 }

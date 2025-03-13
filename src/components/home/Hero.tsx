@@ -31,34 +31,34 @@ function Hero() {
   }, [posts]);
 
   return (
-    <div className="hero-section relative z-10">
+    // <div className="hero-section relative z-10"></div>
+    <>
       <HeroSection />
       <RecentPostsSection recentPosts={recentPosts} />
-
-      {/* <SearchBar /> */}
-    </div>
+    </>
   );
 }
 
 /** Hero Banner 영역 */
 function HeroSection() {
   return (
-    <section className="home-hero mx-auto flex flex-col justify-between gap-10 md:flex-row md:items-end md:gap-0">
-      <div className="hero-image_wrapper mx-auto md:order-2 md:mx-0">
+    <section className="home-hero flex flex-col gap-10 md:flex-row md:justify-around">
+      <div className="hero-image_wrapper mx-auto pt-8 md:order-2 md:mx-0">
         <ImageConvert
           props={{
             width: 411,
             height: 302,
             src: "/assets/logo_text.png",
             alt: "logo_text",
-            styleClassName: "mx-auto w-full h-60 md:h-80 opacity-5 ",
+            styleClassName:
+              "mx-auto w-full h-60 md:h-100 opacity-20 dark:opacity-5 ",
           }}
         />
       </div>
-      <div className="hero-heading_container mx-auto flex h-full flex-col items-start justify-end md:mx-0">
+      <div className="hero-heading_container mx-auto flex h-full flex-col items-start justify-end md:mx-0 md:pt-50">
         {/* <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-[60px] tracking-tight text-transparent"> */}
-        <h1 className="heading_container-title text-text-dark tracking-tight md:text-6xl">
-          oh-note
+        <h1 className="heading_container-title text-text-dark tracking-tight md:text-7xl">
+          oh-note <span className="text-primary">.</span>
         </h1>
         <p className="heading_container-subtle text-text-dark-secondary mt-2 md:text-[16px]">
           개발 기록과 학습한 내용을 정리하는 개인 블로그 공간입니다. <br />
@@ -66,7 +66,7 @@ function HeroSection() {
         </p>
         <Link
           href="/blog"
-          className="heading_container-link bg-primary text-text-light mt-5 rounded-lg px-6 py-3 font-semibold shadow-lg hover:bg-blue-500"
+          className="heading_container-link text-text-light bg-primary mt-10 rounded-lg px-6 py-3 text-[16px] font-semibold shadow-lg hover:bg-blue-500"
         >
           Go to Blog →
         </Link>
@@ -77,17 +77,19 @@ function HeroSection() {
 
 function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
   return (
-    <section className="home-recent_posts mx-auto">
-      <h5 className="recent_posts-title flex items-center gap-2 font-bold">
-        <RiSignpostFill className="text-primary" /> 최신 게시글
-      </h5>
-      <div className="recent_posts-carousel_container mt-5 grid grid-cols-1 gap-5">
-        <Carousel>
-          {recentPosts.map((post) => {
-            return <PostCard post={post} key={post.slug} />;
-          })}
-        </Carousel>
-      </div>
+    <section className="home-recent_posts">
+      <section className="recent_posts-grid col-span-12">
+        <h4 className="recent_posts-title flex items-center gap-2 px-2 font-bold">
+          <RiSignpostFill className="text-primary" /> 최신 게시글
+        </h4>
+        <div className="recent_posts-carousel_container mt-5 grid grid-cols-1 gap-5">
+          <Carousel>
+            {recentPosts.map((post) => {
+              return <PostCard post={post} key={post.slug} />;
+            })}
+          </Carousel>
+        </div>
+      </section>
     </section>
   );
 }

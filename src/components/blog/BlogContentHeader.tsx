@@ -18,7 +18,7 @@ function BlogContentHeader({ props }: { props: PostMetadata }) {
   const { title, publishDate, tags, thumbnailUrl } = props;
 
   return (
-    <header className="blog-content-header mx-auto w-full max-w-screen-md space-y-10">
+    <header className="blog_content-header mx-auto w-full max-w-screen-md space-y-10">
       <BlogContentTitle title={title} publishDate={publishDate} tags={tags} />
       <BlogContentImage thumbnailUrl={thumbnailUrl} />
       <BlogContentBackground thumbnailUrl={thumbnailUrl} />
@@ -60,9 +60,9 @@ function BlogContentTitle({
             <MdAccessTime />
             <span>{formatDate(publishDate)}</span>
           </p>
-          <h2 className="title text-text-dark leading-tight font-extrabold">
+          <h3 className="title text-text-dark leading-tight font-extrabold md:text-[40px]">
             {title}
-          </h2>
+          </h3>
         </div>
 
         <div className="text-text-dark-secondary flex items-center gap-5">
@@ -79,7 +79,7 @@ function BlogWritter() {
   return (
     <Link
       href={"https://github.com/Ohjanghoon"}
-      className="inline-flex cursor-pointer items-center gap-2 px-1"
+      className="inline-flex cursor-pointer items-center gap-2"
     >
       <ImageConvert
         props={{
@@ -103,7 +103,7 @@ function BlogWritter() {
 /** 블로그 콘텐츠 썸네일 컴포넌트 */
 function BlogContentImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <div className="relative z-10 mx-auto h-120 w-full overflow-hidden">
+    <div className="relative z-10 mx-auto max-h-120 w-full overflow-hidden">
       <ImageConvert
         props={{
           width: 1366,

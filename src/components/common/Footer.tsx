@@ -36,9 +36,9 @@ const LinkList: Link[] = [
 
 function Footer() {
   return (
-    <footer className="root-footer relative z-10 col-span-4 mx-auto w-full max-w-screen-md py-10 md:col-span-12 md:px-15">
-      <div className="footer-container dark:bg-background/50 flex flex-col justify-between gap-3 rounded-2xl border border-white/10 bg-transparent p-5 shadow-lg ring-1 shadow-black/10 ring-white/20 backdrop-blur-2xl md:flex-row md:items-center dark:shadow-sm dark:shadow-white/10">
-        <div className="footer-content space-y-3">
+    <footer className="root-footer relative z-10 col-span-4 mx-auto w-full max-w-screen-md px-5 py-10 lg:col-span-12 lg:px-15">
+      <div className="footer-container flex flex-col justify-between gap-5 p-5 lg:flex-row lg:items-center">
+        <div className="footer-content space-y-1">
           <div className="footer-logo flex items-center gap-2">
             <ImageConvert
               props={{
@@ -55,7 +55,7 @@ function Footer() {
             Copyright &copy; 2025 Janghoon Oh. All rights reserved.
           </p>
         </div>
-        <div className="footer-social flex items-center gap-3">
+        <div className="footer-social flex items-center gap-2.5">
           {LinkList.map((link) => (
             <SocialLink link={link} key={link.name} />
           ))}

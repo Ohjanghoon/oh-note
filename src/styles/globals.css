@@ -57,6 +57,7 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
 }
 
 @theme typography {
@@ -67,7 +68,7 @@
 pre.shiki {
   padding: 1rem;
   border-radius: 0.5rem;
-  overflow-x: auto;
+  overflow-x: scroll;
 
   pre::-webkit-scrollbar {
     display: none;

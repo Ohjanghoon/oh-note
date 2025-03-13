@@ -19,11 +19,11 @@ interface CarouselProps {
 
 function Carousel({ children }: CarouselProps) {
   return (
-    <div className="relative">
-      <button className="custom-prev absolute top-1/2 -left-10 z-1 hidden -translate-y-[45px] text-4xl md:inline">
+    <div className="group relative">
+      <button className="custom-prev duraion-300 absolute top-1/2 -left-10 z-1 -translate-y-[45px] text-4xl opacity-0 transition-opacity md:group-hover:opacity-100">
         <IoIosArrowBack />
       </button>
-      <button className="custom-next absolute top-1/2 -right-10 z-1 hidden -translate-y-[45px] text-4xl md:inline">
+      <button className="custom-next absolute top-1/2 -right-10 z-1 -translate-y-[45px] text-4xl opacity-0 transition-opacity md:group-hover:opacity-100">
         <IoIosArrowForward />
       </button>
       <Swiper

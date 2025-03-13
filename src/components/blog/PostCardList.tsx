@@ -42,7 +42,7 @@ function PostCard({ post }: { post: PostMetadata }) {
 
   return (
     <Link href={`/blog/${slug}`}>
-      <li className="postcard group w-full space-y-3 overflow-hidden">
+      <li className="postcard_container group w-full space-y-3 overflow-hidden">
         <PostCardImage thumbnailUrl={thumbnailUrl} />
         <PostCardContent title={title} description={description} />
         <PostCardFooter publishDate={publishDate} tags={tags} />

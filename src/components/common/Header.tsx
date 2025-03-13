@@ -23,6 +23,7 @@ function Header() {
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+    document.body.style.overflow = isMenuOpen ? "auto" : "hidden";
   };
 
   useEffect(() => {
