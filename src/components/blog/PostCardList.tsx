@@ -26,16 +26,9 @@ function PostCardList({ tag: searchTag }: { tag: string }) {
   const filteredPosts = searchTag
     ? posts.filter((post) => post.tags.includes(searchTag))
     : posts;
-  // useEffect(() => {
-  //   if (searchTag) {
-  //     dispatch(getPosts(searchTag));
-  //   } else {
-  //     dispatch(getPosts());
-  //   }
-  // }, [searchTag, dispatch]);
 
   return (
-    <ul className="grid grid-cols-3 gap-x-5 gap-y-10">
+    <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:grid-cols-3">
       {filteredPosts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
@@ -61,7 +54,7 @@ function PostCard({ post }: { post: PostMetadata }) {
 /** PostCardImage 컴포넌트 */
 function PostCardImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <figure className="postcard-img_wraaper relative h-44 w-full overflow-hidden rounded-xl">
+    <figure className="postcard-img_wraaper relative w-full overflow-hidden rounded-xl">
       <ImageConvert
         props={{
           width: 1366,
@@ -105,7 +98,7 @@ function PostCardFooter({
   tags: string[];
 }) {
   return (
-    <div className="postcard-footer text-text-muted flex items-center justify-between p-1 text-xs">
+    <div className="postcard-footer text-text-muted flex justify-between gap-2 p-1 text-xs sm:flex-row sm:items-center">
       <span className="flex items-center gap-1">
         <MdAccessTime />
         <span>{formatDate(publishDate)}</span>

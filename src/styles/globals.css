@@ -25,7 +25,7 @@
   }
 
   h1 {
-    @apply text-5xl leading-[1.1] font-extrabold xl:text-[44px];
+    @apply text-[40px] leading-[1.1] font-extrabold xl:text-[44px];
   }
   h2 {
     @apply text-4xl leading-[1.1] font-semibold xl:text-[40px];
