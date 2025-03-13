@@ -14,18 +14,6 @@
     @apply font-sans;
   }
 
-  body {
-    @apply bg-background;
-
-    /* ::-webkit-scrollbar-track {
-      display: none;
-    } */
-    /* ::-webkit-scrollbar-track:hover {
-      display: none;
-      background-color: transparent !important;
-    } */
-  }
-
   html,
   body,
   main {
@@ -33,11 +21,7 @@
   }
 
   body {
-    @apply min-h-screen text-sm leading-relaxed font-medium;
-  }
-
-  footer {
-    @apply my-6 h-10 w-full bg-transparent;
+    @apply bg-background min-h-screen text-sm leading-relaxed font-medium;
   }
 
   h1 {

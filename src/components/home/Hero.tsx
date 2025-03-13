@@ -44,18 +44,17 @@ function Hero() {
 function HeroSection() {
   return (
     <section className="home-hero mx-auto flex items-end justify-between">
-      <div className="hero-image_wrapper order-2 h-full">
+      <div className="hero-image_wrapper order-2">
         <ImageConvert
           props={{
             width: 411,
             height: 302,
             src: "/assets/logo_text.png",
             alt: "logo_text",
-            styleClassName: "mx-auto w-full h-80 opacity-5",
+            styleClassName: "mx-auto w-full h-80 opacity-5  order-2",
           }}
         />
       </div>
-      {/* 히어로 섹션 */}
       <div className="hero-heading_container flex h-full flex-col items-start justify-end">
         {/* <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-[60px] tracking-tight text-transparent"> */}
         <h1 className="heading_container-title text-text-dark text-6xl tracking-tight">

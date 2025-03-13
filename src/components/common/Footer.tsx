@@ -1,0 +1,104 @@
+"use client";
+
+import Link from "next/link";
+import { IconType } from "react-icons";
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from "@radix-ui/react-tooltip";
+
+// components
+import ImageConvert from "@/components/ui/ImageConvert";
+
+// icons
+import { BsGithub } from "react-icons/bs";
+
+interface Link {
+  name: string;
+  src: string;
+  icon: IconType | string;
+}
+
+const LinkList: Link[] = [
+  {
+    name: "GitHub",
+    src: "https://github.com/Ohjanghoon/",
+    icon: BsGithub,
+  },
+  {
+    name: "Portfolio",
+    src: "https://dev-oh.web.app",
+    icon: "/assets/logo/logo_dev-oh.ico",
+  },
+];
+
+function Footer() {
+  return (
+    <footer className="root-footer w-full/20 relative z-10 col-span-4 py-10 md:col-span-12">
+      <div className="footer-container flex items-center justify-between rounded-2xl border border-white/10 bg-transparent p-5 shadow-lg ring-1 shadow-black/10 ring-white/20 backdrop-blur-2xl dark:shadow-white/10">
+        <div className="footer-content space-y-3">
+          <div className="footer-logo flex items-center gap-2">
+            <ImageConvert
+              props={{
+                width: 256,
+                height: 256,
+                src: "/assets/logo/logo_light.ico",
+                alt: "logo",
+                styleClassName: "h-8 w-8 rounded-lg",
+              }}
+            />
+            <h6>oh-note</h6>
+          </div>
+          <p className="footer-copyright text-text-muted text-sm">
+            Copyright &copy; 2025 Janghoon Oh. All rights reserved.
+          </p>
+        </div>
+        <div className="footer-social flex items-center gap-5">
+          {LinkList.map((link) => (
+            <SocialLink link={link} key={link.name} />
+          ))}
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function SocialLink({ link }: { link: Link }) {
+  return (
+    <TooltipProvider delayDuration={150}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Link href={link.src} target="_blank">
+            <div className="ring-muted inline-flex h-7 w-7 items-center justify-center rounded-full ring-1">
+              {typeof link.icon !== "string" ? (
+                <link.icon className="text-xl" />
+              ) : (
+                <ImageConvert
+                  props={{
+                    width: 256,
+                    height: 256,
+                    src: link.icon,
+                    alt: "dev-oh logo",
+                    styleClassName: "h-5 w-5 rounded-[50%]",
+                  }}
+                />
+              )}
+            </div>
+          </Link>
+        </TooltipTrigger>
+        <TooltipContent
+          className="bg-bg-dark text-text-light rounded-lg p-1 text-xs"
+          side="bottom"
+          align="start"
+          sideOffset={6}
+        >
+          {link.name}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+
+export default Footer;
