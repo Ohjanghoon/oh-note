@@ -84,3 +84,11 @@ pre.shiki {
     display: none;
   }
 }
+.swiper {
+  .swiper-pagination {
+    @apply !relative mt-7;
+  }
+  .swiper-pagination-bullet {
+    @apply p-[0.4rem] md:p-1.5;
+  }
+}

@@ -43,24 +43,24 @@ function Hero() {
 /** Hero Banner 영역 */
 function HeroSection() {
   return (
-    <section className="home-hero mx-auto flex items-end justify-between">
-      <div className="hero-image_wrapper order-2">
+    <section className="home-hero mx-auto flex flex-col justify-between gap-10 md:flex-row md:items-end md:gap-0">
+      <div className="hero-image_wrapper mx-auto md:order-2 md:mx-0">
         <ImageConvert
           props={{
             width: 411,
             height: 302,
             src: "/assets/logo_text.png",
             alt: "logo_text",
-            styleClassName: "mx-auto w-full h-80 opacity-5  order-2",
+            styleClassName: "mx-auto w-full h-60 md:h-80 opacity-5 ",
           }}
         />
       </div>
-      <div className="hero-heading_container flex h-full flex-col items-start justify-end">
+      <div className="hero-heading_container mx-auto flex h-full flex-col items-start justify-end md:mx-0">
         {/* <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-[60px] tracking-tight text-transparent"> */}
-        <h1 className="heading_container-title text-text-dark text-6xl tracking-tight">
+        <h1 className="heading_container-title text-text-dark tracking-tight md:text-6xl">
           oh-note
         </h1>
-        <p className="heading_container-subtle text-text-dark-secondary mt-2 text-[16px]">
+        <p className="heading_container-subtle text-text-dark-secondary mt-2 md:text-[16px]">
           개발 기록과 학습한 내용을 정리하는 개인 블로그 공간입니다. <br />
           Next.js & TailwindCSS 기반으로 제작되었습니다.
         </p>

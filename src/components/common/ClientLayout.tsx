@@ -28,7 +28,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
           <Header />
           <div className="layout-container">
             <main className="layout-main">{children}</main>
-            <aside className="back_to_top">
+            <aside className="back_to_top z-50 hidden md:block">
               <BackToTopButton />
             </aside>
             <Footer />

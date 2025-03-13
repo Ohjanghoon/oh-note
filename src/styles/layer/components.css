@@ -28,7 +28,7 @@
   .blog,
   .guestbook,
   .blog-content {
-    @apply mx-auto min-h-screen w-full space-y-10 pt-36 pb-80;
+    @apply mx-auto min-h-screen w-full space-y-10 pt-24 pb-60 md:pt-36 md:pb-80;
   }
 
   .hero-section {
