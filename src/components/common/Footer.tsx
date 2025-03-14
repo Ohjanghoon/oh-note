@@ -37,7 +37,7 @@ const LinkList: Link[] = [
 function Footer() {
   return (
     <footer className="root-footer relative z-10 col-span-4 mx-auto w-full max-w-screen-md px-5 py-10 lg:col-span-12 lg:px-15">
-      <div className="footer-container flex flex-col justify-between gap-5 p-5 lg:flex-row lg:items-center">
+      <div className="footer-container flex flex-col justify-between gap-3 p-5 lg:flex-row lg:items-center">
         <div className="footer-content space-y-1">
           <div className="footer-logo flex items-center gap-2">
             <ImageConvert
@@ -55,7 +55,7 @@ function Footer() {
             Copyright &copy; 2025 Janghoon Oh. All rights reserved.
           </p>
         </div>
-        <div className="footer-social flex items-center gap-2.5">
+        <div className="footer-social flex items-center gap-2">
           {LinkList.map((link) => (
             <SocialLink link={link} key={link.name} />
           ))}

@@ -30,7 +30,7 @@
     @apply relative mx-auto w-full;
 
     .home-hero {
-      @apply relative z-10 mx-auto w-full max-w-screen-xl px-10 pt-40 md:min-h-screen;
+      @apply relative z-10 mx-auto w-full max-w-screen-xl px-10 pt-24 md:min-h-screen md:pt-40;
     }
 
     .home-recent_posts {
@@ -58,13 +58,13 @@
   }
 
   .blog_content_container {
-    @apply relative mx-auto w-full px-5 py-24 md:px-10;
+    @apply relative mx-auto w-full px-5 py-24 md:px-10 md:py-36;
 
     .blog-content-article {
       @apply mx-auto min-h-screen max-w-screen-md pt-10 pb-20;
 
       hr {
-        @apply border-border my-1 border-t-2;
+        @apply border-border my-3 border-t-2;
       }
 
       h1 {
@@ -87,7 +87,7 @@
       }
 
       blockquote {
-        @apply border-l-4 border-gray-800 bg-gray-200/40 py-1 pl-4 text-gray-600;
+        @apply border-primary bg-bg-subtle text-text-dark-secondary my-2 rounded-r-md border-l-4 py-2 pl-4;
       }
 
       ol {
@@ -120,6 +120,10 @@
       /* ✅ 리스트 마커 색상 설정 */
       li::marker {
         @apply text-text-dark;
+      }
+
+      img {
+        @apply rounded-md;
       }
     }
   }

@@ -52,7 +52,7 @@ function BlogContentTitle({
         className="text-text-dark-secondary hover:text-primary-darken text-semibold"
         onClick={(e) => goBack(e)}
       >
-        ← Go to blog
+        ← Go to Blog
       </button>
       <div className="space-y-3">
         <div>
