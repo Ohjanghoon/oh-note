@@ -31,9 +31,9 @@ function BackToTopButton() {
   return (
     <button
       onClick={backToTop}
-      className={`back_to_top-btn text-primary ring-primary overflow-hidden rounded-full ring-2 transition-[opacity,scale] duration-300 ${
+      className={`back_to_top-btn text-text-dark-secondary ring-muted overflow-hidden rounded-full ring-2 transition-[opacity,scale] duration-300 ${
         isVisible ? "opacity-100" : "pointer-events-none opacity-0"
-      } hover:bg-primary hover:text-text-light hover:scale-105`}
+      } hover:scale-105`}
     >
       <TbArrowBigUpLineFilled className="p-1 text-4xl font-extrabold" />
     </button>

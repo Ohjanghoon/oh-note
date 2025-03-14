@@ -42,8 +42,8 @@ function Hero() {
 /** Hero Banner 영역 */
 function HeroSection() {
   return (
-    <section className="home-hero flex flex-col gap-10 md:flex-row md:justify-around">
-      <div className="hero-image_wrapper mx-auto pt-8 md:order-2 md:mx-0">
+    <section className="home-hero flex flex-col gap-10 lg:flex-row lg:justify-around">
+      <div className="hero-image_wrapper mx-auto pt-8 md:mx-0 lg:order-2">
         <ImageConvert
           props={{
             width: 411,
@@ -51,11 +51,11 @@ function HeroSection() {
             src: "/assets/logo_text.png",
             alt: "logo_text",
             styleClassName:
-              "mx-auto w-full h-60 md:h-100 opacity-20 dark:opacity-5 ",
+              "mx-auto h-60 md:h-80 w-auto lg:h-100 opacity-20 dark:opacity-5",
           }}
         />
       </div>
-      <div className="hero-heading_container mx-auto flex h-full flex-col items-start justify-end md:mx-0 md:pt-50">
+      <div className="hero-heading_container mx-auto flex h-full flex-col items-start justify-end px-0 pt-14 md:mx-0 md:px-20 md:pt-30 lg:pt-50">
         {/* <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-[60px] tracking-tight text-transparent"> */}
         <h1 className="heading_container-title text-text-dark tracking-tight md:text-7xl">
           oh-note <span className="text-primary">.</span>
@@ -66,7 +66,7 @@ function HeroSection() {
         </p>
         <Link
           href="/blog"
-          className="heading_container-link text-text-light bg-primary mt-10 rounded-lg px-6 py-3 text-[16px] font-semibold shadow-lg hover:bg-blue-500"
+          className="heading_container-link text-text-light mt-10 rounded-lg bg-gradient-to-br from-[#6175f4] to-[#06e0e0] px-6 py-3 text-[16px] font-semibold shadow-lg transition-[scale] duration-300 hover:scale-102"
         >
           Go to Blog →
         </Link>

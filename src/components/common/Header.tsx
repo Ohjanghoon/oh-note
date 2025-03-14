@@ -12,11 +12,13 @@ import ImageConvert from "@/components/ui/ImageConvert";
 // icons
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiCloseLargeLine } from "react-icons/ri";
+import { usePathname } from "next/navigation";
 
 function Header() {
   const [isScroll, setIsScroll] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
+  const pathname = usePathname();
   const scrollStyleFunction = () => {
     setIsScroll(window.scrollY > 40);
   };
@@ -31,7 +33,7 @@ function Header() {
   }, []);
   return (
     <header
-      className={`root-header fixed flex h-18 items-center justify-between gap-x-10 border-b-1 px-5 py-1 transition-[background-color,border-color] duration-300 md:px-10 md:py-2 ${isMenuOpen || isScroll ? "bg-background border-border" : "border-transparent bg-transparent"}`}
+      className={`root-header fixed flex h-18 items-center justify-between gap-x-10 border-b-1 px-5 py-1 transition-[background-color,border-color] duration-300 md:px-10 md:py-2 ${pathname !== "/" || isMenuOpen || isScroll ? "bg-background/80 border-border backdrop-blur-lg" : "border-transparent bg-transparent"}`}
     >
       {/* <header
       className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-all duration-200 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
@@ -55,7 +57,7 @@ function Header() {
             className="hidden w-10 h-8 rounded-lg dark:block"
           /> */}
 
-          <h5 className="hidden font-bold tracking-tight md:block">oh-note</h5>
+          <h5 className="hidden font-bold tracking-tight lg:block">oh-note</h5>
         </Link>
       </div>
       {/* PC Nav 영역 */}
