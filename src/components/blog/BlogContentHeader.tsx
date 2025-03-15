@@ -1,10 +1,12 @@
 "use client";
 
 import { MouseEvent } from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 // types
 import { PostMetadata } from "@/types/postTypes";
-import { formatDate } from "@/utils/utls";
+import { formatDate } from "@/utils/utils";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
@@ -85,7 +87,7 @@ function BlogWritter() {
         props={{
           width: 20,
           height: 20,
-          src: "/assets/profile-avatar.webp",
+          src: "/assets/icons/profile-avatar.png",
           alt: "profile-avatar",
           styleClassName: "h-8 w-8 rounded-full",
         }}
@@ -103,17 +105,19 @@ function BlogWritter() {
 /** 블로그 콘텐츠 썸네일 컴포넌트 */
 function BlogContentImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <div className="relative z-10 mx-auto max-h-120 w-full overflow-hidden">
-      <ImageConvert
-        props={{
-          width: 1366,
-          height: 768,
-          src: thumbnailUrl,
-          alt: "post-thumbnail",
-          styleClassName:
-            "h-full w-full rounded-3xl object-cover object-center",
-        }}
-      />
+    <div className="relative z-10 mx-auto max-h-130 w-full overflow-hidden">
+      <Zoom>
+        <ImageConvert
+          props={{
+            width: 1366,
+            height: 768,
+            src: thumbnailUrl,
+            alt: "post-thumbnail",
+            styleClassName:
+              "h-full w-full rounded-xl object-cover object-center ",
+          }}
+        />
+      </Zoom>
     </div>
   );
 }
@@ -124,7 +128,7 @@ function BlogContentBackground({ thumbnailUrl }: { thumbnailUrl: string }) {
     <>
       <div
         style={{
-          backgroundImage: `url(${thumbnailUrl || "/assets/images/default_image.webp"})`,
+          backgroundImage: `url(${thumbnailUrl || "/assets/images/default_image.png"})`,
           WebkitMaskImage:
             "linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))",
           maskImage:

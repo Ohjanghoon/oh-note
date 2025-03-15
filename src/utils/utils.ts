@@ -1,7 +1,21 @@
-/** 날짜 형식 포맷팅 */
+/** 날짜 형식(yyyy년 mm월 dd일) 포맷팅 */
 export function formatDate(date: string): string {
   const dateObj = new Date(date);
-  return dateObj.toLocaleDateString();
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1;
+  const day = dateObj.getDate();
+  return `${year}년 ${month}월 ${day}일`;
+}
+
+/** 날짜+시간 형식(yy.mm..dd hh:MM) 포맷팅 */
+export function formatDateTime(date: string): string {
+  const dateObj = new Date(date);
+  const year = dateObj.getFullYear().toString().slice(-2);
+  const month = dateObj.getMonth() + 1;
+  const day = dateObj.getDate();
+  const hour = dateObj.getHours();
+  const minute = dateObj.getMinutes();
+  return `${year}.${month}.${day} ${hour < 10 ? `0${hour}` : hour}:${minute < 10 ? `0${minute}` : minute}`;
 }
 
 /** 한국 시간 기준으로 상대시간 리턴 */

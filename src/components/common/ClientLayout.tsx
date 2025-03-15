@@ -14,7 +14,7 @@ import BackToTopButton from "@/components/common/BackToTopButton";
 import GradientBackground from "@/components/ui/GradientBackground";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
-import Loading from "@/components/common/Loading";
+import { LoadingDot } from "@/components/common/Loading";
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -43,7 +43,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
 function PostsInitializer() {
   const isLoading = usePostsInitializer();
 
-  return <>{!isLoading && <Loading />}</>;
+  return <>{!isLoading && <LoadingDot />}</>;
 }
 
 export default ClientLayout;
