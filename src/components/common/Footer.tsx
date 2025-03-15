@@ -40,14 +40,10 @@ function Footer() {
       <div className="footer-container flex flex-col justify-between gap-3 p-5 lg:flex-row lg:items-center">
         <div className="footer-content space-y-1">
           <div className="footer-logo flex items-center gap-2">
-            <ImageConvert
-              props={{
-                width: 256,
-                height: 256,
-                src: "/assets/logo/logo_light.ico",
-                alt: "logo",
-                styleClassName: "h-8 w-8 rounded-lg",
-              }}
+            <img
+              src="/assets/logo/logo_light.ico"
+              alt="logo"
+              className="h-8 w-8 rounded-lg"
             />
             <h6>oh-note</h6>
           </div>
@@ -75,14 +71,10 @@ function SocialLink({ link }: { link: Link }) {
               {typeof link.icon !== "string" ? (
                 <link.icon className="text-xl" />
               ) : (
-                <ImageConvert
-                  props={{
-                    width: 256,
-                    height: 256,
-                    src: link.icon,
-                    alt: "dev-oh logo",
-                    styleClassName: "h-5 w-5 rounded-[50%]",
-                  }}
+                <img
+                  src={link.icon}
+                  alt="dev-oh logo"
+                  className="h-5 w-5 rounded-[50%]"
                 />
               )}
             </div>

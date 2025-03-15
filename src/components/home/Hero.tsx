@@ -51,7 +51,7 @@ function HeroSection() {
             src: "/assets/logo_text.png",
             alt: "logo_text",
             styleClassName:
-              "mx-auto h-60 md:h-80 w-auto lg:h-100 opacity-20 dark:opacity-5",
+              "mx-auto h-60 md:h-80 w-auto lg:h-100 opacity-10 dark:opacity-5 ",
           }}
         />
       </div>

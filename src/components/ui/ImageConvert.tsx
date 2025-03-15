@@ -14,12 +14,13 @@ function ImageConvert({ props }: { props: ImageProps }) {
   const { width, height, src, alt, styleClassName } = props;
   return (
     <Image
-      priority
       width={width}
       height={height}
-      src={src || "/assets/images/default_image.webp"}
+      src={src || "/assets/images/default_image.png"}
       alt={alt}
       className={`${styleClassName}`}
+      loading="lazy"
+      quality={100}
     />
   );
 }
