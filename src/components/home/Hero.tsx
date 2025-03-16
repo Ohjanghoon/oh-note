@@ -55,7 +55,7 @@ function HeroSection() {
           }}
         />
       </div>
-      <div className="hero-heading_container mx-auto flex h-full flex-col items-start justify-end px-0 pt-14 md:mx-0 md:px-20 md:pt-30 lg:pt-50">
+      <div className="hero-heading_container mx-auto flex h-full flex-col items-start justify-end px-0 pt-14 md:mx-0 md:px-20 md:pt-20 lg:pt-50">
         {/* <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-[60px] tracking-tight text-transparent"> */}
         <h1 className="heading_container-title text-text-dark tracking-tight md:text-7xl">
           oh-note <span className="text-primary">.</span>
