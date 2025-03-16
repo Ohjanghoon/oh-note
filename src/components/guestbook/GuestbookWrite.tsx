@@ -4,11 +4,8 @@
 import EmojiBox from "@/components/guestbook/EmojiBox";
 
 // icons
-// import { SlPencil } from "react-icons/sl";
-import { FaRegPaperPlane } from "react-icons/fa";
 import GuestbookInputBox from "./GuestbookInputBox";
 import { useState } from "react";
-import { Guestbook } from "@/types/guestbookTypes";
 
 function GuestbookWrite() {
   // 선택된 이모지 상태

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 
 // components
 import Emoji, { emojiList } from "@/components/guestbook/Emoji";
-import ImageConvert from "@/components/ui/ImageConvert";
 
 interface Props {
   selectedEmoji: string;

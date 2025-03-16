@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 // types
 import { Guestbook } from "@/types/guestbookTypes";
@@ -65,11 +65,6 @@ function GuestBook() {
           description="방명록을 자유롭게 남겨주세요."
         />
       </header>
-      {/* <section className="guestbook-section">
-        <div className="p-5 shadow-lg ring-ring bg-background rounded-3xl ring-1 backdrop-blur-2xl">
-          
-        </div>
-      </section> */}
       <section className="guestbook-section">
         <section className="guestbook-board ring-ring bg-primary/10 relative flex flex-col gap-8 rounded-xl p-3 ring-1 dark:bg-[#1F2937]">
           <GuestbookList guestbooks={guestbooks} />

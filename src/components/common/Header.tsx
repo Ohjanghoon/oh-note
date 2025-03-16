@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 // components
 import Navigation from "./Navigation";
 import SearchButton from "@/components/ui/SearchButton";
 import ThemeButton from "@/components/common/ThemeButton";
-import ImageConvert from "@/components/ui/ImageConvert";
 
 // icons
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -42,11 +42,15 @@ function Header() {
       <div className="header-logo flex gap-3 justify-self-start">
         <Link href="/" className="flex items-center justify-center gap-3">
           {/* <img src="/assets/logo-oh-note.webp" alt="logo" className="w-8 h-8" /> */}
-          <img
+          <Image
             src="/assets/logo/logo_light.ico"
             alt="logo"
+            width={32}
+            height={32}
+            unoptimized
             className="h-8 w-8 rounded-lg md:h-9 md:w-9"
           />
+
           {/* <img
             src="/assets/logo/logo_dark.ico"
             alt="logo"

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { IconType } from "react-icons";
 import {
   Tooltip,
@@ -8,9 +9,6 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@radix-ui/react-tooltip";
-
-// components
-import ImageConvert from "@/components/ui/ImageConvert";
 
 // icons
 import { BsGithub } from "react-icons/bs";
@@ -40,9 +38,12 @@ function Footer() {
       <div className="footer-container flex flex-col justify-between gap-3 p-5 lg:flex-row lg:items-center">
         <div className="footer-content space-y-1">
           <div className="footer-logo flex items-center gap-2">
-            <img
+            <Image
               src="/assets/logo/logo_light.ico"
               alt="logo"
+              width={32}
+              height={32}
+              unoptimized
               className="h-8 w-8 rounded-lg"
             />
             <h6>oh-note</h6>
@@ -71,9 +72,12 @@ function SocialLink({ link }: { link: Link }) {
               {typeof link.icon !== "string" ? (
                 <link.icon className="text-xl" />
               ) : (
-                <img
+                <Image
                   src={link.icon}
                   alt="dev-oh logo"
+                  width={20}
+                  height={20}
+                  unoptimized
                   className="h-5 w-5 rounded-[50%]"
                 />
               )}

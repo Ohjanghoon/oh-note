@@ -1,6 +1,6 @@
 // components
 import PostCardList from "@/components/blog/PostCardList";
-import TagList from "@/components/blog/TagList";
+// import TagList from "@/components/blog/TagList";
 import TitleHeader from "@/components/common/TitleHeader";
 
 export default async function Blog({
