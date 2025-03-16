@@ -1,6 +1,6 @@
 export interface Guestbook {
-  id: string;
-  createdAt: string;
+  id?: string;
+  createdAt?: string;
   nickname: string;
   content: string;
   passwordHash?: string;

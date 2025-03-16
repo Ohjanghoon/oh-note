@@ -114,3 +114,27 @@ pre.shiki {
   outline-offset: 0.4rem;
   outline: 0.2rem solid #bd93f9;
 }
+
+@layer utilities {
+  @keyframes horizontal-vibration {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(5px);
+    }
+    50% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-horizontal-vibration {
+    animation: horizontal-vibration 0.3s linear forwards;
+  }
+}

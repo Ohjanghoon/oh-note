@@ -52,9 +52,11 @@ function GuestbookList({ guestbooks }: { guestbooks: Guestbook[] | null }) {
                   <Emoji emoji={guestbook.emoji} />
                 </div>
                 <div className="w-auto max-w-full">
-                  <div className="flex flex-row items-start justify-between">
+                  <div className="flex flex-row items-start justify-between gap-10">
                     <span className="text-dark font-bold">
-                      {guestbook.nickname}
+                      {guestbook.nickname
+                        ? guestbook.nickname
+                        : `익명 ${guestbook.id}`}
                     </span>
                     <span className="text-3xs text-primary-light">
                       {guestbook.createdAt}

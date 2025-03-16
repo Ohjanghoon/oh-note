@@ -6,9 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import Emoji, { emojiList } from "@/components/guestbook/Emoji";
 import ImageConvert from "@/components/ui/ImageConvert";
 
-function EmojiBox() {
-  // 선택된 이모지 상태
-  const [selectedEmoji, setSelectedEmoji] = useState<string>("heart");
+interface Props {
+  selectedEmoji: string;
+  setSelectedEmoji: (emoji: string) => void;
+}
+
+function EmojiBox({ selectedEmoji, setSelectedEmoji }: Props) {
   // 이모지 박스 열림 상태
   const [isEmojiboxOpen, setIsEmojiboxOpen] = useState<boolean>(false);
 
