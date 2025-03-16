@@ -26,6 +26,7 @@
     --bg-border: #dce3eb;
     --bg-dark: #171717;
     --bg-darker: #0f0f0f;
+    --bg-light: #eef2f7;
 
     /* 텍스트 색상 */
     --text-dark: #0f0f0f;
@@ -49,6 +50,8 @@
 
     /* 그림자 & 테두리 */
     --shadow: rgba(57, 134, 242, 0.25);
+
+    --input-border: #a19e97;
   }
 
   /* .dark {
@@ -103,7 +106,7 @@
     --primary-light: #8dc1ff;
 
     --muted: #5f748e;
-    --border: #2a2a2a;
+    --border: #2e3a47;
     --ring: #4a4a4a;
     --card: #262626;
 
@@ -116,13 +119,12 @@
     --bg-border: #2a2a2a;
     --bg-dark: #121212;
     --bg-darker: #0b0b0b;
-
-    /* 텍스트 색상 */
+    --bg-light: #181818; /* 텍스트 색상 */
     --text-dark: #f2f3f5;
-    --text-dark-secondary: #dcdbd9;
+    --text-dark-secondary: #d6d5d4;
     --text-dark-muted: #dcdbd988;
 
-    --text-muted: #aab9d2;
+    --text-muted: #b6becd;
     --text-light: #ffffff;
     --text-on-dark: #ffffff;
     --text-on-muted: #c7d1e0;
@@ -165,6 +167,7 @@
   --color-bg-border: var(--bg-border);
   --color-bg-dark: var(--bg-dark);
   --color-bg-darker: var(--bg-darker);
+  --color-bg-light: var(--bg-light);
 
   /* ✅ 텍스트 색상 */
   --color-text-default: var(--text-default);
@@ -191,4 +194,9 @@
 
   /* ✅ 그라디언트 */
   --color-bg-gradient: var(--background-gradient);
+
+  --color-point1: #6175f4;
+  --color-point2: #06e0e0;
+
+  --color-input-border: var(--input-border);
 }

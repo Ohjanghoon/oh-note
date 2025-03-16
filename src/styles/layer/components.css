@@ -30,11 +30,11 @@
     @apply relative mx-auto w-full;
 
     .home-hero {
-      @apply relative z-10 mx-auto w-full max-w-screen-xl px-10 pt-24 md:min-h-screen md:pt-40;
+      @apply relative z-10 mx-auto w-full max-w-screen-xl px-10 pt-40 md:min-h-[80vh] md:pt-40;
     }
 
     .home-recent_posts {
-      @apply relative mx-auto grid min-h-screen w-full max-w-screen-lg grid-cols-4 gap-5 px-5 pt-20 md:grid-cols-12 md:px-10;
+      @apply relative mx-auto grid min-h-screen w-full max-w-screen-lg grid-cols-4 gap-5 px-3 pt-36 md:grid-cols-12 md:px-10;
 
       .recent_posts-grid {
         @apply col-span-4 md:col-span-12;
@@ -46,7 +46,7 @@
    * /blog 영역
   \*----------------------------*/
   .blog_container {
-    @apply relative mx-auto w-full max-w-screen-lg space-y-10 px-5 py-24 md:px-10 md:py-36;
+    @apply relative mx-auto w-full max-w-screen-lg space-y-8 px-3 py-24 md:px-10 md:py-28;
 
     .blog-posts {
       @apply relative col-span-12 mx-auto grid min-h-screen grid-cols-4 gap-5 md:grid-cols-12;
@@ -58,7 +58,7 @@
   }
 
   .blog_content_container {
-    @apply relative mx-auto w-full px-5 py-24 md:px-10 md:py-36;
+    @apply relative mx-auto w-full px-3 py-24 md:px-10 md:py-36;
 
     .blog-content-article {
       @apply mx-auto min-h-screen max-w-screen-md pt-10 pb-20;
@@ -132,7 +132,15 @@
    * /guestbook 영역
   \*----------------------------*/
   .guestbook-container {
-    @apply relative mx-auto w-full max-w-screen-lg space-y-10 px-5 py-24 md:px-10 md:py-36;
+    @apply relative mx-auto w-full max-w-screen-lg space-y-5 px-3 py-23 md:space-y-8 md:px-10 md:py-28;
+
+    .guestbook-section {
+      @apply mx-auto grid h-screen w-full;
+    }
+
+    .guestbook-board {
+      @apply max-h-[70vh];
+    }
   }
 
   .layout-container {
@@ -148,10 +156,6 @@
   .guestbook,
   .blog-content {
     @apply mx-auto min-h-screen w-full space-y-10 pt-24 pb-60 md:pt-36 md:pb-80;
-  }
-
-  .guestbook-section {
-    @apply mx-auto min-h-screen w-full;
   }
 
   [data-rehype-pretty-code-figure] pre {
