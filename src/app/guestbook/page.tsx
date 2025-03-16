@@ -12,9 +12,12 @@ import { selectGuestbook } from "@/lib/supabase/guestbook";
 import TitleHeader from "@/components/common/TitleHeader";
 import GuestbookWrite from "@/components/guestbook/GuestbookWrite";
 import GuestbookList from "@/components/guestbook/GuestbookList";
+import { supabase } from "@/server/supabase";
+import { RealtimePostgresInsertPayload } from "@supabase/supabase-js";
+import { formatDateTime } from "@/utils/utils";
 
 function GuestBook() {
-  const [guestbooks, setGuestbooks] = useState<Guestbook[] | null>(null);
+  const [guestbooks, setGuestbooks] = useState<Guestbook[]>([]);
 
   useEffect(() => {
     const fetchGuestbook = async () => {
@@ -29,6 +32,29 @@ function GuestBook() {
     };
 
     fetchGuestbook();
+
+    /** Supabase Realtime 구독 설정 => 데이터가 추가되면 자동 반영 */
+    const subscription = supabase
+      .channel("guestbook")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "guestbook" },
+        (payload: RealtimePostgresInsertPayload<Guestbook>) => {
+          const newGuestbook = {
+            id: payload.new.id,
+            nickname: payload.new.nickname,
+            content: payload.new.content,
+            emoji: payload.new.emoji,
+            createdAt: formatDateTime(payload.new.createdAt || "9999-99-99"),
+          };
+          setGuestbooks((prev) => [...prev, newGuestbook]);
+        },
+      )
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   return (
