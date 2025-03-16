@@ -16,7 +16,7 @@ import { MdAccessTime } from "react-icons/md";
 
 // components
 import ImageConvert from "../ui/ImageConvert";
-import { formatDate } from "@/utils/utls";
+import { formatDate } from "@/utils/utils";
 
 /** PostCardList 컴포넌트 */
 function PostCardList({ tag: searchTag }: { tag: string }) {
@@ -28,7 +28,7 @@ function PostCardList({ tag: searchTag }: { tag: string }) {
     : posts;
 
   return (
-    <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:grid-cols-3 md:gap-y-12">
+    <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:grid-cols-2 md:gap-y-12">
       {filteredPosts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
@@ -54,7 +54,7 @@ function PostCard({ post }: { post: PostMetadata }) {
 /** PostCardImage 컴포넌트 */
 function PostCardImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <figure className="postcard-img_wraaper relative w-full overflow-hidden rounded-xl">
+    <figure className="postcard-img_wraaper relative h-full max-h-64 w-full overflow-hidden rounded-xl">
       <ImageConvert
         props={{
           width: 1366,
@@ -62,7 +62,7 @@ function PostCardImage({ thumbnailUrl }: { thumbnailUrl: string }) {
           src: thumbnailUrl,
           alt: "post-thumbnail",
           styleClassName:
-            "h-full w-full object-cover object-center transition-[scale] duration-300 ease-in-out group-hover:scale-105",
+            "h-full w-full object-cover object-center transition-[scale] max-h-64 duration-300 ease-in-out group-hover:scale-105",
         }}
       />
     </figure>
@@ -78,7 +78,7 @@ function PostCardContent({
   description: string;
 }) {
   return (
-    <div className="postcard-content flex h-full flex-col justify-between space-y-2 p-1">
+    <div className="postcard-content flex h-full flex-col justify-between space-y-2 px-1">
       <h6 className="postcard-content-header group-hover:text-link-hover text-text-dark line-clamp-1 overflow-hidden text-[20px] font-bold text-ellipsis group-hover:transition-colors group-hover:duration-300">
         {title}
       </h6>

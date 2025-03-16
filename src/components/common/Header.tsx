@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 // components
 import Navigation from "./Navigation";
 import SearchButton from "@/components/ui/SearchButton";
 import ThemeButton from "@/components/common/ThemeButton";
-import ImageConvert from "@/components/ui/ImageConvert";
 
 // icons
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -33,7 +33,7 @@ function Header() {
   }, []);
   return (
     <header
-      className={`root-header fixed flex h-18 items-center justify-between gap-x-10 border-b-1 px-5 py-1 transition-[background-color,border-color] duration-300 md:px-10 md:py-2 ${pathname !== "/" || isMenuOpen || isScroll ? "bg-background/80 border-border backdrop-blur-lg" : "border-transparent bg-transparent"}`}
+      className={`root-header fixed flex h-16 items-center justify-between gap-x-10 border-b-1 px-3 py-1 transition-[background-color,border-color] duration-300 md:px-10 md:py-2 ${pathname !== "/" || isMenuOpen || isScroll ? "bg-background/80 border-border backdrop-blur-lg" : "border-transparent bg-transparent"}`}
     >
       {/* <header
       className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-all duration-200 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
@@ -42,22 +42,24 @@ function Header() {
       <div className="header-logo flex gap-3 justify-self-start">
         <Link href="/" className="flex items-center justify-center gap-3">
           {/* <img src="/assets/logo-oh-note.webp" alt="logo" className="w-8 h-8" /> */}
-          <ImageConvert
-            props={{
-              width: 10,
-              height: 10,
-              src: "/assets/logo/logo_light.ico",
-              alt: "logo",
-              styleClassName: "md:h-10 md:w-10 h-8 w-8 rounded-lg",
-            }}
+          <Image
+            src="/assets/logo/logo_light.ico"
+            alt="logo"
+            width={32}
+            height={32}
+            unoptimized
+            className="h-8 w-8 rounded-lg md:h-9 md:w-9"
           />
+
           {/* <img
             src="/assets/logo/logo_dark.ico"
             alt="logo"
             className="hidden w-10 h-8 rounded-lg dark:block"
           /> */}
 
-          <h5 className="hidden font-bold tracking-tight lg:block">oh-note</h5>
+          <h5 className="hidden text-[22px] font-bold tracking-tight lg:block">
+            oh-note
+          </h5>
         </Link>
       </div>
       {/* PC Nav 영역 */}
@@ -97,7 +99,7 @@ function MobileNav({
       </button>
 
       <div
-        className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} bg-bg-subtle fixed top-18 left-0 h-[calc(100vh-4.5rem)] w-full space-y-10 px-5 transition-[opacity,background-color] duration-300`}
+        className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} bg-bg-subtle fixed top-16 left-0 h-[calc(100vh-4rem)] w-full space-y-10 px-5 transition-[opacity,background-color] duration-300`}
       >
         <Navigation toggleMenu={toggleMenu} />
         <div className="space-y-3 p-2.5">

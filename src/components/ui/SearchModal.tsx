@@ -46,7 +46,7 @@ function SearchModal({ onClose }: { onClose: (isOpen: boolean) => void }) {
 
   return (
     <section
-      className="search_modal bg-bg-darker/40 fixed inset-0 z-100 flex h-screen w-full justify-center p-5 backdrop-blur-lg md:items-center"
+      className="search_modal bg-bg-darker/80 fixed inset-0 z-[1000] flex h-screen w-full justify-center p-5 md:items-center"
       onClick={onModalClose}
     >
       <div

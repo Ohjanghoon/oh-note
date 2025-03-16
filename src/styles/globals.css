@@ -25,7 +25,7 @@
   }
 
   h1 {
-    @apply text-[40px] leading-[1.1] font-extrabold xl:text-[44px];
+    @apply text-[36px] leading-[1.1] font-extrabold xl:text-[44px];
   }
   h2 {
     @apply text-4xl leading-[1.1] font-semibold xl:text-[40px];
@@ -90,6 +90,51 @@ pre.shiki {
     @apply !relative mt-7;
   }
   .swiper-pagination-bullet {
-    @apply p-[0.4rem] md:p-1.5;
+    @apply p-0.5;
+  }
+}
+
+.custom-zoom [data-rmiz-modal-overlay],
+.custom-zoom [data-rmiz-modal-img] {
+  transition-duration: 0.8s;
+  transition-timing-function: linear;
+}
+
+.custom-zoom [data-rmiz-modal-overlay="hidden"] {
+  background-color: rgb(56, 58, 89, 0);
+}
+[data-rmiz-modal-overlay="visible"] {
+  @apply !bg-black/50 !backdrop-blur-md;
+}
+.custom-zoom [data-rmiz-btn-unzoom] {
+  background-color: #bd93f9;
+  color: #000;
+}
+.custom-zoom [data-rmiz-btn-unzoom]:focus-visible {
+  outline-offset: 0.4rem;
+  outline: 0.2rem solid #bd93f9;
+}
+
+@layer utilities {
+  @keyframes horizontal-vibration {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(5px);
+    }
+    50% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-horizontal-vibration {
+    animation: horizontal-vibration 0.3s linear forwards;
   }
 }

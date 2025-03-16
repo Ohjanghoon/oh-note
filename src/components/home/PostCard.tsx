@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { PostMetadata } from "@/types/postTypes";
 
 // utils
-import { formatRelativeDate } from "@/utils/utls";
+import { formatRelativeDate } from "@/utils/utils";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
