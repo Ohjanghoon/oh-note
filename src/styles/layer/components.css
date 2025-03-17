@@ -11,7 +11,7 @@
     @apply bg-background text-foreground max-w-screen-3xl relative mx-auto min-h-screen w-full overflow-hidden transition-colors duration-300;
   }
   .root-header {
-    @apply z-50 mx-auto w-full;
+    @apply max-w-screen-3xl z-50 mx-auto h-16 w-full px-4 py-1 md:px-10 md:py-2;
   }
   .back_to_top {
     @apply fixed right-10 bottom-10;
@@ -46,10 +46,10 @@
    * /blog 영역
   \*----------------------------*/
   .blog_container {
-    @apply relative mx-auto w-full max-w-screen-lg space-y-8 px-3 py-24 md:px-10 md:py-28;
+    @apply relative mx-auto w-full max-w-screen-lg space-y-8 px-5 py-24 md:px-10 md:py-28;
 
     .blog-posts {
-      @apply relative col-span-12 mx-auto grid min-h-screen grid-cols-4 gap-5 md:grid-cols-12;
+      @apply relative mx-auto grid min-h-screen grid-cols-4 gap-5 md:grid-cols-12;
 
       .posts-grid {
         @apply col-span-4 md:col-span-12;

@@ -1,6 +1,7 @@
 "use client";
 
 import { Provider } from "react-redux";
+import { usePathname } from "next/navigation";
 
 // store
 import store from "@/store/store";
@@ -15,10 +16,13 @@ import GradientBackground from "@/components/ui/GradientBackground";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import { LoadingDot } from "@/components/common/Loading";
+import LeftSidebar from "./LeftSidebar";
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const pathname = usePathname();
+
   return (
     <Provider store={store}>
       <PostsInitializer />
@@ -27,6 +31,11 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
           {/* <GradientBackground styleClassName="w-full top-0 left-0 h-[50vh] opacity-25 blur-3xl" /> */}
 
           <Header />
+          {pathname === "/blog" && (
+            <aside>
+              <LeftSidebar />
+            </aside>
+          )}
           <main className="root-main">{children}</main>
           <aside className="back_to_top z-50 hidden md:block">
             <BackToTopButton />

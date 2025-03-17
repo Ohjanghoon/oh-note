@@ -23,7 +23,7 @@ const LeftSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`bg-background/50 fixed top-18 z-10 h-[calc(100vh-4.5rem)] space-y-2 border-r border-gray-300 pt-18 shadow-lg ${isOpen || isPinned ? "w-60 min-w-60" : "w-18 min-w-18 opacity-0"}`}
+      className={`bg-bg-subtle border-border fixed top-16 z-50 h-[calc(100vh-4rem)] space-y-2 border-r shadow-lg ${isOpen || isPinned ? "w-50" : "w-18 min-w-18 opacity-0"}`}
       onMouseEnter={() => !isPinned && setIsOpen(true)}
       onMouseLeave={() => !isPinned && setIsOpen(false)}
     >
