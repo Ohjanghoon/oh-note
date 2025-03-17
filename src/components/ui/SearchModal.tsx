@@ -75,7 +75,7 @@ function SearchModal() {
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  }, []);
+  }, [searchTab, onModalClose]);
 
   useEffect(() => {
     setSearchTabValue(searchTab);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // icons
 import { FiSearch } from "react-icons/fi";
@@ -24,11 +24,11 @@ function SearchButton() {
     return { isWindows, isMac };
   }
 
-  function onModalOpen() {
+  const onModalOpen = useCallback(() => {
     openSearchModal();
     setSearchTab("post");
     document.body.style.overflow = "hidden";
-  }
+  }, [openSearchModal, setSearchTab]);
 
   useEffect(() => {
     const { isMac, isWindows } = checkOS();

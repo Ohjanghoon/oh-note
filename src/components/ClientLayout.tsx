@@ -18,7 +18,7 @@ import GradientBackground from "@/components/ui/GradientBackground";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import { LoadingDot } from "@/components/common/Loading";
-import LeftSidebar from "@/components/common/LeftSidebar";
+import Sidebar from "@/components/common/Sidebar";
 import SearchModal from "@/components/ui/SearchModal";
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
@@ -36,7 +36,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
           <Header />
           {pathname.includes("/blog") && (
             <aside>
-              <LeftSidebar />
+              <Sidebar />
             </aside>
           )}
           <main className="root-main">{children}</main>

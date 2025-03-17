@@ -15,7 +15,7 @@ import { useSearchModal } from "@/contexts/SearchModalContext";
 import { Tag } from "@/types/postTypes";
 import { FiSearch } from "react-icons/fi";
 
-function TagList({ isOpen }: { isOpen: boolean }) {
+function TagList() {
   const { openSearchModal, setSearchTab } = useSearchModal();
   const pathName = usePathname();
   const searchParams = useSearchParams();
@@ -33,9 +33,8 @@ function TagList({ isOpen }: { isOpen: boolean }) {
     const { scrollTop, scrollHeight, clientHeight } =
       scrollContainerRef.current;
 
-    console.log("scrollTop: " + scrollTop);
     setShowToptShadow(scrollTop > 10);
-    setShowBottomShadow(scrollTop + clientHeight < scrollHeight);
+    setShowBottomShadow(scrollTop + clientHeight + 10 < scrollHeight);
   };
 
   function onSearchModalOpen() {
@@ -53,9 +52,7 @@ function TagList({ isOpen }: { isOpen: boolean }) {
   }, [tags]);
 
   return (
-    <div
-      className={`sidebar-tag_container mt-20 h-full min-w-[205px] px-7 transition-opacity duration-300 ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
-    >
+    <div className="sidebar-tag_container">
       <div className="tag_title text-text-dark-secondary flex min-w-[175px] items-center justify-between px-2 text-lg">
         <span>Tags</span>
         <button
@@ -69,10 +66,8 @@ function TagList({ isOpen }: { isOpen: boolean }) {
       </div>
       <div className="bg-bg-muted mt-2 h-[0.5px] w-full"></div>
       <div className="tag_list relative mt-4">
-        {/* 왼쪽 그림자 (showLeftShadow가 true일 때만 보이도록 처리) */}
-
         <div
-          className={`from-bg-dark/8 pointer-events-none absolute top-0 left-0 h-7 w-full bg-gradient-to-b to-transparent py-1 transition-opacity duration-300 ${showToptShadow ? "opacity-100" : "opacity-0"}`}
+          className={`top_shadow from-bg-dark/8 pointer-events-none absolute top-0 left-0 h-7 w-full bg-gradient-to-b to-transparent py-1 transition-opacity duration-500 ${showToptShadow ? "opacity-100" : "opacity-0"}`}
         ></div>
 
         <ul
@@ -93,7 +88,7 @@ function TagList({ isOpen }: { isOpen: boolean }) {
                 className={`${isActive ? "pointer-events-none" : "pointer-events-auto"}`}
               >
                 <li
-                  className={`hover:bg-bg-subtle-hover flex min-w-[175px] items-center justify-between rounded-lg p-3 text-[13px] transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}
+                  className={`hover:bg-bg-subtle-hover z-1 flex min-w-[175px] items-center justify-between rounded-lg px-2 py-3 text-[13px] transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}
                 >
                   <span>
                     {tag.tagName === "All" ? "전체 게시글 보기" : tag.tagName}
@@ -105,8 +100,9 @@ function TagList({ isOpen }: { isOpen: boolean }) {
           })}
           {tagList.length >= 10 && <li className="px-1 py-5"></li>}
         </ul>
+
         <div
-          className={`from-bg-dark/8 pointer-events-none absolute bottom-0 left-0 h-7 w-full bg-gradient-to-t to-transparent py-1 transition-opacity duration-300 ${showBottomShadow ? "opacity-100" : "opacity-0"}`}
+          className={`bottom_shadow from-bg-dark/8 pointer-events-none absolute bottom-0 left-0 h-7 w-full bg-gradient-to-t to-transparent py-1 transition-opacity duration-500 ${showBottomShadow ? "opacity-100" : "opacity-0"}`}
         ></div>
       </div>
     </div>
