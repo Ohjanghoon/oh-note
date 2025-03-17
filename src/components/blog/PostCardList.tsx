@@ -28,7 +28,7 @@ function PostCardList({ tag: searchTag }: { tag: string }) {
     : posts;
 
   return (
-    <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:grid-cols-2 md:gap-y-12">
+    <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:gap-y-12 lg:grid-cols-3">
       {filteredPosts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
@@ -98,7 +98,7 @@ function PostCardFooter({
   tags: string[];
 }) {
   return (
-    <div className="postcard-footer text-text-muted flex justify-between gap-2 p-1 text-xs sm:flex-row sm:items-center">
+    <div className="postcard-footer text-text-muted flex justify-between gap-2 px-1 py-2 text-xs sm:flex-row sm:items-center">
       <span className="flex items-center gap-1">
         <MdAccessTime />
         <span>{formatDate(publishDate)}</span>

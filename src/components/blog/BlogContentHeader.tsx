@@ -50,16 +50,18 @@ function BlogContentTitle({
   };
   return (
     <div className="title-container relative z-10 space-y-10 px-1">
-      <button
+      {/* <button
         className="text-text-dark-secondary hover:text-primary-darken text-semibold"
         onClick={(e) => goBack(e)}
       >
         ← Go to Blog
-      </button>
+      </button> */}
       <div className="space-y-3">
         <div>
           <p className="text-text-dark-secondary flex items-center gap-0.5">
-            <MdAccessTime />
+            <span>
+              <MdAccessTime />
+            </span>
             <span>{formatDate(publishDate)}</span>
           </p>
           <h3 className="title text-text-dark leading-tight font-extrabold md:text-[40px]">
@@ -105,7 +107,7 @@ function BlogWritter() {
 /** 블로그 콘텐츠 썸네일 컴포넌트 */
 function BlogContentImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <div className="relative z-10 mx-auto max-h-130 w-full overflow-hidden">
+    <div className="relative z-10 h-auto max-h-130 w-full max-w-screen-md overflow-hidden">
       <Zoom>
         <ImageConvert
           props={{
@@ -134,7 +136,7 @@ function BlogContentBackground({ thumbnailUrl }: { thumbnailUrl: string }) {
           maskImage:
             "linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))",
         }}
-        className={`absolute top-0 left-0 z-1 h-[60vh] w-full bg-cover bg-center bg-no-repeat opacity-30 blur-sm`}
+        className={`absolute top-0 left-0 z-1 h-[60vh] w-full bg-cover bg-center bg-no-repeat opacity-60 blur-3xl`}
       ></div>
     </>
   );

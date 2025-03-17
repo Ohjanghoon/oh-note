@@ -33,7 +33,7 @@ function Header() {
   }, []);
   return (
     <header
-      className={`root-header fixed flex h-16 items-center justify-between gap-x-10 border-b-1 px-3 py-1 transition-[background-color,border-color] duration-300 md:px-10 md:py-2 ${pathname !== "/" || isMenuOpen || isScroll ? "bg-background/80 border-border backdrop-blur-lg" : "border-transparent bg-transparent"}`}
+      className={`root-header fixed flex items-center justify-between gap-x-10 border-b-1 transition-[background-color,border-color] duration-300 ${pathname !== "/" || isMenuOpen || isScroll ? "bg-background/80 border-border backdrop-blur-lg" : "border-transparent bg-transparent"}`}
     >
       {/* <header
       className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-all duration-200 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
