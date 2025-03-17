@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 
 // components
-import SearchModal from "@/components/ui/SearchModal";
+import { useSearchModal } from "@/contexts/SearchModalContext";
 
 function SearchButton() {
+  const { openSearchModal, setSearchTab } = useSearchModal();
+
   const [shortcut, setShortcut] = useState<string>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   /** 키 다운 이벤트 분기처리를 위한 OS 종류 확인 */
   function checkOS() {
@@ -24,7 +25,8 @@ function SearchButton() {
   }
 
   function onModalOpen() {
-    setIsOpen(true);
+    openSearchModal();
+    setSearchTab("post");
     document.body.style.overflow = "hidden";
   }
 
@@ -48,7 +50,7 @@ function SearchButton() {
     return () => {
       window.removeEventListener("keydown", handleSearchKeydown);
     };
-  }, []);
+  }, [onModalOpen]);
 
   return (
     <>
@@ -64,8 +66,6 @@ function SearchButton() {
           {shortcut}
         </span>
       </button>
-
-      {isOpen && <SearchModal onClose={setIsOpen} />}
     </>
   );
 }

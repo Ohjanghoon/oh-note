@@ -8,7 +8,9 @@ import store from "@/store/store";
 
 // hooks
 import usePostsInitializer from "@/hooks/usePostsInitializer";
-import { ThemeProvider } from "@/contexts/ThemeContext";
+
+// contexts
+import ContextProviders from "@/contexts/ContextProviders";
 
 // components
 import BackToTopButton from "@/components/common/BackToTopButton";
@@ -16,7 +18,8 @@ import GradientBackground from "@/components/ui/GradientBackground";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import { LoadingDot } from "@/components/common/Loading";
-import LeftSidebar from "./LeftSidebar";
+import LeftSidebar from "@/components/common/LeftSidebar";
+import SearchModal from "@/components/ui/SearchModal";
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -26,12 +29,12 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   return (
     <Provider store={store}>
       <PostsInitializer />
-      <ThemeProvider>
+      <ContextProviders>
         <div className="root-container">
           {/* <GradientBackground styleClassName="w-full top-0 left-0 h-[50vh] opacity-25 blur-3xl" /> */}
 
           <Header />
-          {pathname === "/blog" && (
+          {pathname.includes("/blog") && (
             <aside>
               <LeftSidebar />
             </aside>
@@ -42,9 +45,10 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
           </aside>
           <Footer />
 
+          <SearchModal />
           <GradientBackground styleClassName="w-full -bottom-10 left-0 rotate-180 h-60 opacity-20 blur-2xl" />
         </div>
-      </ThemeProvider>
+      </ContextProviders>
     </Provider>
   );
 };

@@ -7,6 +7,9 @@ import { useSelector } from "react-redux";
 // store
 import { RootState } from "@/store/store";
 
+// contexts
+import { useSearchModal } from "@/contexts/SearchModalContext";
+
 // types
 import { PostMetadata, Tag } from "@/types/postTypes";
 
@@ -14,36 +17,36 @@ import { PostMetadata, Tag } from "@/types/postTypes";
 import { FiSearch } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
 
-interface SearchModalProps {
-  searchTab?: "post" | "tag";
-  onClose: (isOpen: boolean) => void;
-}
-
 const tabList = [
   {
     label: "Posts",
     value: "post",
-    styleClassName: "ring-primary text-primary",
-    active: "bg-primary/20 dark:bg-primary/20",
+    styleClassName: "ring-primary text-primary pointer-events-auto",
+    active: "bg-primary/20 dark:bg-primary/20 pointer-events-none",
   },
   {
     label: "Tags",
     value: "tag",
-    styleClassName: "ring-[#e31ea1] text-[#e31ea1]",
-    active: "bg-[#e31ea1]/20 dark:bg-tag-point1/20",
+    styleClassName: "ring-[#e31ea1] text-[#e31ea1] pointer-events-auto",
+    active: "bg-[#e31ea1]/20 dark:bg-tag-point1/20 pointer-events-none",
   },
 ];
 
-function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
+function SearchModal() {
+  const { isSearchModalOpen, closeSearchModal, searchTab, setSearchTab } =
+    useSearchModal();
+
   const [searchTermKeyword, setSearchTermKeyword] = useState("");
-  const [searchTabValue, setSearchTabValue] = useState<string>(searchTab);
+  const [searchTabValue, setSearchTabValue] = useState<string>("post");
 
   const { posts } = useSelector((state: RootState) => state.post);
   const { tags } = useSelector((state: RootState) => state.tag);
-  console.log(tags);
+
   /** 모달창 닫기 */
   const onModalClose = () => {
-    onClose(false);
+    closeSearchModal();
+    setSearchTab("post");
+    setSearchTabValue("post");
     document.body.style.overflow = "auto";
   };
 
@@ -53,15 +56,15 @@ function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
       post.title.toLowerCase().includes(searchTermKeyword.toLowerCase()),
     );
   }, [searchTermKeyword, posts]);
-  console.log("filterdPosts: " + filteredPosts);
 
   const filteredTags = useMemo(() => {
     return tags.filter((tag) =>
       tag.tagName.toLocaleLowerCase().includes(searchTermKeyword.toLowerCase()),
     );
   }, [searchTermKeyword, tags]);
-  console.log("filteredTags", filteredTags);
+
   useEffect(() => {
+    setSearchTabValue(searchTab);
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onModalClose();
@@ -72,11 +75,15 @@ function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  });
+  }, []);
 
-  return (
+  useEffect(() => {
+    setSearchTabValue(searchTab);
+  }, [searchTab]);
+
+  return isSearchModalOpen ? (
     <section
-      className="search_modal bg-bg-darker/80 fixed inset-0 z-[1000] flex h-screen w-full justify-center p-5 md:items-center"
+      className="search_modal bg-bg-darker/80 fixed inset-0 z-50 flex h-screen w-full justify-center p-5 md:items-center"
       onClick={onModalClose}
     >
       <div
@@ -129,7 +136,7 @@ function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
         </section>
       </div>
     </section>
-  );
+  ) : null;
 }
 
 function SearchPosts({
