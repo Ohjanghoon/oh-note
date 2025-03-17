@@ -54,9 +54,9 @@ function TagList({ isOpen }: { isOpen: boolean }) {
 
   return (
     <div
-      className={`sidebar-tag_container mt-20 h-full min-w-[175px] px-7 ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+      className={`sidebar-tag_container mt-20 h-full min-w-[205px] px-7 transition-opacity duration-300 ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
     >
-      <div className="tag_title text-text-dark-secondary flex items-center justify-between px-2 text-lg">
+      <div className="tag_title text-text-dark-secondary flex min-w-[175px] items-center justify-between px-2 text-lg">
         <span>Tags</span>
         <button
           className="search_tag_btn ring-text-muted/60 text-text-dark-muted hover:bg-bg-muted/50 flex items-center justify-center rounded-lg p-1 ring-1 transition-[background-color] duration-300"
@@ -93,7 +93,7 @@ function TagList({ isOpen }: { isOpen: boolean }) {
                 className={`${isActive ? "pointer-events-none" : "pointer-events-auto"}`}
               >
                 <li
-                  className={`hover:bg-bg-subtle-hover flex w-full items-center justify-between rounded-lg p-3 text-[13px] transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}
+                  className={`hover:bg-bg-subtle-hover flex min-w-[175px] items-center justify-between rounded-lg p-3 text-[13px] transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}
                 >
                   <span>
                     {tag.tagName === "All" ? "전체 게시글 보기" : tag.tagName}
