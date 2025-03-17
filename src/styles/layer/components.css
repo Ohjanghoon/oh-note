@@ -46,7 +46,7 @@
    * /blog 영역
   \*----------------------------*/
   .blog_container {
-    @apply relative mx-auto w-full max-w-screen-lg space-y-8 px-5 py-24 md:px-10 md:py-28;
+    @apply relative mx-auto w-full max-w-screen-lg space-y-8 px-5 pt-32 md:px-10 md:py-28;
 
     .blog-posts {
       @apply relative mx-auto grid min-h-screen grid-cols-4 gap-5 md:grid-cols-12;
@@ -58,7 +58,7 @@
   }
 
   .blog_content_container {
-    @apply relative mx-auto w-full px-3 py-24 md:px-10 md:py-36;
+    @apply relative mx-auto w-full px-3 pt-32 md:px-10 md:py-36;
 
     .blog-content-article {
       @apply mx-auto min-h-screen max-w-screen-md pt-10 pb-20;
