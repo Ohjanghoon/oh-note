@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 // store
@@ -43,12 +43,12 @@ function SearchModal() {
   const { tags } = useSelector((state: RootState) => state.tag);
 
   /** 모달창 닫기 */
-  const onModalClose = () => {
+  const onModalClose = useCallback(() => {
     closeSearchModal();
     setSearchTab("post");
     setSearchTabValue("post");
     document.body.style.overflow = "auto";
-  };
+  }, [closeSearchModal, setSearchTab]);
 
   /** 검색어가 변경될 때만 필터링 실행 */
   const filteredPosts = useMemo(() => {
