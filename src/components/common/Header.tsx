@@ -33,7 +33,7 @@ function Header() {
   }, []);
   return (
     <header
-      className={`root-header fixed flex items-center justify-between gap-x-10 border-b-1 transition-[background-color,border-color] duration-300 ${pathname !== "/" || isMenuOpen || isScroll ? "bg-background/80 border-border backdrop-blur-lg" : "border-transparent bg-transparent"}`}
+      className={`root-header fixed flex items-center justify-between gap-x-10 border-b-1 transition-[background-color,border-color] duration-300 ${pathname !== "/" || isMenuOpen || isScroll ? "bg-bg-subtle border-border backdrop-blur-lg" : "border-transparent bg-transparent"}`}
     >
       {/* <header
       className={`root-header border-border fixed flex h-18 items-center justify-between gap-x-10 px-10 py-2 transition-all duration-200 ${isScroll ? "bg-background border-b-1" : "bg-transparent"}`}
@@ -99,7 +99,7 @@ function MobileNav({
       </button>
 
       <div
-        className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} bg-bg-subtle fixed top-16 left-0 h-[calc(100vh-4rem)] w-full space-y-10 px-5 transition-[opacity,background-color] duration-300`}
+        className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} bg-bg-subtle fixed top-16 left-0 z-50 h-[calc(100vh-4rem)] w-full space-y-10 px-5 transition-[opacity,background-color] duration-300`}
       >
         <Navigation toggleMenu={toggleMenu} />
         <div className="space-y-3 p-2.5">

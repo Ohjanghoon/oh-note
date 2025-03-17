@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 // store
 import { RootState } from "@/store/store";
+
+// contexts
+import { useSearchModal } from "@/contexts/SearchModalContext";
 
 // types
 import { PostMetadata, Tag } from "@/types/postTypes";
@@ -14,38 +17,38 @@ import { PostMetadata, Tag } from "@/types/postTypes";
 import { FiSearch } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
 
-interface SearchModalProps {
-  searchTab?: "post" | "tag";
-  onClose: (isOpen: boolean) => void;
-}
-
 const tabList = [
   {
     label: "Posts",
     value: "post",
-    styleClassName: "ring-primary text-primary",
-    active: "bg-primary/20 dark:bg-primary/20",
+    styleClassName: "ring-primary text-primary pointer-events-auto",
+    active: "bg-primary/20 dark:bg-primary/20 pointer-events-none",
   },
   {
     label: "Tags",
     value: "tag",
-    styleClassName: "ring-[#e31ea1] text-[#e31ea1]",
-    active: "bg-[#e31ea1]/20 dark:bg-tag-point1/20",
+    styleClassName: "ring-[#e31ea1] text-[#e31ea1] pointer-events-auto",
+    active: "bg-[#e31ea1]/20 dark:bg-tag-point1/20 pointer-events-none",
   },
 ];
 
-function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
+function SearchModal() {
+  const { isSearchModalOpen, closeSearchModal, searchTab, setSearchTab } =
+    useSearchModal();
+
   const [searchTermKeyword, setSearchTermKeyword] = useState("");
-  const [searchTabValue, setSearchTabValue] = useState<string>(searchTab);
+  const [searchTabValue, setSearchTabValue] = useState<string>("post");
 
   const { posts } = useSelector((state: RootState) => state.post);
   const { tags } = useSelector((state: RootState) => state.tag);
-  console.log(tags);
+
   /** 모달창 닫기 */
-  const onModalClose = () => {
-    onClose(false);
+  const onModalClose = useCallback(() => {
+    closeSearchModal();
+    setSearchTab("post");
+    setSearchTabValue("post");
     document.body.style.overflow = "auto";
-  };
+  }, [closeSearchModal, setSearchTab]);
 
   /** 검색어가 변경될 때만 필터링 실행 */
   const filteredPosts = useMemo(() => {
@@ -53,15 +56,15 @@ function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
       post.title.toLowerCase().includes(searchTermKeyword.toLowerCase()),
     );
   }, [searchTermKeyword, posts]);
-  console.log("filterdPosts: " + filteredPosts);
 
   const filteredTags = useMemo(() => {
     return tags.filter((tag) =>
       tag.tagName.toLocaleLowerCase().includes(searchTermKeyword.toLowerCase()),
     );
   }, [searchTermKeyword, tags]);
-  console.log("filteredTags", filteredTags);
+
   useEffect(() => {
+    setSearchTabValue(searchTab);
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onModalClose();
@@ -72,18 +75,22 @@ function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  });
+  }, [searchTab, onModalClose]);
 
-  return (
+  useEffect(() => {
+    setSearchTabValue(searchTab);
+  }, [searchTab]);
+
+  return isSearchModalOpen ? (
     <section
-      className="search_modal bg-bg-darker/80 fixed inset-0 z-[1000] flex h-screen w-full justify-center p-5 md:items-center"
+      className="search_modal bg-bg-darker/80 fixed inset-0 z-50 flex h-screen w-full justify-center p-5 md:items-center"
       onClick={onModalClose}
     >
       <div
-        className="search_modal-container bg-background grid h-140 w-full max-w-screen-sm grid-rows-[0.5fr_5.5fr] rounded-xl pt-2 pb-5 ring-[0.2px] md:max-h-170 md:max-w-screen-md"
+        className="search_modal-container bg-background grid h-140 w-full max-w-screen-sm grid-rows-[0.5fr_5.5fr] rounded-xl pt-3 pb-7 ring-[0.2px] md:max-h-170 md:max-w-screen-md"
         onClick={(e) => e.stopPropagation()}
       >
-        <header className="search_modal-header px-5 md:px-10">
+        <header className="search_modal-header px-5 md:px-7">
           <div className="header-tab_container space-x-2 py-2">
             {tabList.map((tab) => {
               return (
@@ -114,7 +121,7 @@ function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
           </div>
         </header>
 
-        <section className="search_modal-section h-full overflow-auto px-5 py-5 md:px-10">
+        <section className="search_modal-section h-full overflow-auto px-5 py-5 md:px-7">
           {searchTabValue === "post" ? (
             <SearchPosts
               filteredPosts={filteredPosts}
@@ -129,7 +136,7 @@ function SearchModal({ searchTab = "post", onClose }: SearchModalProps) {
         </section>
       </div>
     </section>
-  );
+  ) : null;
 }
 
 function SearchPosts({
@@ -205,12 +212,13 @@ function SearchTags({
         {filteredTags.length > 0 &&
           filteredTags.map((tag) => {
             const { tagName, count } = tag;
+            const src = tagName === "All" ? "/blog" : `/blog?tag=${tagName}`;
             return (
               <li
                 key={tagName}
                 className="group bg-bg-subtle hover:bg-bg-subtle-hover rounded-md"
               >
-                <Link href={`/blog?tag=${tagName}`} onClick={onModalClose}>
+                <Link href={src} onClick={onModalClose}>
                   <div className="flex items-center gap-1.5 p-2">
                     <span className="text-xs md:text-sm">{tagName}</span>
                     <span className="text-primary text-xs">{count}</span>

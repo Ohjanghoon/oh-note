@@ -2,7 +2,7 @@
 
 // node modules
 import Link from "next/link";
-
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 // types
@@ -28,11 +28,22 @@ function PostCardList({ tag: searchTag }: { tag: string }) {
     : posts;
 
   return (
-    <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:gap-y-12 lg:grid-cols-3">
+    <motion.ul
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          delay: 0.2,
+          duration: 0.6,
+          ease: "easeInOut",
+        },
+      }}
+      className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:gap-y-7 lg:grid-cols-3"
+    >
       {filteredPosts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
-    </ul>
+    </motion.ul>
   );
 }
 
@@ -98,21 +109,22 @@ function PostCardFooter({
   tags: string[];
 }) {
   return (
-    <div className="postcard-footer text-text-muted flex justify-between gap-2 px-1 py-2 text-xs sm:flex-row sm:items-center">
-      <span className="flex items-center gap-1">
+    <div className="postcard-footer text-text-muted flex w-full flex-col gap-2 px-1 py-2 text-xs">
+      <p className="flex items-center gap-1">
         <MdAccessTime />
         <span>{formatDate(publishDate)}</span>
-      </span>
+      </p>
       {tags?.length > 0 && (
-        <div className="space-x-1">
-          {tags.map((tag) => (
+        <div className="scrollbar-hide flex w-full items-center gap-1 truncate overflow-x-auto px-0.5 py-2 whitespace-nowrap">
+          {tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="bg-muted/10 ring-ring text-primary-light rounded-full px-2 py-0.25 text-xs ring-1"
+              className="ring-ring bg-muted/10 text-primary-light max-w-full shrink-0 rounded-full px-2 py-0.5 text-xs ring-1"
             >
               {tag}
             </span>
           ))}
+          {tags.length > 3 && <span>...</span>}
         </div>
       )}
     </div>
