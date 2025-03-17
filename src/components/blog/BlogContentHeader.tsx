@@ -9,7 +9,7 @@ import { formatDate } from "@/utils/utils";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 // components
 import ImageConvert from "@/components/ui/ImageConvert";
@@ -37,7 +37,7 @@ function BlogContentTitle({
   publishDate: string;
   tags: string[];
 }) {
-  const router = useRouter();
+  // const router = useRouter();
 
   // const goBack = (e: MouseEvent) => {
   //   e.preventDefault();
