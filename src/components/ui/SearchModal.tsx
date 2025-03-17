@@ -212,12 +212,13 @@ function SearchTags({
         {filteredTags.length > 0 &&
           filteredTags.map((tag) => {
             const { tagName, count } = tag;
+            const src = tagName === "All" ? "/blog" : `/blog?tag=${tagName}`;
             return (
               <li
                 key={tagName}
                 className="group bg-bg-subtle hover:bg-bg-subtle-hover rounded-md"
               >
-                <Link href={`/blog?tag=${tagName}`} onClick={onModalClose}>
+                <Link href={src} onClick={onModalClose}>
                   <div className="flex items-center gap-1.5 p-2">
                     <span className="text-xs md:text-sm">{tagName}</span>
                     <span className="text-primary text-xs">{count}</span>
