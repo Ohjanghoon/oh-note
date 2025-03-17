@@ -1,6 +1,5 @@
 "use client";
 
-import { MouseEvent } from "react";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 
@@ -40,14 +39,14 @@ function BlogContentTitle({
 }) {
   const router = useRouter();
 
-  const goBack = (e: MouseEvent) => {
-    e.preventDefault();
-    if (document.referrer && document.referrer.includes("/blog")) {
-      router.back(); // 이전 블로그 페이지로 이동 (스크롤 위치 유지 가능)
-    } else {
-      router.push("/blog"); // 블로그 목록 페이지로 이동
-    }
-  };
+  // const goBack = (e: MouseEvent) => {
+  //   e.preventDefault();
+  //   if (document.referrer && document.referrer.includes("/blog")) {
+  //     router.back(); // 이전 블로그 페이지로 이동 (스크롤 위치 유지 가능)
+  //   } else {
+  //     router.push("/blog"); // 블로그 목록 페이지로 이동
+  //   }
+  // };
   return (
     <div className="title-container relative z-10 space-y-10 px-1">
       {/* <button

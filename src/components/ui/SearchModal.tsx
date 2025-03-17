@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { motion } from "framer-motion";
 
 // store
 import { RootState } from "@/store/store";
