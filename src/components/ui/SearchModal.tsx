@@ -87,10 +87,10 @@ function SearchModal() {
       onClick={onModalClose}
     >
       <div
-        className="search_modal-container bg-background grid h-140 w-full max-w-screen-sm grid-rows-[0.5fr_5.5fr] rounded-xl pt-2 pb-5 ring-[0.2px] md:max-h-170 md:max-w-screen-md"
+        className="search_modal-container bg-background grid h-140 w-full max-w-screen-sm grid-rows-[0.5fr_5.5fr] rounded-xl pt-3 pb-7 ring-[0.2px] md:max-h-170 md:max-w-screen-md"
         onClick={(e) => e.stopPropagation()}
       >
-        <header className="search_modal-header px-5 md:px-10">
+        <header className="search_modal-header px-5 md:px-7">
           <div className="header-tab_container space-x-2 py-2">
             {tabList.map((tab) => {
               return (
@@ -121,7 +121,7 @@ function SearchModal() {
           </div>
         </header>
 
-        <section className="search_modal-section h-full overflow-auto px-5 py-5 md:px-10">
+        <section className="search_modal-section h-full overflow-auto px-5 py-5 md:px-7">
           {searchTabValue === "post" ? (
             <SearchPosts
               filteredPosts={filteredPosts}

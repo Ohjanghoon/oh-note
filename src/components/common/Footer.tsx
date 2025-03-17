@@ -85,7 +85,7 @@ function SocialLink({ link }: { link: Link }) {
           </Link>
         </TooltipTrigger>
         <TooltipContent
-          className="bg-bg-dark text-text-light rounded-lg p-1 text-xs"
+          className="bg-bg-dark/60 text-text-light rounded-md px-1.5 py-1 text-xs"
           side="bottom"
           align="start"
           sideOffset={6}
