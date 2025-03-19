@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 // types
 import { Guestbook } from "@/types/guestbookTypes";
@@ -24,7 +25,7 @@ function GuestBook() {
       try {
         // API 요청
         const data = await selectGuestbook();
-        console.log(data);
+
         if (data) setGuestbooks(data);
       } catch (error) {
         console.error(error);
@@ -65,12 +66,24 @@ function GuestBook() {
           description="방명록을 자유롭게 남겨주세요."
         />
       </header>
-      <section className="guestbook-section">
+
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            delay: 0.2,
+            duration: 0.6,
+            ease: "easeInOut",
+          },
+        }}
+        className="guestbook-section"
+      >
         <section className="guestbook-board ring-ring bg-primary/10 relative flex flex-col gap-8 rounded-xl p-3 ring-1 dark:bg-[#1F2937]">
           <GuestbookList guestbooks={guestbooks} />
           <GuestbookWrite />
         </section>
-      </section>
+      </motion.section>
     </div>
   );
 }
