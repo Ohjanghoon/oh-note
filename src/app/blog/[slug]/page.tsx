@@ -1,7 +1,9 @@
 import fs from "fs";
 import path from "path";
 
-export default async function Page({
+import Comments from "@/components/blog/Comments";
+
+export default async function BlogSlugPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -10,9 +12,10 @@ export default async function Page({
   const { default: Post } = await import(`@/content/${slug}.mdx`);
 
   return (
-    <div className="test-container">
+    <>
       <Post />
-    </div>
+      <Comments />
+    </>
   );
 }
 
