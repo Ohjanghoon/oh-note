@@ -4,7 +4,7 @@ function LoadingDot() {
   return (
     <div
       role="status"
-      className="bg-/10 dark:bg-background/10 absolute top-0 left-0 flex h-full min-h-screen w-full items-center justify-center space-x-2"
+      className="bg-background absolute top-0 left-0 flex h-full min-h-screen w-full items-center justify-center space-x-2"
     >
       <div className="bg-primary h-3 w-3 animate-bounce rounded-full [animation-delay:-0.3s]"></div>
       <div className="bg-primary h-3 w-3 animate-bounce rounded-full [animation-delay:-0.15s]"></div>

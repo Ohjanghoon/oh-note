@@ -1,0 +1,164 @@
+export const metadata = {
+  title: "Markdown syntax guide",
+  description:
+    "저의 블로그에서 사용되고 있는 markdown 스타일링 테스트 게시글입니다.",
+  publishDate: "2025-03-19T12:59:00Z",
+  thumbnailUrl: "/assets/blog/thumbnail-code.png",
+  tags: ["React", "Memoization", "useMemo", "useCallback"],
+};
+
+<BlogHeader props={{ ...metadata }} />
+
+<article className="blog-content-article">
+
+# Headers
+---
+# This is a Heading h1
+## This is a Heading h2
+### This is a Heading h3
+#### This is a Heading h4
+##### This is a Heading h5
+###### This is a Heading h6
+<br />
+<br />
+
+# Emphasis
+---
+_This text will be italic_  
+_This will also be italic_
+<br />
+**This text will be bold**  
+**This will also be bold**
+<br />
+_You **can** combine them_
+<br />
+<br />
+
+# Lists
+---
+### Unordered
+- Item 1
+- Item 2
+- Item 2a
+- Item 2b
+  - Item 3a
+  - Item 3b
+<br />
+
+### Ordered
+1. Item 1
+2. Item 2
+3. Item 3
+   1. Item 3a
+   2. Item 3b
+<br />
+<br />
+
+# Images
+---
+![This is an alt text.](/assets/blog/thumbnail-code.png "This is a sample image.")
+<br />
+<br />
+
+# Links
+---
+You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
+<br />
+<br />
+
+# Blockquotes
+---
+> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
+
+<br/>
+
+> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
+>
+> > Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
+
+<br />
+<br />
+
+# Inline code
+---
+This web site is using `markedjs/marked`.
+<br />
+<br />
+
+# Block code
+---
+```
+let message = 'Hello world';
+alert(message);
+```
+<br />
+
+<CodeBlock lang="js" file="test.js">
+{`let message = 'Hello world';
+  alert(message);`}
+</CodeBlock>
+<br />
+<br />
+
+# Callout
+---
+<Callout type="info">
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut porro repellat
+  consequatur numquam at amet cupiditate nobis non ducimus velit quis impedit,
+  molestiae saepe sunt qui fugiat nam voluptatibus nisi?
+</Callout>
+<Callout type="warn">
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut porro repellat
+  consequatur numquam at amet cupiditate nobis non ducimus velit quis impedit,
+  molestiae saepe sunt qui fugiat nam voluptatibus nisi?
+</Callout>
+<Callout type="success">
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut porro repellat
+  consequatur numquam at amet cupiditate nobis non ducimus velit quis impedit,
+  molestiae saepe sunt qui fugiat nam voluptatibus nisi?
+</Callout>
+<Callout type="err">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, atque.</Callout>
+<Callout type="tip">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, atque.
+</Callout>
+<Callout type="pin">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, atque.</Callout>
+<Callout type="quote">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, atque.</Callout>
+
+<br/>
+<br/>
+# Tables
+---
+<div className="table-container">
+<table suppressHydrationWarning>
+  <thead>
+    <tr>
+      <th>제목</th>
+      <th>부제목</th>
+      <th>소제목</th>
+      <th>내용</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Table 태그</td>
+      <td>Table 태그의 활용</td>
+      <td>Table 태그를 활용하여 표를 만들어보자</td>
+      <td>Table 태그를 활용하여 표를 만들어보자</td>
+      <td>Table 태그를 활용하여 표를 만들어보자</td>
+    </tr>
+    <tr>
+      <td>Markdown</td>
+      <td>Markdown의 활용</td>
+      <td>Markdown을 활용하여 위의 내용들과 같이 블로그 게시글을 보다 다채롭게 작성할 수 있게 되었습니다.</td>
+      <td>Markdown을 활용하여 위의 내용들과 같이 블로그 게시글을 보다 다채롭게 작성할 수 있게 되었습니다.</td>
+      <td>Markdown을 활용하여 위의 내용들과 같이 블로그 게시글을 보다 다채롭게 작성할 수 있게 되었습니다.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+</article>

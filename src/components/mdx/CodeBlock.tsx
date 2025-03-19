@@ -10,22 +10,22 @@ import { FaCopy, FaCheck } from "react-icons/fa6";
 
 interface CodeBlockProps {
   children: string;
-  language?: string;
-  fileName?: string;
+  lang?: string;
+  file?: string;
 }
 export default function CodeBlock({
   children,
-  language = "text",
-  fileName,
+  lang = "text",
+  file,
 }: CodeBlockProps) {
-  // const language = className?.split("language-")[1] || "";
+  // const lang = className?.split("lang-")[1] || "";
   const code = children?.toString() || "";
 
   const [highlightedCode, setHighlightedCode] = useState<string>("");
   const [copyIcon, setCopyIcon] = useState<string>("copy");
 
   useEffect(() => {
-    highlightCode(code, language).then((html) => {
+    highlightCode(code, lang).then((html) => {
       // ✅ `data-title` 속성 읽기
       const tempDiv = document.createElement("div");
       tempDiv.innerHTML = html;
@@ -34,7 +34,7 @@ export default function CodeBlock({
       // setTitle(extractedTitle);
       setHighlightedCode(html);
     });
-  }, [code, language]);
+  }, [code, lang]);
 
   const copyToClipboard = async () => {
     try {
@@ -73,8 +73,8 @@ export default function CodeBlock({
     <div className="code_container relative my-2 w-full overflow-hidden rounded-lg">
       <div className="bg-bg-subtle-hover text-text-dark-secondary flex min-h-8 items-center justify-between rounded-t-lg px-4 py-2 text-xs">
         <div>
-          <span className="text-text-muted mr-5">{language}</span>
-          {fileName && <span>{fileName}</span>}
+          <span className="text-text-muted mr-5 italic">{lang}</span>
+          {file && <span>{file}</span>}
         </div>
         <button
           onClick={copyToClipboard}
