@@ -1,4 +1,4 @@
-import { readdir } from "fs/promises";
+// import { readdir } from "fs/promises";
 import path from "path";
 import fs from "fs";
 
@@ -11,6 +11,10 @@ export async function getPosts(): Promise<PostMetadata[]> {
   const postPath = path.resolve(process.cwd(), "src", "content");
 
   const filenames = fs.readdirSync(postPath);
+
+  // 이전 코드(디렉토리 기준으로 slug 추출)
+  // const slugs = (await readdir(postPath, { withFileTypes: true })).filter(
+  //   (dirent) => dirent.isDirectory(),
 
   const slugs = filenames
     .filter((file) => file.endsWith(".mdx"))

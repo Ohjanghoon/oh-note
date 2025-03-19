@@ -13,7 +13,7 @@ import { PostMetadata } from "@/types/postTypes";
 // components
 import Carousel from "@/components/ui/Carousel";
 import PostCard from "@/components/home/PostCard";
-import ImageConvert from "../ui/ImageConvert";
+// import ImageConvert from "../ui/ImageConvert";
 
 // icons
 // import { FaFire } from "react-icons/fa6";
