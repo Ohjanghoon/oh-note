@@ -13,6 +13,7 @@ import { RootState } from "@/store/store";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
 
 // components
 import ImageConvert from "../ui/ImageConvert";
@@ -28,22 +29,42 @@ function PostCardList({ tag: searchTag }: { tag: string }) {
     : posts;
 
   return (
-    <motion.ul
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: {
-          delay: 0.2,
-          duration: 0.6,
-          ease: "easeInOut",
-        },
-      }}
-      className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:gap-y-7 lg:grid-cols-3"
-    >
-      {filteredPosts.map((post) => (
-        <PostCard key={post.slug} post={post} />
-      ))}
-    </motion.ul>
+    <>
+      <div className={`mb-3`}>
+        {searchTag ? (
+          <span className="flex items-center gap-2">
+            Filter Tag:
+            <Link href={"/blog"}>
+              <button className="ring-primary bg-muted/10 text-primary-light flex max-w-full shrink-0 items-center gap-2 rounded-full px-2 py-0.5 text-xs ring-1">
+                <span>{searchTag}</span>
+                <IoClose />
+              </button>
+            </Link>
+          </span>
+        ) : (
+          <span className="ring-ring bg-muted/50 text-text-dark-secondary rounded-md px-2 py-0.5 ring-1">
+            All Posts
+          </span>
+        )}
+      </div>
+
+      <motion.ul
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            delay: 0.2,
+            duration: 0.6,
+            ease: "easeInOut",
+          },
+        }}
+        className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:gap-y-7 lg:grid-cols-3"
+      >
+        {filteredPosts.map((post) => (
+          <PostCard key={post.slug} post={post} />
+        ))}
+      </motion.ul>
+    </>
   );
 }
 
