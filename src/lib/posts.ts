@@ -1,5 +1,6 @@
 import { readdir } from "fs/promises";
 import path from "path";
+import fs from "fs";
 
 // types
 import { PostMetadata } from "@/types/postTypes";
@@ -7,15 +8,19 @@ import { Tag } from "@/types/postTypes";
 
 /** 모든 블로그 게시글 가져오기 */
 export async function getPosts(): Promise<PostMetadata[]> {
-  const postPath = path.resolve(process.cwd(), "src", "app", "blog", "(posts)");
+  const postPath = path.resolve(process.cwd(), "src", "content");
 
-  const slugs = (await readdir(postPath, { withFileTypes: true })).filter(
-    (dirent) => dirent.isDirectory(),
-  );
+  const filenames = fs.readdirSync(postPath);
+
+  const slugs = filenames
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => ({
+      name: file.replace(".mdx", ""),
+    }));
 
   const posts = await Promise.all(
     slugs.map(async ({ name }) => {
-      const { metadata } = await import(`@/app/blog/(posts)/${name}/page.mdx`);
+      const { metadata } = await import(`@/content/${name}.mdx`);
       return { slug: name, ...metadata };
     }),
   );
