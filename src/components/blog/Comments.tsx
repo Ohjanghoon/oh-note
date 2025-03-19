@@ -1,17 +1,19 @@
 "use client";
 
-import { useTheme } from "@/contexts/ThemeContext";
 import { useEffect, useRef } from "react";
+
+// contexts
+import { useTheme } from "@/contexts/ThemeContext";
 
 function Comments() {
   const commentsRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
 
-  const addUtterances = () => {
-    if (!commentsRef.current) return;
+  useEffect(() => {
+    const initTheme = theme === "light" ? "github-light" : "github-dark";
 
-    // 기존 스크립트 제거 (재렌더링을 위한 과정)
-    commentsRef.current.innerHTML = "";
+    if (!commentsRef.current) return;
+    if (commentsRef.current.querySelector("script")) return;
 
     // 새로운 Utterances 스크립트 추가
     const script = document.createElement("script");
@@ -20,25 +22,35 @@ function Comments() {
     script.setAttribute("repo", "Ohjanghoon/oh-note-comments");
     script.setAttribute("issue-term", "pathname");
     script.setAttribute("label", "comments");
-    script.setAttribute(
-      "theme",
-      theme === "light" ? "github-light" : "github-dark",
-    );
+    script.setAttribute("theme", initTheme);
     script.setAttribute("crossorigin", "anonymous");
 
-    commentsRef.current.appendChild(script);
-  };
-
-  useEffect(() => {
-    // setTimeout을 사용하여 DOM이 완전히 로드된 후 실행
-    const timer = setTimeout(() => {
-      addUtterances();
-    }, 10);
-
-    return () => clearTimeout(timer); // 클린업 함수 추가
+    commentsRef.current.insertAdjacentElement("beforeend", script);
   }, [theme]);
 
-  return <div ref={commentsRef} />;
+  useEffect(() => {
+    const utterancesTheme = theme === "light" ? "github-light" : "github-dark";
+    const iframe =
+      document.querySelector<HTMLIFrameElement>(".utterances-frame");
+
+    if (document.querySelector(".utterances-frame")) {
+      if (!iframe) {
+        return;
+      }
+
+      iframe.contentWindow?.postMessage(
+        { type: "set-theme", theme: utterancesTheme },
+        "https://utteranc.es",
+      );
+    }
+  }, [theme]);
+
+  return (
+    <div
+      ref={commentsRef}
+      className="comments-container relative min-h-[269px] px-2 md:px-10"
+    ></div>
+  );
 }
 
 export default Comments;

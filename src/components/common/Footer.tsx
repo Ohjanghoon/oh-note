@@ -34,7 +34,7 @@ const LinkList: Link[] = [
 
 function Footer() {
   return (
-    <footer className="root-footer relative z-10 col-span-4 mx-auto w-full max-w-screen-md px-5 py-10 lg:col-span-12 lg:px-15">
+    <footer className="root-footer relative z-10 col-span-4 mx-auto w-full max-w-screen-lg px-5 py-10 lg:col-span-12 lg:px-20">
       <div className="footer-container flex flex-col justify-between gap-3 p-5 lg:flex-row lg:items-center">
         <div className="footer-content space-y-1">
           <div className="footer-logo flex items-center gap-2">
