@@ -87,7 +87,7 @@ function SearchModal() {
       onClick={onModalClose}
     >
       <div
-        className="search_modal-container bg-background grid h-140 w-full max-w-screen-sm grid-rows-[0.5fr_5.5fr] rounded-xl pt-3 pb-7 ring-[0.2px] md:max-h-170 md:max-w-screen-md"
+        className="search_modal-container bg-background grid h-140 w-full max-w-screen-sm grid-rows-[0.5fr_5.5fr] rounded-xl border-[0.2px] pt-3 pb-7 md:max-h-170 md:max-w-screen-md"
         onClick={(e) => e.stopPropagation()}
       >
         <header className="search_modal-header px-5 md:px-7">
@@ -162,13 +162,13 @@ function SearchPosts({
                 className="group bg-bg-subtle hover:bg-bg-subtle-hover rounded-xl"
               >
                 <Link href={`/blog/${slug}`} onClick={onModalClose}>
-                  <div className="flex w-full items-center gap-1 p-5">
+                  <div className="flex w-full items-center justify-between p-5">
                     <div className="w-full space-y-3">
                       <h6 className="line-clamp-2 overflow-ellipsis">
                         {title}
                       </h6>
                       <p className="text-text-dark-muted">{description}</p>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         {tags.length > 0 &&
                           tags.map((tag) => {
                             return (
@@ -182,7 +182,7 @@ function SearchPosts({
                           })}
                       </div>
                     </div>
-                    <button className="group-hover:text-link-light rounded-full p-1 text-xl font-extrabold transition-[background-color,font-size] duration-300 ease-in-out group-hover:text-2xl">
+                    <button className="group-hover:text-link-light min-w- rounded-full p-1 text-xl font-extrabold transition-[background-color,font-size] duration-300 ease-in-out group-hover:text-2xl">
                       <IoIosArrowForward />
                     </button>
                   </div>

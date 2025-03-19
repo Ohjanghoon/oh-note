@@ -29,7 +29,7 @@ function Sidebar() {
       animate={{
         opacity: 1,
         transition: {
-          duration: 0.6,
+          duration: 0.2,
           ease: "easeInOut",
         },
       }}
@@ -85,7 +85,7 @@ function DesktopSidebarMenu({
         </button>
       </div>
       <div
-        className={`mt-20 h-full px-7 transition-opacity duration-300 ${isOpen ? "pointer-events-auto block opacity-100" : "pointer-events-none hidden opacity-0"}`}
+        className={`mt-20 h-full px-7 transition-[display,opacity] duration-100 ease-in ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       >
         <TagList />
       </div>
@@ -103,7 +103,7 @@ function MobileSidebarMenu({
   return (
     <div className="h-full w-full">
       <div className="py-3" onClick={toggleSidebar}>
-        <p className="flex items-center justify-between px-5">
+        <p className="flex items-center justify-between px-5 sm:px-5 md:px-10">
           <span>Menu</span>
           <span>
             <IoIosArrowForward
@@ -113,7 +113,7 @@ function MobileSidebarMenu({
         </p>
       </div>
       <div
-        className={`mt-7 h-full px-5 ${isPinned ? "pointer-events-auto block opacity-100" : "pointer-events-none hidden opacity-0"}`}
+        className={`mt-7 h-full px-4 md:px-8 ${isPinned ? "pointer-events-auto block opacity-100" : "pointer-events-none hidden opacity-0"}`}
       >
         <TagList />
       </div>
