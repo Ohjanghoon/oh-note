@@ -56,7 +56,14 @@ _You **can** combine them_
 
 # Images
 ---
-![This is an alt text.](/assets/blog/thumbnail-code.png "This is a sample image.")
+<ImageBox src={"/assets/images/image.png"} alt="this sample image" about="Horizontal Image test"/>
+가로 반응형 테스트 이미지 입니다.
+<br/>
+<ImageBox src={"/assets/images/test.jpeg"} alt="this sample image" about="Original Image test"/>
+원본 이미지 비율 반응형 테스트 이미지 입니다.
+<br/>
+<ImageBox src={"/assets/images/vertical_test.jpg"} alt="this sample image" about="Vertical Image test"/>
+세로 반응형 테스트 이미지 입니다.
 <br />
 <br />
 
@@ -136,23 +143,23 @@ alert(message);
       <th>부제목</th>
       <th>소제목</th>
       <th>내용</th>
-      <th>내용</th>
+      <th>기타</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Table 태그</td>
-      <td>Table 태그의 활용</td>
-      <td>Table 태그를 활용하여 표를 만들어보자</td>
-      <td>Table 태그를 활용하여 표를 만들어보자</td>
-      <td>Table 태그를 활용하여 표를 만들어보자</td>
+      <td>제목 1</td>
+      <td>부제목 1</td>
+      <td>소제목 1</td>
+      <td>내용을 작성하여 표를 채워주세요.</td>
+      <td>기타 항목입니다.</td>
     </tr>
-    <tr>
-      <td>Markdown</td>
-      <td>Markdown의 활용</td>
-      <td>Markdown을 활용하여 위의 내용들과 같이 블로그 게시글을 보다 다채롭게 작성할 수 있게 되었습니다.</td>
-      <td>Markdown을 활용하여 위의 내용들과 같이 블로그 게시글을 보다 다채롭게 작성할 수 있게 되었습니다.</td>
-      <td>Markdown을 활용하여 위의 내용들과 같이 블로그 게시글을 보다 다채롭게 작성할 수 있게 되었습니다.</td>
+   <tr>
+      <td>제목 2</td>
+      <td>부제목 2</td>
+      <td>소제목 2</td>
+      <td>내용을 작성하여 표를 채워주세요.</td>
+      <td>가로 길이가 넘어갈 경우 가로 스크롤이 가능하도록 스타일링하였습니다.</td>
     </tr>
   </tbody>
 </table>

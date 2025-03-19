@@ -4,6 +4,7 @@ import BlogContentHeader from "@/components/blog/BlogContentHeader";
 import CodeBlock from "@/components/mdx/CodeBlock";
 import BlogWrapper from "@/components/blog//BlogWrapper";
 import Callout from "@/components/mdx/Callout";
+import ImageBox from "@/components/mdx/ImageBox";
 // import * as Heading from "@/components/mdx/Heading";
 
 export function useMDXComponents(): MDXComponents {
@@ -11,6 +12,7 @@ export function useMDXComponents(): MDXComponents {
     BlogHeader: BlogContentHeader,
     Callout: Callout,
     CodeBlock: CodeBlock,
+    ImageBox: ImageBox,
     wrapper: (props) => <BlogWrapper {...props} />,
   };
 }

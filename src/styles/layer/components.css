@@ -178,11 +178,6 @@
         @apply text-text-dark;
       }
 
-      /* Images */
-      img {
-        @apply rounded-md;
-      }
-
       /* Tables */
       .table-container {
         @apply w-full max-w-screen-lg overflow-x-scroll;
