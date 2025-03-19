@@ -91,7 +91,14 @@ export const emojiList: Emoji[] = [
 ];
 
 function Emoji({ emoji }: { emoji: string }) {
-  const selectedEmoji = emojiList.find((e) => e.name === emoji);
+  const selectedEmoji =
+    emoji !== "dev-oh"
+      ? emojiList.find((e) => e.name === emoji)
+      : {
+          name: "dev-oh",
+          styleClassName: "",
+          iconSrc: "/assets/icons/profile-avatar.svg",
+        };
 
   if (!selectedEmoji) return null;
 

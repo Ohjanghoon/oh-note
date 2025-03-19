@@ -14,14 +14,16 @@ import { MdAccessTime } from "react-icons/md";
 // components
 import ImageConvert from "@/components/ui/ImageConvert";
 import Link from "next/link";
+import Callout from "../mdx/Callout";
 
 function BlogContentHeader({ props }: { props: PostMetadata }) {
-  const { title, publishDate, tags, thumbnailUrl } = props;
+  const { title, publishDate, tags, thumbnailUrl, description } = props;
 
   return (
-    <header className="blog_content-header mx-auto w-full max-w-screen-md space-y-10">
+    <header className="blog_content-header mx-auto w-full space-y-10 lg:max-w-screen-md 2xl:max-w-screen-lg">
       <BlogContentTitle title={title} publishDate={publishDate} tags={tags} />
       <BlogContentImage thumbnailUrl={thumbnailUrl} />
+      <Callout type="quote">{description}</Callout>
       <BlogContentBackground thumbnailUrl={thumbnailUrl} />
     </header>
   );
@@ -68,9 +70,9 @@ function BlogContentTitle({
           </h3>
         </div>
 
-        <div className="text-text-dark-secondary flex items-center gap-5">
+        <div className="text-text-dark-secondary flex flex-col gap-5 md:flex-row md:items-center">
           <BlogWritter />
-          |
+          <span className="hidden md:inline">|</span>
           <BlogContentTags tags={tags} />
         </div>
       </div>
@@ -106,7 +108,7 @@ function BlogWritter() {
 /** 블로그 콘텐츠 썸네일 컴포넌트 */
 function BlogContentImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <div className="relative z-1 h-auto max-h-130 w-full max-w-screen-md overflow-hidden">
+    <div className="relative z-1 h-auto w-full overflow-hidden lg:max-h-130 lg:max-w-screen-md 2xl:max-h-160 2xl:max-w-screen-lg">
       <Zoom>
         <ImageConvert
           props={{
@@ -143,9 +145,9 @@ function BlogContentBackground({ thumbnailUrl }: { thumbnailUrl: string }) {
 
 function BlogContentTags({ tags }: { tags: string[] }) {
   return (
-    <div className="space-x-2">
+    <div className="flex gap-x-2 sm:items-center">
       <span>Tags</span>
-      <div className="inline space-x-1.5">
+      <div className="inline-flex w-full flex-wrap items-center gap-1.5 break-keep">
         {tags.map((tag) => {
           return (
             <Link

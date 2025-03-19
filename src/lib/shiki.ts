@@ -13,10 +13,7 @@ export async function highlightCode(code: string, lang: string) {
   });
 
   return highlighter.codeToHtml(code, {
-    themes: {
-      light: "one-dark-pro",
-      dark: "nord",
-    },
+    theme: "one-dark-pro",
     lang,
     // defaultColor: "light",
     cssVariablePrefix: "--shiki-",

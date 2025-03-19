@@ -1,8 +1,7 @@
 "use client";
 
 // node modules
-import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // icons
 import { RiPushpinFill } from "react-icons/ri";
@@ -12,46 +11,34 @@ import { IoIosArrowForward } from "react-icons/io";
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false); // 사이드바 확장
-  const [isPinned, setIsPinned] = useState(false); // 사이드바 고정
+  const [isPinnedDesktop, setIsPinnedDesktop] = useState(false); // 사이드바 고정
+  const [isPinnedMobile, setIsPinnedMobile] = useState(false); // 사이드바 고정
 
-  const toggleSidebar = () => {
-    if (isPinned) {
-      setIsPinned(false);
-      document.body.style.overflow = "auto";
-    } else {
-      setIsPinned(true);
-      document.body.style.overflow = "hidden";
-    }
-  };
+  useEffect(() => {
+    document.body.style.overflow = isPinnedMobile ? "hidden" : "auto";
+  }, [isPinnedMobile]);
   return (
-    <motion.aside
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: {
-          duration: 0.6,
-          ease: "easeInOut",
-        },
-      }}
-      className={`left_sidebar-aside z-1`}
-    >
+    <aside className={`left_sidebar-aside z-1`}>
       <div
-        className={`border-border hidden h-[calc(100vh-4rem)] space-y-2 border-r shadow-lg transition-[width,opacity,background-color,color,border-color] duration-300 ${isOpen || isPinned ? "bg-bg-subtle w-58" : "bg-bg-subtle/80 w-19"} fixed top-16 z-50 lg:block`}
-        onMouseEnter={() => !isPinned && setIsOpen(true)}
-        onMouseLeave={() => !isPinned && setIsOpen(false)}
+        className={`border-border hidden h-[calc(100vh-4rem)] space-y-2 border-r shadow-lg transition-[width,opacity,background-color,color,border-color] duration-300 ${isOpen || isPinnedDesktop ? "bg-bg-subtle w-58" : "bg-bg-subtle/80 w-19"} fixed top-16 z-50 lg:block`}
+        onMouseEnter={() => !isPinnedDesktop && setIsOpen(true)}
+        onMouseLeave={() => !isPinnedDesktop && setIsOpen(false)}
       >
         <DesktopSidebarMenu
           isOpen={isOpen}
-          isPinned={isPinned}
-          toggleSidebar={toggleSidebar}
+          isPinned={isPinnedDesktop}
+          toggleSidebar={() => setIsPinnedDesktop((prev) => !prev)}
         />
       </div>
       <div
-        className={`border-border bg-bg-subtle block w-full border-b transition-[background-color,color,border-color] duration-300 ease-linear ${isPinned ? "h-[calc(100vh-4rem)]" : "h-12"} fixed top-16 z-10 lg:hidden`}
+        className={`border-border bg-bg-subtle block w-full border-b transition-[background-color,color,border-color] duration-300 ease-linear ${isPinnedMobile ? "h-[calc(100vh-4rem)]" : "h-12"} fixed top-16 z-10 lg:hidden`}
       >
-        <MobileSidebarMenu isPinned={isPinned} toggleSidebar={toggleSidebar} />
+        <MobileSidebarMenu
+          isPinned={isPinnedMobile}
+          toggleSidebar={() => setIsPinnedMobile((prev) => !prev)}
+        />
       </div>
-    </motion.aside>
+    </aside>
   );
 }
 
@@ -85,7 +72,7 @@ function DesktopSidebarMenu({
         </button>
       </div>
       <div
-        className={`mt-20 h-full px-7 transition-opacity duration-300 ${isOpen ? "pointer-events-auto block opacity-100" : "pointer-events-none hidden opacity-0"}`}
+        className={`mt-20 h-full px-7 transition-[display,opacity] duration-100 ease-in ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       >
         <TagList />
       </div>
@@ -103,7 +90,7 @@ function MobileSidebarMenu({
   return (
     <div className="h-full w-full">
       <div className="py-3" onClick={toggleSidebar}>
-        <p className="flex items-center justify-between px-5">
+        <p className="flex items-center justify-between px-5 sm:px-5 md:px-10">
           <span>Menu</span>
           <span>
             <IoIosArrowForward
@@ -113,9 +100,9 @@ function MobileSidebarMenu({
         </p>
       </div>
       <div
-        className={`mt-7 h-full px-5 ${isPinned ? "pointer-events-auto block opacity-100" : "pointer-events-none hidden opacity-0"}`}
+        className={`mt-7 h-full px-4 md:px-8 ${isPinned ? "pointer-events-auto block opacity-100" : "pointer-events-none hidden opacity-0"}`}
       >
-        <TagList />
+        <TagList toggleSidebar={toggleSidebar} />
       </div>
     </div>
   );

@@ -8,10 +8,10 @@
   \*----------------------------*/
   .root-container {
     /* @apply grid w-full grid-cols-12 px-8 mx-auto gap-x-8; */
-    @apply bg-background text-foreground max-w-screen-3xl relative mx-auto min-h-screen w-full overflow-hidden transition-colors duration-300;
+    @apply bg-background text-foreground max-w-screen-5xl relative mx-auto min-h-screen w-full overflow-hidden transition-[background-color,color,border-color,border] duration-300;
   }
   .root-header {
-    @apply max-w-screen-3xl z-20 mx-auto h-16 w-full px-4 py-1 md:px-10 md:py-2;
+    @apply max-w-screen-5xl z-20 mx-auto h-16 w-full px-4 py-1 md:px-10 md:py-2;
   }
   .back_to_top {
     @apply fixed right-10 bottom-10;
@@ -30,7 +30,7 @@
     @apply relative mx-auto w-full;
 
     .home-hero {
-      @apply relative z-10 mx-auto w-full max-w-screen-xl px-10 pt-40 md:min-h-[80vh] md:pt-40;
+      @apply relative z-10 mx-auto min-h-[60vh] w-full max-w-screen-2xl px-10 pt-40 md:pt-40;
     }
 
     .home-recent_posts {
@@ -46,7 +46,7 @@
    * /blog 영역
   \*----------------------------*/
   .blog_container {
-    @apply relative mx-auto w-full max-w-screen-lg space-y-8 px-5 pt-32 md:px-10 md:py-28;
+    @apply relative mx-auto w-full max-w-screen-xl space-y-8 px-5 pt-32 md:px-10 md:py-36 lg:px-40 xl:py-30 2xl:max-w-screen-2xl;
 
     .blog-posts {
       @apply relative mx-auto grid min-h-screen grid-cols-4 gap-5 md:grid-cols-12;
@@ -57,39 +57,94 @@
     }
   }
 
+  /*----------------------------*\
+   * /blog/[content] 영역
+  \*----------------------------*/
   .blog_content_container {
-    @apply relative mx-auto w-full px-3 pt-32 md:px-10 md:py-36;
+    @apply relative mx-auto w-full px-3 pt-32 md:px-10 md:py-36 xl:py-30;
 
+    /* 게시글 스타일 */
     .blog-content-article {
-      @apply mx-auto min-h-screen max-w-screen-md pt-10 pb-20;
+      @apply text-foreground mx-auto min-h-screen pt-10 pb-80 text-[16px] lg:max-w-screen-md 2xl:max-w-screen-lg;
 
       hr {
-        @apply border-border my-3 border-t-2;
+        @apply border-border my-2 border-t-2;
       }
 
+      /* Headers */
       h1 {
-        @apply py-2 text-2xl leading-loose font-extrabold md:text-3xl;
+        @apply text-2xl leading-relaxed font-extrabold md:text-3xl;
       }
       h2 {
-        @apply py-2 text-2xl leading-loose font-medium md:text-3xl;
+        @apply text-2xl leading-relaxed font-medium md:text-3xl;
       }
       h3 {
-        @apply py-1 text-xl leading-loose font-extrabold md:text-2xl;
+        @apply py-1 text-xl leading-relaxed font-semibold md:text-2xl;
       }
       h4 {
-        @apply py-1 text-xl leading-loose font-medium md:text-2xl;
+        @apply text-xl leading-relaxed font-medium md:text-2xl;
       }
       h5 {
-        @apply text-lg leading-loose font-extrabold md:text-xl;
+        @apply text-lg leading-relaxed font-bold md:text-xl;
       }
       h6 {
-        @apply text-lg leading-loose font-medium md:text-xl;
+        @apply text-lg leading-relaxed font-medium md:text-xl;
       }
 
+      /* Typography */
+      p {
+        @apply text-[16px] leading-relaxed font-medium;
+      }
+
+      /* Emphasis */
+      strong {
+        @apply font-bold;
+      }
+
+      /* Block Code */
+      pre.shiki {
+        @apply overflow-x-auto rounded-none p-4 text-[14px];
+      }
+
+      pre {
+        @apply text-text-dark-secondary bg-bg-subtle-hover/50 rounded-md p-4 text-[14px];
+      }
+
+      /* Inline Code */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        code {
+          @apply bg-bg-subtle-hover/50 rounded-md p-1 px-1.5 font-light text-[#DF6B74];
+        }
+      }
+
+      a,
+      li,
+      p,
+      blockquote,
+      table,
+      td,
+      th {
+        code {
+          @apply bg-bg-subtle-hover/50 rounded-md p-1 px-1.5 text-sm font-light text-[#DF6B74];
+        }
+      }
+
+      /* Link */
+      a {
+        @apply text-primary leading-relaxed font-semibold underline underline-offset-1;
+      }
+
+      /* Blockqute */
       blockquote {
-        @apply border-primary bg-bg-subtle text-text-dark-secondary my-2 rounded-r-md border-l-4 py-2 pl-4;
+        @apply border-primary bg-bg-subtle text-text-dark-secondary my-2 rounded-r-md border-l-4 py-2 pl-4 transition-[background-color] duration-300;
       }
 
+      /* List */
       ol {
         @apply list-inside list-decimal;
       }
@@ -98,32 +153,46 @@
         @apply list-inside list-disc;
       }
 
-      /* ✅ 2단계 `ul` */
+      /* 2 depth */
       ul ul {
         list-style-type: circle !important;
       }
 
-      /* ✅ 3단계 이상 `ul` */
+      /* 3 depth */
       ul ul ul {
         list-style-type: square !important;
       }
 
-      /* ✅ 리스트 간격 조정 */
+      /* 리스트간 행간 조정 */
       li {
-        @apply mt-4;
+        @apply mt-2;
       }
 
-      li > ul {
-        @apply mt-4 pl-4;
+      li > ul,
+      li > ol {
+        @apply mt-2 pl-4;
       }
 
-      /* ✅ 리스트 마커 색상 설정 */
+      /* 리스트 마커 색상 설정 */
       li::marker {
         @apply text-text-dark;
       }
 
-      img {
-        @apply rounded-md;
+      /* Tables */
+      .table-container {
+        @apply w-full max-w-screen-lg overflow-x-scroll;
+      }
+      table {
+        @apply border-border min-w-1/2 border-1 text-[14px] leading-normal;
+      }
+
+      th,
+      td {
+        @apply border-border min-w-30 border-1 px-3 py-2;
+      }
+
+      th {
+        @apply bg-primary/10 font-bold;
       }
     }
   }
@@ -132,10 +201,10 @@
    * /guestbook 영역
   \*----------------------------*/
   .guestbook-container {
-    @apply relative mx-auto w-full max-w-screen-lg space-y-5 px-3 py-23 md:space-y-8 md:px-10 md:py-28;
+    @apply relative mx-auto h-screen w-full max-w-screen-xl space-y-8 px-5 pt-20 md:px-10 md:py-36 lg:px-40 xl:py-30 2xl:max-w-screen-2xl;
 
     .guestbook-section {
-      @apply mx-auto grid h-screen w-full;
+      @apply mx-auto grid w-full;
     }
 
     .guestbook-board {

@@ -33,7 +33,7 @@
     "react-medium-image-zoom": "^5.2.14",
     "react-redux": "^9.2.0",
     "rehype-code-titles": "^1.2.0",
-    "rehype-pretty-code": "^0.14.0",
+    "rehype-pretty-code": "^0.14.1",
     "rehype-prism-plus": "^2.0.0",
     "shiki": "^1.29.2",
     "swiper": "^11.2.5",
