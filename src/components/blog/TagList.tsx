@@ -15,7 +15,7 @@ import { useSearchModal } from "@/contexts/SearchModalContext";
 import { Tag } from "@/types/postTypes";
 import { FiSearch } from "react-icons/fi";
 
-function TagList() {
+function TagList({ toggleSidebar }: { toggleSidebar?: () => void }) {
   const { openSearchModal, setSearchTab } = useSearchModal();
   const pathName = usePathname();
   const searchParams = useSearchParams();
@@ -34,13 +34,27 @@ function TagList() {
       scrollContainerRef.current;
 
     setShowToptShadow(scrollTop > 10);
-    setShowBottomShadow(scrollTop + clientHeight + 10 < scrollHeight);
+
+    // 스크롤이 가능할 때만 bottomShadow를 업데이트
+    const isScrollable = scrollHeight > clientHeight;
+    setShowBottomShadow(
+      isScrollable && scrollTop + clientHeight + 10 < scrollHeight,
+    );
   };
+
+  useEffect(() => {
+    if (!scrollContainerRef.current) return;
+
+    const { scrollHeight, clientHeight } = scrollContainerRef.current;
+    const isScrollable = scrollHeight > clientHeight;
+
+    // 컴포넌트가 마운트될 때 스크롤 가능 여부에 따라 bottomShadow 설정
+    setShowBottomShadow(isScrollable);
+  }, [tagList]); // tagList가 변경될 때마다 확인
 
   function onSearchModalOpen() {
     openSearchModal();
     setSearchTab("tag");
-    document.body.style.overflow = "hidden";
   }
 
   useEffect(() => {
@@ -86,6 +100,7 @@ function TagList() {
                 key={tag.tagName}
                 href={src}
                 className={`${isActive ? "pointer-events-none" : "pointer-events-auto"}`}
+                onClick={toggleSidebar}
               >
                 <li
                   className={`hover:bg-bg-subtle-hover z-1 flex min-w-[175px] items-center justify-between rounded-lg px-2 py-3 text-[13px] transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}

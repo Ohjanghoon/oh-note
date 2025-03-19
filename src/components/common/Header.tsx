@@ -48,7 +48,7 @@ function Header() {
             width={32}
             height={32}
             unoptimized
-            className="h-8 w-8 rounded-lg md:h-9 md:w-9"
+            className="h-8 w-8 rounded-lg"
           />
 
           {/* <img

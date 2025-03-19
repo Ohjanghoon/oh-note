@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 // store
 import { RootState } from "@/store/store";
@@ -13,7 +14,7 @@ import { PostMetadata } from "@/types/postTypes";
 // components
 import Carousel from "@/components/ui/Carousel";
 import PostCard from "@/components/home/PostCard";
-import ImageConvert from "../ui/ImageConvert";
+// import ImageConvert from "../ui/ImageConvert";
 
 // icons
 // import { FaFire } from "react-icons/fa6";
@@ -42,8 +43,8 @@ function Hero() {
 /** Hero Banner 영역 */
 function HeroSection() {
   return (
-    <section className="home-hero flex flex-col gap-10 lg:flex-row lg:justify-around">
-      <div className="hero-image_wrapper mx-auto pt-8 md:mx-0 lg:order-2">
+    <section className="home-hero flex items-center justify-center">
+      {/* <div className="hero-image_wrapper absolute bottom-1/2 left-1/2 translate-y-1/6 md:translate-y-1/3">
         <ImageConvert
           props={{
             width: 411,
@@ -51,17 +52,30 @@ function HeroSection() {
             src: "/assets/logo_text.png",
             alt: "logo_text",
             styleClassName:
-              "mx-auto h-60 md:h-80 w-auto lg:h-100 opacity-10 dark:opacity-5 ",
+              "w-full sm:h-40 md:h-55 lg:h-60 xl:h-70 opacity-2.5 dark:opacity-1 ",
           }}
         />
-      </div>
-      <div className="hero-heading_container mx-auto flex h-full flex-col items-start justify-end px-0 pt-14 md:mx-0 md:px-20 md:pt-20 lg:pt-50">
+      </div> */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            delay: 0.2,
+            duration: 0.8,
+            ease: "easeInOut",
+          },
+        }}
+        className="hero-heading_container relative mx-auto flex h-full flex-col items-center justify-center px-0 md:mx-0 md:px-20"
+      >
         {/* <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-[60px] tracking-tight text-transparent"> */}
-        <h1 className="heading_container-title text-text-dark tracking-tight md:text-7xl">
-          oh-note <span className="text-primary">.</span>
+        <h1 className="heading_container-title text-7xl tracking-tight sm:text-7xl md:text-8xl lg:text-8xl 2xl:text-9xl">
+          oh-note<span className="text-primary">.</span>
         </h1>
         <p className="heading_container-subtle text-text-dark-secondary mt-2 md:text-[16px]">
-          개발 기록과 학습한 내용을 정리하는 개인 블로그 공간입니다. <br />
+          개발 기록과 학습한 내용을 정리하는 개인 블로그 공간입니다.
+        </p>
+        <p className="heading_container-subtle text-text-dark-secondary md:text-[16px]">
           Next.js & TailwindCSS 기반으로 제작되었습니다.
         </p>
         <Link
@@ -70,14 +84,25 @@ function HeroSection() {
         >
           Go to Blog →
         </Link>
-      </div>
+      </motion.div>
     </section>
   );
 }
 
 function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
   return (
-    <section className="home-recent_posts">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          delay: 0.2,
+          duration: 0.8,
+          ease: "easeInOut",
+        },
+      }}
+      className="home-recent_posts"
+    >
       <section className="recent_posts-grid col-span-12">
         <h4 className="recent_posts-title flex items-center gap-2 px-2 font-bold">
           <RiSignpostFill className="text-primary" /> 최신 게시글
@@ -90,7 +115,7 @@ function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
           </Carousel>
         </div>
       </section>
-    </section>
+    </motion.section>
   );
 }
 
