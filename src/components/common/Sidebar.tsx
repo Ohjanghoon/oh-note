@@ -1,7 +1,6 @@
 "use client";
 
 // node modules
-import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
 // icons
@@ -11,25 +10,15 @@ import TagList from "@/components/blog/TagList";
 import { IoIosArrowForward } from "react-icons/io";
 
 function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true); // 사이드바 확장
-  const [isPinnedDesktop, setIsPinnedDesktop] = useState(true); // 사이드바 고정
+  const [isOpen, setIsOpen] = useState(false); // 사이드바 확장
+  const [isPinnedDesktop, setIsPinnedDesktop] = useState(false); // 사이드바 고정
   const [isPinnedMobile, setIsPinnedMobile] = useState(false); // 사이드바 고정
 
   useEffect(() => {
     document.body.style.overflow = isPinnedMobile ? "hidden" : "auto";
   }, [isPinnedMobile]);
   return (
-    <motion.aside
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: {
-          duration: 0.2,
-          ease: "easeInOut",
-        },
-      }}
-      className={`left_sidebar-aside z-1`}
-    >
+    <aside className={`left_sidebar-aside z-1`}>
       <div
         className={`border-border hidden h-[calc(100vh-4rem)] space-y-2 border-r shadow-lg transition-[width,opacity,background-color,color,border-color] duration-300 ${isOpen || isPinnedDesktop ? "bg-bg-subtle w-58" : "bg-bg-subtle/80 w-19"} fixed top-16 z-50 lg:block`}
         onMouseEnter={() => !isPinnedDesktop && setIsOpen(true)}
@@ -49,7 +38,7 @@ function Sidebar() {
           toggleSidebar={() => setIsPinnedMobile((prev) => !prev)}
         />
       </div>
-    </motion.aside>
+    </aside>
   );
 }
 

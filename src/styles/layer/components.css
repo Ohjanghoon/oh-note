@@ -65,7 +65,7 @@
 
     /* 게시글 스타일 */
     .blog-content-article {
-      @apply mx-auto min-h-screen pt-10 pb-20 text-[16px] lg:max-w-screen-md 2xl:max-w-screen-lg;
+      @apply text-foreground mx-auto min-h-screen pt-10 pb-80 text-[16px] lg:max-w-screen-md 2xl:max-w-screen-lg;
 
       hr {
         @apply border-border my-2 border-t-2;
@@ -79,13 +79,13 @@
         @apply text-2xl leading-relaxed font-medium md:text-3xl;
       }
       h3 {
-        @apply text-xl leading-relaxed font-extrabold md:text-2xl;
+        @apply py-1 text-xl leading-relaxed font-semibold md:text-2xl;
       }
       h4 {
         @apply text-xl leading-relaxed font-medium md:text-2xl;
       }
       h5 {
-        @apply text-lg leading-relaxed font-extrabold md:text-xl;
+        @apply text-lg leading-relaxed font-bold md:text-xl;
       }
       h6 {
         @apply text-lg leading-relaxed font-medium md:text-xl;
@@ -93,12 +93,12 @@
 
       /* Typography */
       p {
-        @apply text-[16px] leading-normal font-medium;
+        @apply text-[16px] leading-relaxed font-medium;
       }
 
       /* Emphasis */
       strong {
-        @apply font-semibold;
+        @apply font-bold;
       }
 
       /* Block Code */
@@ -170,7 +170,7 @@
 
       li > ul,
       li > ol {
-        @apply mt-4 pl-4;
+        @apply mt-2 pl-4;
       }
 
       /* 리스트 마커 색상 설정 */

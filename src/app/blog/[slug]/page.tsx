@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
 
-import Comments from "@/components/blog/Comments";
-
 export default async function BlogSlugPage({
   params,
 }: {
@@ -14,7 +12,6 @@ export default async function BlogSlugPage({
   return (
     <>
       <Post />
-      <Comments />
     </>
   );
 }
