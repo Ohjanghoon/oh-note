@@ -8,10 +8,10 @@
   \*----------------------------*/
   .root-container {
     /* @apply grid w-full grid-cols-12 px-8 mx-auto gap-x-8; */
-    @apply bg-background text-foreground max-w-screen-3xl relative mx-auto min-h-screen w-full overflow-hidden transition-colors duration-300;
+    @apply bg-background text-foreground max-w-screen-5xl relative mx-auto min-h-screen w-full overflow-hidden transition-colors duration-300;
   }
   .root-header {
-    @apply max-w-screen-3xl z-20 mx-auto h-16 w-full px-4 py-1 md:px-10 md:py-2;
+    @apply max-w-screen-5xl z-20 mx-auto h-16 w-full px-4 py-1 md:px-10 md:py-2;
   }
   .back_to_top {
     @apply fixed right-10 bottom-10;
@@ -30,7 +30,7 @@
     @apply relative mx-auto w-full;
 
     .home-hero {
-      @apply relative z-10 mx-auto w-full max-w-screen-xl px-10 pt-40 md:min-h-[80vh] md:pt-40;
+      @apply relative z-10 mx-auto min-h-[60vh] w-full max-w-screen-2xl px-10 pt-40 md:pt-40;
     }
 
     .home-recent_posts {
@@ -46,7 +46,7 @@
    * /blog 영역
   \*----------------------------*/
   .blog_container {
-    @apply relative mx-auto w-full max-w-screen-lg space-y-8 px-5 pt-32 md:px-10 md:py-28;
+    @apply relative mx-auto w-full max-w-screen-xl space-y-8 px-5 pt-32 md:px-10 md:py-36 lg:px-40 xl:py-30 2xl:max-w-screen-2xl;
 
     .blog-posts {
       @apply relative mx-auto grid min-h-screen grid-cols-4 gap-5 md:grid-cols-12;
@@ -58,10 +58,14 @@
   }
 
   .blog_content_container {
-    @apply relative mx-auto w-full px-3 pt-32 md:px-10 md:py-36;
+    @apply relative mx-auto w-full px-3 pt-32 md:px-10 md:py-36 xl:py-30;
 
     .blog-content-article {
-      @apply mx-auto min-h-screen max-w-screen-md pt-10 pb-20;
+      @apply mx-auto min-h-screen pt-10 pb-20 text-[16px] lg:max-w-screen-md 2xl:max-w-screen-lg;
+
+      pre.shiki {
+        @apply overflow-x-auto p-4 text-[14px];
+      }
 
       hr {
         @apply border-border my-3 border-t-2;
@@ -84,6 +88,29 @@
       }
       h6 {
         @apply text-lg leading-loose font-medium md:text-xl;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        code {
+          @apply bg-bg-subtle-hover/50 rounded-md p-1 px-1.5 font-light text-[#DF6B74];
+        }
+      }
+
+      a {
+        @apply text-primary leading-relaxed font-semibold underline underline-offset-1;
+      }
+
+      p {
+        @apply text-[16px] leading-normal font-medium;
+
+        code {
+          @apply bg-bg-subtle-hover/50 rounded-md p-1 px-1.5 text-sm font-light text-[#DF6B74];
+        }
       }
 
       blockquote {
@@ -110,7 +137,7 @@
 
       /* ✅ 리스트 간격 조정 */
       li {
-        @apply mt-4;
+        @apply mt-2;
       }
 
       li > ul {
@@ -132,10 +159,10 @@
    * /guestbook 영역
   \*----------------------------*/
   .guestbook-container {
-    @apply relative mx-auto w-full max-w-screen-lg space-y-5 px-3 py-23 md:space-y-8 md:px-10 md:py-28;
+    @apply relative mx-auto h-screen w-full max-w-screen-xl space-y-8 px-5 pt-32 md:px-10 md:py-36 lg:px-40 xl:py-30 2xl:max-w-screen-2xl;
 
     .guestbook-section {
-      @apply mx-auto grid h-screen w-full;
+      @apply mx-auto grid w-full;
     }
 
     .guestbook-board {
