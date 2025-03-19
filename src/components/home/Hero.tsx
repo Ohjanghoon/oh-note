@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 // store
 import { RootState } from "@/store/store";
@@ -55,7 +56,18 @@ function HeroSection() {
           }}
         />
       </div> */}
-      <div className="hero-heading_container relative mx-auto flex h-full flex-col items-center justify-center px-0 md:mx-0 md:px-20">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            delay: 0.2,
+            duration: 0.8,
+            ease: "easeInOut",
+          },
+        }}
+        className="hero-heading_container relative mx-auto flex h-full flex-col items-center justify-center px-0 md:mx-0 md:px-20"
+      >
         {/* <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-[60px] tracking-tight text-transparent"> */}
         <h1 className="heading_container-title text-7xl tracking-tight sm:text-7xl md:text-8xl lg:text-8xl 2xl:text-9xl">
           oh-note<span className="text-primary">.</span>
@@ -72,14 +84,25 @@ function HeroSection() {
         >
           Go to Blog →
         </Link>
-      </div>
+      </motion.div>
     </section>
   );
 }
 
 function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
   return (
-    <section className="home-recent_posts">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          delay: 0.2,
+          duration: 0.8,
+          ease: "easeInOut",
+        },
+      }}
+      className="home-recent_posts"
+    >
       <section className="recent_posts-grid col-span-12">
         <h4 className="recent_posts-title flex items-center gap-2 px-2 font-bold">
           <RiSignpostFill className="text-primary" /> 최신 게시글
@@ -92,7 +115,7 @@ function RecentPostsSection({ recentPosts }: { recentPosts: PostMetadata[] }) {
           </Carousel>
         </div>
       </section>
-    </section>
+    </motion.section>
   );
 }
 

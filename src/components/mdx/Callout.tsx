@@ -4,9 +4,19 @@ import {
   PiCheckCircle,
   PiLightbulb,
   PiMapPin,
-  PiQuotes,
 } from "react-icons/pi";
+import { BsChatDots } from "react-icons/bs";
+
 import { BiCommentError } from "react-icons/bi";
+
+type CalloutType =
+  | "info"
+  | "warn"
+  | "success"
+  | "err"
+  | "tip"
+  | "pin"
+  | "quote";
 
 const typeList = [
   {
@@ -54,14 +64,14 @@ const typeList = [
 
   {
     name: "quote",
-    icon: PiQuotes,
+    icon: BsChatDots,
     textColor: "text-gray-500 dark:text-gray-400",
     bgColor:
       "bg-gray-300/10 dark:bg-gray-400/5 border-gray-400 dark:border-gray-400/40",
   },
 ];
 
-function Callout({ type, children }: { type: string; children: string }) {
+function Callout({ type, children }: { type: CalloutType; children: string }) {
   const selectedType = typeList.find((t) => t.name === type);
   if (!selectedType) return null;
   const Icon = selectedType.icon;

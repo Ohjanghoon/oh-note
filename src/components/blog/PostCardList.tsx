@@ -2,7 +2,6 @@
 
 // node modules
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 // types
@@ -48,22 +47,11 @@ function PostCardList({ tag: searchTag }: { tag: string }) {
         )}
       </div>
 
-      <motion.ul
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition: {
-            delay: 0.2,
-            duration: 0.6,
-            ease: "easeInOut",
-          },
-        }}
-        className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:gap-y-7 lg:grid-cols-3"
-      >
+      <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:gap-y-7 lg:grid-cols-3">
         {filteredPosts.map((post) => (
           <PostCard key={post.slug} post={post} />
         ))}
-      </motion.ul>
+      </ul>
     </>
   );
 }

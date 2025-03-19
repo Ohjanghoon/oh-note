@@ -14,14 +14,16 @@ import { MdAccessTime } from "react-icons/md";
 // components
 import ImageConvert from "@/components/ui/ImageConvert";
 import Link from "next/link";
+import Callout from "../mdx/Callout";
 
 function BlogContentHeader({ props }: { props: PostMetadata }) {
-  const { title, publishDate, tags, thumbnailUrl } = props;
+  const { title, publishDate, tags, thumbnailUrl, description } = props;
 
   return (
     <header className="blog_content-header mx-auto w-full space-y-10 lg:max-w-screen-md 2xl:max-w-screen-lg">
       <BlogContentTitle title={title} publishDate={publishDate} tags={tags} />
       <BlogContentImage thumbnailUrl={thumbnailUrl} />
+      <Callout type="quote">{description}</Callout>
       <BlogContentBackground thumbnailUrl={thumbnailUrl} />
     </header>
   );
