@@ -12,6 +12,7 @@ export function useMDXComponents(): MDXComponents {
     BlogHeader: BlogContentHeader,
     Callout: Callout,
     CodeBlock: CodeBlock,
+    a: (props) => <a target="_blank" {...props} />,
     ImageBox: ImageBox,
     wrapper: (props) => <BlogWrapper {...props} />,
   };
