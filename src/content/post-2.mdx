@@ -1,0 +1,219 @@
+export const metadata = {
+  title: "Next.js 블로그에 GitHub 댓글 기능 추가하기 (with. utterances)",
+  description:
+    "utterance를 활용하여 Next.js 블로그에 간편하게 GitHub 댓글 기능 추가하기",
+  publishDate: "2025-03-19T11:38:00Z",
+  thumbnailUrl: "/assets/blog/posts/post-2/post-2_thumbnail.png",
+  tags: ["Blog", "Next.js", "utterance", "댓글", "GitHub"],
+};
+
+<BlogHeader props={{ ...metadata }} />
+
+<article className="blog-content-article">
+
+# 개요 👋
+---
+저의 개발 블로그인 oh-note를 거의 완성해 가면서, <s>보다보면 디벨롭할 건 많음..</s> 🥲<br/>
+첫 포스팅 주제를 무엇으로 할지 고민하던 중 간단하게 구현이 가능하고 적용이 쉬운 GitHub 기반 댓글 기능을 포스팅하기로 하였습니다.
+<br/>
+개발 블로그 대부분의 사용자들이 개발자인 점을 고려해 GitHub 계정만 있으면
+**누구나 쉽게!** 댓글을 달 수 있는 장점을 가지고 있는 GitHub 이슈 기반의 댓글 시스템인 [utterances🔮](https://utteranc.es/)를 적용하게 되었습니다. 
+<br/>
+<br/>
+
+# utterances란?
+utterances는 GitHub 이슈 기반으로 동작하는 가벼운 댓글 시스템입니다.
+- 장점
+  - 별도의 데이터베이스 없이 이슈로 댓글 관리 가능
+  - 광고 x, 무료 사용 가능
+  - 가볍고 빠른 로딩 속도
+  - 다크 모드 테마 지원
+<br/>
+<br/>
+
+그럼 빠르게 적용해 봅시다!
+<br/>
+<br/>
+
+# utterances 설치 및 설정
+---
+utterances를 사용하려면 먼저 GitHub App에 utterances를 설치해야 합니다.
+1. [utterances.app](https://github.com/apps/utterances)에 접속합니다.
+2. "Install" 버튼을 클릭하여 설치해줍니다.
+<ImageBox src={"/assets/blog/posts/post-2/post-2_01-utterances_install.png"} alt="utterances_install" about="utterances_install image"/>
+<br/>
+3. 여기서 이슈를 관리할 레포지토리를 선택해줍니다.
+<ImageBox src={"/assets/blog/posts/post-2/post-2_02-utterances_install.png"} alt="utterances_install" about="utterances_install image"/>
+
+<Callout type="warn">
+  Private 레포지토리에서는 utterances가 작동하지 않으므로 레포지토리는 반드시 Public으로 설정해주어야 합니다.
+</Callout>
+<Callout type="quote">
+저의 경우 현재는 블로그 프로젝트를 private으로 관리하고 있어, 이슈를 관리하기 위해 별도의 public 레포지토리를 생성해주었습니다.<br/> [oh-note-comments](https://github.com/Ohjanghoon/oh-note-comments)
+<br/>
+추가로, 생성한 레포지토리에 Issues가 비활성화 상태라면 해당 레포지토리 Settings에서 Issues 활성화 해주세요.
+
+</Callout>
+<br />
+
+4. 설치가 완료되면 다음과 같은 설정 화면이 나옵니다.
+<ImageBox src={"/assets/blog/posts/post-2/post-2_03-utterances_install.png"} alt="utterances_install" about="utterances_install image"/>
+
+##### configuration
+1. repo - username/repo-name 형식으로 방금 생성한 레포지토리(이슈 관리할 레포지토리명)를 입력합니다. <br/>
+2. Issue Mapping - 블로그 포스트와 GitHub 이슈의 매핑 방식을 선택해줍니다.<br/>
+&emsp;파일명을 기반으로 pathname을 제공하고 있기 때문에 일반적으로 많이 사용되는 "pathname"을 선택해줍니다.<br/>
+3. Theme에서 원하는 테마를 선택해주고, 페이지 하단에 생성된 스크립트 코드를 확인합니다.<br/>
+4. 해당 스크립트 코드를 Next.js 프로젝트에 적용하면 완료입니다! 참 쉽죠~? 😆
+
+<br />
+<br />
+
+# Next.js에 utterances 적용
+---
+1. Comments 컴포넌트 생성해서 utterances 스크립트 추가하기
+<CodeBlock lang="tsx" file="/src/components/blog/Comments.tsx">
+{`"use client";
+
+import { useEffect, useRef } from "react";
+
+function Comments() {
+  const commentsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!commentsRef.current) return;
+    if (commentsRef.current.querySelector("script")) return;
+
+    const script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.async = true;
+    script.setAttribute("repo", "{GitHub 사용자명}/{GitHub 레포지토리명}"); // 본인 저장소 설정
+    script.setAttribute("issue-term", "pathname"); // 이슈 생성 기준
+    script.setAttribute("theme", "github-light"); // 테마 적용
+    script.setAttribute("crossorigin", "anonymous");
+
+    commentsRef.current.insertAdjacentElement("beforeend", script);
+  }, []);
+
+  return <div ref={commentsRef} className="comments-container relative" />;
+}
+
+export default Comments;
+`}
+</CodeBlock>
+<br/>
+
+2. 댓글을 적용할 페이지에 Comments 컴포넌트를 추가해줍니다.
+<CodeBlock lang="tsx" file="/src/app/blog/[slug]/page.tsx">
+{`import Comments from "@/components/blog/Comments";
+
+function BlogSlugPage() {
+  return (
+    <div>
+      <h1>게시글 제목</h1>
+      <p>게시글 내용...</p>
+      <Comments />
+    </div>
+  );
+};
+
+export default PostPage;
+`}
+</CodeBlock>
+<br />
+
+3. 성공적으로 적용이 됐다면 아래의 이미지와 같이 상세페이지 하단에 댓글창이 보이게 됩니다.<br/>
+&emsp;이제 GitHub를 로그인한 사용자는 댓글을 남길 수 있습니다. 👏
+
+<ImageBox src={"/assets/blog/posts/post-2/post-2_05-utterances_nextjs.png"} alt="utterances_nextjs" about="utterances_nextjs image"/>
+<ImageBox src={"/assets/blog/posts/post-2/post-2_06-utterances_nextjs.png"} alt="utterances_nextjs" about="utterances_nextjs image"/>
+<br/>
+댓글을 작성하면 pathname에 맞춰 해당 게시글의 이슈가 생성된 것을 확인할 수 있습니다.
+<ImageBox src={"/assets/blog/posts/post-2/post-2_07-utterances_nextjs.png"} alt="utterances_nextjs" about="utterances_nextjs image"/>
+<br />
+<br />
+
+# 다크모드 적용하기
+---
+저의 블로그는 동적 다크모드를 지원하고 있어<br/>
+`script.setAttribute("theme", "github-light");`<br/>
+를 theme 값이 변경될 때마다 해당 속성값을 업데이트 해주었음에도 iframe의 테마 변경시 즉시 반영이 안되는 이슈가 있었습니다.<br/>
+처음에는 기존 iframe을 제거하고 새로 렌더링 하는 방식으로 구현을 하였지만,
+아래의 utterances/issues에서 도움을 받아 해결하여 적용을 완료하였습니다.<br/>
+[https://github.com/utterance/utterances/issues/549](https://github.com/utterance/utterances/issues/549)
+<br/>
+
+<ImageBox src={"/assets/blog/posts/post-2/post-2_08_utterances_dark.gif"} alt="utterances_nextjs" about="utterances_nextjs image"/>
+<br/>
+<br/>
+
+### 최종 코드
+<CodeBlock lang="tsx" file="/src/components/blog/Comments.tsx">
+{`"use client";
+
+import { useTheme } from "@/contexts/ThemeContext";
+import { useEffect, useRef } from "react";
+
+function Comments() {
+  const commentsRef = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    if (!commentsRef.current) return;
+    if (commentsRef.current.querySelector("script")) return;
+
+    // 새로운 Utterances 스크립트 추가
+    const script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.async = true;
+    script.setAttribute("repo", "Ohjanghoon/oh-note-comments");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("label", "comments");
+    script.setAttribute(
+      "theme",
+      theme === "light" ? "github-light" : "github-dark",
+    );
+    script.setAttribute("crossorigin", "anonymous");
+
+    commentsRef.current.insertAdjacentElement("beforeend", script);
+  }, []);
+
+  useEffect(() => {
+    const utterancesTheme = theme === "light" ? "github-light" : "github-dark";
+
+    if (document.querySelector(".utterances-frame")) {
+      const iframe =
+        document.querySelector<HTMLIFrameElement>(".utterances-frame");
+
+      if (!iframe) {
+        return;
+      }
+
+      iframe.contentWindow?.postMessage(
+        { type: "set-theme", theme: utterancesTheme },
+        "https://utteranc.es",
+      );
+    }
+  }, [theme]);
+
+  return <div ref={commentsRef} className="comments-container relative" />;
+}
+
+export default Comments;`}
+</CodeBlock>
+
+<Callout type="info">
+iframe의 contentWindow를 통해 postMessage API를 사용하여 메시지를 전달. <br/>
+postMessage는 iframe 내부에 있는 utterances에게 특정 명령을 전달하는 방법
+</Callout>
+<br/>
+<br/>
+
+# 참고 👍
+---
+- [https://velog.io/@outstandingboy/Github-블로그에-댓글-기능-추가하기-ft.-Utterances](https://velog.io/@outstandingboy/Github-%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%97%90-%EB%8C%93%EA%B8%80-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0-ft.-Utterances)
+- [https://mungyu.tistory.com/10](https://mungyu.tistory.com/10)
+- [https://github.com/utterance/utterances/issues/549](https://github.com/utterance/utterances/issues/549)
+
+</article>
+
