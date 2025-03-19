@@ -2,7 +2,7 @@
 
 // node modules
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // icons
 import { RiPushpinFill } from "react-icons/ri";
@@ -11,18 +11,13 @@ import TagList from "@/components/blog/TagList";
 import { IoIosArrowForward } from "react-icons/io";
 
 function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false); // 사이드바 확장
-  const [isPinned, setIsPinned] = useState(false); // 사이드바 고정
+  const [isOpen, setIsOpen] = useState(true); // 사이드바 확장
+  const [isPinnedDesktop, setIsPinnedDesktop] = useState(true); // 사이드바 고정
+  const [isPinnedMobile, setIsPinnedMobile] = useState(false); // 사이드바 고정
 
-  const toggleSidebar = () => {
-    if (isPinned) {
-      setIsPinned(false);
-      document.body.style.overflow = "auto";
-    } else {
-      setIsPinned(true);
-      document.body.style.overflow = "hidden";
-    }
-  };
+  useEffect(() => {
+    document.body.style.overflow = isPinnedMobile ? "hidden" : "auto";
+  }, [isPinnedMobile]);
   return (
     <motion.aside
       initial={{ opacity: 0 }}
@@ -36,20 +31,23 @@ function Sidebar() {
       className={`left_sidebar-aside z-1`}
     >
       <div
-        className={`border-border hidden h-[calc(100vh-4rem)] space-y-2 border-r shadow-lg transition-[width,opacity,background-color,color,border-color] duration-300 ${isOpen || isPinned ? "bg-bg-subtle w-58" : "bg-bg-subtle/80 w-19"} fixed top-16 z-50 lg:block`}
-        onMouseEnter={() => !isPinned && setIsOpen(true)}
-        onMouseLeave={() => !isPinned && setIsOpen(false)}
+        className={`border-border hidden h-[calc(100vh-4rem)] space-y-2 border-r shadow-lg transition-[width,opacity,background-color,color,border-color] duration-300 ${isOpen || isPinnedDesktop ? "bg-bg-subtle w-58" : "bg-bg-subtle/80 w-19"} fixed top-16 z-50 lg:block`}
+        onMouseEnter={() => !isPinnedDesktop && setIsOpen(true)}
+        onMouseLeave={() => !isPinnedDesktop && setIsOpen(false)}
       >
         <DesktopSidebarMenu
           isOpen={isOpen}
-          isPinned={isPinned}
-          toggleSidebar={toggleSidebar}
+          isPinned={isPinnedDesktop}
+          toggleSidebar={() => setIsPinnedDesktop((prev) => !prev)}
         />
       </div>
       <div
-        className={`border-border bg-bg-subtle block w-full border-b transition-[background-color,color,border-color] duration-300 ease-linear ${isPinned ? "h-[calc(100vh-4rem)]" : "h-12"} fixed top-16 z-10 lg:hidden`}
+        className={`border-border bg-bg-subtle block w-full border-b transition-[background-color,color,border-color] duration-300 ease-linear ${isPinnedMobile ? "h-[calc(100vh-4rem)]" : "h-12"} fixed top-16 z-10 lg:hidden`}
       >
-        <MobileSidebarMenu isPinned={isPinned} toggleSidebar={toggleSidebar} />
+        <MobileSidebarMenu
+          isPinned={isPinnedMobile}
+          toggleSidebar={() => setIsPinnedMobile((prev) => !prev)}
+        />
       </div>
     </motion.aside>
   );
@@ -115,7 +113,7 @@ function MobileSidebarMenu({
       <div
         className={`mt-7 h-full px-4 md:px-8 ${isPinned ? "pointer-events-auto block opacity-100" : "pointer-events-none hidden opacity-0"}`}
       >
-        <TagList />
+        <TagList toggleSidebar={toggleSidebar} />
       </div>
     </div>
   );

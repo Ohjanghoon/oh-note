@@ -15,7 +15,7 @@ import { useSearchModal } from "@/contexts/SearchModalContext";
 import { Tag } from "@/types/postTypes";
 import { FiSearch } from "react-icons/fi";
 
-function TagList() {
+function TagList({ toggleSidebar }: { toggleSidebar?: () => void }) {
   const { openSearchModal, setSearchTab } = useSearchModal();
   const pathName = usePathname();
   const searchParams = useSearchParams();
@@ -55,7 +55,6 @@ function TagList() {
   function onSearchModalOpen() {
     openSearchModal();
     setSearchTab("tag");
-    document.body.style.overflow = "hidden";
   }
 
   useEffect(() => {
@@ -101,6 +100,7 @@ function TagList() {
                 key={tag.tagName}
                 href={src}
                 className={`${isActive ? "pointer-events-none" : "pointer-events-auto"}`}
+                onClick={toggleSidebar}
               >
                 <li
                   className={`hover:bg-bg-subtle-hover z-1 flex min-w-[175px] items-center justify-between rounded-lg px-2 py-3 text-[13px] transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}
