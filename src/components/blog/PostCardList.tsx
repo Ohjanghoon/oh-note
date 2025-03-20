@@ -2,47 +2,57 @@
 
 // node modules
 import Link from "next/link";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "next/navigation";
+import { useSelector } from "react-redux";
 
 // types
 import { PostMetadata } from "@/types/postTypes";
 
 // store
-import { AppDispatch, RootState } from "@/store/store";
-import { getPosts } from "@/store/slices/blogPostSlice";
+import { RootState } from "@/store/store";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
+
+// components
+import ImageConvert from "../ui/ImageConvert";
+import { formatDate } from "@/utils/utils";
 
 /** PostCardList 컴포넌트 */
-function PostCardList() {
-  const searchParams = useSearchParams();
-  const searchTag = searchParams.get("tag");
-
-  const { posts, status, error } = useSelector(
-    (state: RootState) => state.post,
-  );
+function PostCardList({ tag: searchTag }: { tag: string }) {
+  const { posts } = useSelector((state: RootState) => state.post);
 
   // 이미 불러온 posts에서 태그별 필터링
   const filteredPosts = searchTag
     ? posts.filter((post) => post.tags.includes(searchTag))
     : posts;
-  // useEffect(() => {
-  //   if (searchTag) {
-  //     dispatch(getPosts(searchTag));
-  //   } else {
-  //     dispatch(getPosts());
-  //   }
-  // }, [searchTag, dispatch]);
 
   return (
-    <ul className="grid grid-cols-3 gap-x-5 gap-y-10">
-      {filteredPosts.map((post) => (
-        <PostCard key={post.slug} post={post} />
-      ))}
-    </ul>
+    <>
+      <div className={`mb-3`}>
+        {searchTag ? (
+          <span className="flex items-center gap-2">
+            Filter Tag:
+            <Link href={"/blog"}>
+              <button className="ring-primary bg-muted/10 text-primary-light flex max-w-full shrink-0 items-center gap-2 rounded-full px-2 py-0.5 text-xs ring-1">
+                <span>{searchTag}</span>
+                <IoClose />
+              </button>
+            </Link>
+          </span>
+        ) : (
+          <span className="ring-ring bg-muted/50 text-text-dark-secondary rounded-md px-2 py-0.5 ring-1">
+            All Posts
+          </span>
+        )}
+      </div>
+
+      <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:gap-y-7 lg:grid-cols-3">
+        {filteredPosts.map((post) => (
+          <PostCard key={post.slug} post={post} />
+        ))}
+      </ul>
+    </>
   );
 }
 
@@ -52,7 +62,7 @@ function PostCard({ post }: { post: PostMetadata }) {
 
   return (
     <Link href={`/blog/${slug}`}>
-      <li className="postcard group w-full space-y-3 overflow-hidden">
+      <li className="postcard_container group w-full space-y-3 overflow-hidden">
         <PostCardImage thumbnailUrl={thumbnailUrl} />
         <PostCardContent title={title} description={description} />
         <PostCardFooter publishDate={publishDate} tags={tags} />
@@ -64,12 +74,16 @@ function PostCard({ post }: { post: PostMetadata }) {
 /** PostCardImage 컴포넌트 */
 function PostCardImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <figure className="postcard-img_wraaper relative h-44 w-full overflow-hidden rounded-xl">
-      <img
-        src={thumbnailUrl}
-        alt="Post Thumbnail"
-        loading="eager"
-        className="h-full w-full object-cover object-center transition-[scale] duration-300 ease-in-out group-hover:scale-105"
+    <figure className="postcard-img_wraaper relative h-full max-h-64 w-full overflow-hidden rounded-xl">
+      <ImageConvert
+        props={{
+          width: 1366,
+          height: 768,
+          src: thumbnailUrl,
+          alt: "post-thumbnail",
+          styleClassName:
+            "h-full w-full object-cover object-center transition-[scale] max-h-64 duration-300 ease-in-out group-hover:scale-105",
+        }}
       />
     </figure>
   );
@@ -84,8 +98,8 @@ function PostCardContent({
   description: string;
 }) {
   return (
-    <div className="postcard-content flex h-full flex-col justify-between space-y-2 p-1">
-      <h6 className="postcard-content-header group-hover:text-link-hover line-clamp-1 overflow-hidden text-ellipsis group-hover:transition-colors group-hover:duration-300">
+    <div className="postcard-content flex h-full flex-col justify-between space-y-2 px-1">
+      <h6 className="postcard-content-header group-hover:text-link-hover text-text-dark line-clamp-1 overflow-hidden text-[20px] font-bold text-ellipsis group-hover:transition-colors group-hover:duration-300">
         {title}
       </h6>
       <p className="postcard-content-article text-text-muted line-clamp-2 h-10 overflow-hidden text-sm font-medium text-ellipsis">
@@ -104,21 +118,22 @@ function PostCardFooter({
   tags: string[];
 }) {
   return (
-    <div className="postcard-footer text-text-dark-secondary flex items-center justify-between p-1 text-xs">
-      <span className="flex items-center gap-1">
+    <div className="postcard-footer text-text-muted flex w-full flex-col gap-2 px-1 py-2 text-xs">
+      <p className="flex items-center gap-1">
         <MdAccessTime />
-        <span>{new Date(publishDate).toDateString()}</span>
-      </span>
+        <span>{formatDate(publishDate)}</span>
+      </p>
       {tags?.length > 0 && (
-        <div className="space-x-1">
-          {tags.map((tag) => (
+        <div className="scrollbar-hide flex w-full items-center gap-1 truncate overflow-x-auto px-0.5 py-2 whitespace-nowrap">
+          {tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="bg-muted/10 ring-ring text-primary-light rounded-full px-2 py-0.25 text-xs ring-1"
+              className="ring-ring bg-muted/10 text-primary-light max-w-full shrink-0 rounded-full px-2 py-0.5 text-xs ring-1"
             >
               {tag}
             </span>
           ))}
+          {tags.length > 3 && <span>...</span>}
         </div>
       )}
     </div>

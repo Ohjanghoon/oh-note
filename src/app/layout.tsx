@@ -1,23 +1,11 @@
 import type { Metadata } from "next";
-
-// fonts
-import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 // styles
 import "@/styles/globals.css";
 
 // components
-import ClientLayout from "@/components/common/ClientLayout";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import ClientLayout from "@/components/ClientLayout";
 
 export const metadata: Metadata = {
   title: "oh-note 개발 블로그",
@@ -28,10 +16,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`antialiased`}>
+      <body>
+        <Analytics />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

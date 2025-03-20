@@ -1,22 +1,30 @@
 // components
 import PostCardList from "@/components/blog/PostCardList";
-import TagList from "@/components/blog/TagList";
+// import TagList from "@/components/blog/TagList";
 import TitleHeader from "@/components/common/TitleHeader";
-import Image from "next/image";
 
-export default function Blog() {
+export default async function Blog({
+  searchParams,
+}: {
+  searchParams: Promise<{ tag: string }>;
+}) {
+  const params = await searchParams;
+  const searchTag = params.tag;
+
   return (
-    <section className="blog">
+    <div className="blog_container">
       <header className="blog-header">
         <TitleHeader
           title="Blog"
           description="개발하며 배운 지식을 기록하는 블로그 공간입니다."
         />
       </header>
-      <section className="blog-section">
-        <TagList />
-        <PostCardList />
+      <section className="blog-posts">
+        <section className="posts-grid">
+          {/* <TagList tag={searchTag} /> */}
+          <PostCardList tag={searchTag} />
+        </section>
       </section>
-    </section>
+    </div>
   );
 }

@@ -19,14 +19,14 @@ const ThemeContext = createContext({
 // 2. Provider 컴포넌트
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme | null>(null);
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // 사용자가 사전에 저장한 테마가 있는지 확인 => 없다면 light
     const savedTheme = (localStorage.getItem("theme") as Theme) || "light";
 
     setTheme(savedTheme);
-    setMounted(true);
+    // setMounted(true);
 
     if (savedTheme === "dark") {
       document.body.classList.add("dark");

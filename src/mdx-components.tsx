@@ -3,13 +3,19 @@ import type { MDXComponents } from "mdx/types";
 import BlogContentHeader from "@/components/blog/BlogContentHeader";
 import CodeBlock from "@/components/mdx/CodeBlock";
 import BlogWrapper from "@/components/blog//BlogWrapper";
-import * as Heading from "@/components/mdx/Heading";
+import Callout from "@/components/mdx/Callout";
+import ImageBox from "@/components/mdx/ImageBox";
+import BlogContentArticle from "@/components/blog/BlogContentArticle";
+// import * as Heading from "@/components/mdx/Heading";
 
-export function useMDXComponents(components: MDXComponents): MDXComponents {
-  console.log("🤔 MDXComponents 실행", new Date().toLocaleString());
+export function useMDXComponents(): MDXComponents {
   return {
     BlogHeader: BlogContentHeader,
-    code: CodeBlock,
+    BlogArticle: BlogContentArticle,
+    Callout: Callout,
+    CodeBlock: CodeBlock,
+    a: (props) => <a target="_blank" {...props} />,
+    ImageBox: ImageBox,
     wrapper: (props) => <BlogWrapper {...props} />,
   };
 }

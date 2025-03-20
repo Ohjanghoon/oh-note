@@ -1,24 +1,29 @@
 "use client";
 
-import { MouseEvent } from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 // types
 import { PostMetadata } from "@/types/postTypes";
-import { formatDate } from "@/utils/utls";
-import Link from "next/link";
+import { formatDate } from "@/utils/utils";
 
 // icons
 import { MdAccessTime } from "react-icons/md";
-import { IoIosArrowRoundBack } from "react-icons/io";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+
+// components
+import ImageConvert from "@/components/ui/ImageConvert";
+import Link from "next/link";
+import Callout from "../mdx/Callout";
 
 function BlogContentHeader({ props }: { props: PostMetadata }) {
-  const { title, publishDate, tags, thumbnailUrl } = props;
+  const { title, publishDate, tags, thumbnailUrl, description } = props;
 
   return (
-    <header className="blog-content-header mx-auto w-full max-w-screen-md space-y-10">
+    <header className="blog_content-header mx-auto w-full space-y-10 lg:max-w-screen-md 2xl:max-w-screen-lg">
       <BlogContentTitle title={title} publishDate={publishDate} tags={tags} />
       <BlogContentImage thumbnailUrl={thumbnailUrl} />
+      <Callout type="quote">{description}</Callout>
       <BlogContentBackground thumbnailUrl={thumbnailUrl} />
     </header>
   );
@@ -34,48 +39,42 @@ function BlogContentTitle({
   publishDate: string;
   tags: string[];
 }) {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const goBack = (e: MouseEvent) => {
-    e.preventDefault();
-    if (document.referrer && document.referrer.includes("/blog")) {
-      console.log("뒤로 가기");
-      router.back(); // 이전 블로그 페이지로 이동 (스크롤 위치 유지 가능)
-    } else {
-      console.log("블로그 가기");
-      router.push("/blog"); // 블로그 목록 페이지로 이동
-    }
-  };
+  // const goBack = (e: MouseEvent) => {
+  //   e.preventDefault();
+  //   if (document.referrer && document.referrer.includes("/blog")) {
+  //     router.back(); // 이전 블로그 페이지로 이동 (스크롤 위치 유지 가능)
+  //   } else {
+  //     router.push("/blog"); // 블로그 목록 페이지로 이동
+  //   }
+  // };
   return (
-    <div className="title-container relative z-10 space-y-3 px-1">
-      {/* <Link
-        href={"/blog"}
-        onClick={(e) => goBack(e)}
-        className="flex items-center gap-1"
-      >
-        <IoIosArrowRoundBack />
-        Back
-      </Link> */}
-
-      <button
-        className="text-primary text-semibold hover:text-primary-hover"
+    <div className="title-container relative z-1 space-y-10 px-1">
+      {/* <button
+        className="text-text-dark-secondary hover:text-primary-darken text-semibold"
         onClick={(e) => goBack(e)}
       >
-        {" "}
-        ← blog
-      </button>
+        ← Go to Blog
+      </button> */}
+      <div className="space-y-3">
+        <div>
+          <p className="text-text-dark-secondary flex items-center gap-0.5">
+            <span>
+              <MdAccessTime />
+            </span>
+            <span>{formatDate(publishDate)}</span>
+          </p>
+          <h1 className="title text-text-dark leading-tight font-extrabold md:text-[40px]">
+            {title}
+          </h1>
+        </div>
 
-      <h2 className="title text-text-dark leading-tight font-extrabold">
-        {title}
-      </h2>
-
-      <div className="text-text-dark-secondary flex items-center gap-4 text-sm">
-        <BlogWritter />
-
-        <p className="flex items-center gap-0.5 text-sm">
-          <MdAccessTime className="h-5 w-5" />
-          <span>{formatDate(publishDate)}</span>
-        </p>
+        <div className="text-text-dark-secondary flex flex-col gap-5 md:flex-row md:items-center">
+          <BlogWritter />
+          <span className="hidden md:inline">|</span>
+          <BlogContentTags tags={tags} />
+        </div>
       </div>
     </div>
   );
@@ -83,26 +82,45 @@ function BlogContentTitle({
 
 function BlogWritter() {
   return (
-    <div className="inline-flex items-center gap-0.5">
-      <img
-        id="profile-avatar"
-        src="/assets/profile-avatar.webp"
-        alt="profile-avatar"
-        className="h-5 w-5 rounded-full"
+    <Link
+      href={"https://github.com/Ohjanghoon"}
+      className="inline-flex cursor-pointer items-center gap-2"
+    >
+      <ImageConvert
+        props={{
+          width: 20,
+          height: 20,
+          src: "/assets/icons/profile-avatar.png",
+          alt: "profile-avatar",
+          styleClassName: "h-8 w-8 rounded-full",
+        }}
       />
-      <label htmlFor="profile-avatar">dev-oh</label>
-    </div>
+      <label htmlFor="profile-avatar" className="cursor-pointer">
+        <div className="flex flex-col -space-y-1 text-sm">
+          <span>dev-oh</span>
+          <span className="text-link-pressed">@github</span>
+        </div>
+      </label>
+    </Link>
   );
 }
 
 /** 블로그 콘텐츠 썸네일 컴포넌트 */
 function BlogContentImage({ thumbnailUrl }: { thumbnailUrl: string }) {
   return (
-    <div className="relative z-10 mx-auto h-120 w-full overflow-hidden">
-      <img
-        src={thumbnailUrl}
-        className="h-full w-full rounded-3xl object-cover object-center"
-      />
+    <div className="relative z-1 h-auto w-full overflow-hidden lg:max-h-130 lg:max-w-screen-md 2xl:max-h-160 2xl:max-w-screen-lg">
+      <Zoom>
+        <ImageConvert
+          props={{
+            width: 1366,
+            height: 768,
+            src: thumbnailUrl,
+            alt: "post-thumbnail",
+            styleClassName:
+              "h-full w-full rounded-xl object-cover object-center ",
+          }}
+        />
+      </Zoom>
     </div>
   );
 }
@@ -113,45 +131,37 @@ function BlogContentBackground({ thumbnailUrl }: { thumbnailUrl: string }) {
     <>
       <div
         style={{
-          backgroundImage: `url(${thumbnailUrl})`,
+          backgroundImage: `url(${thumbnailUrl || "/assets/images/default_image.png"})`,
           WebkitMaskImage:
             "linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))",
           maskImage:
             "linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))",
         }}
-        className={`absolute top-0 left-0 z-1 h-[60vh] w-full bg-cover bg-center bg-no-repeat opacity-30 blur-sm`}
+        className={`absolute top-0 left-0 z-0 h-[60vh] w-full bg-cover bg-center bg-no-repeat opacity-60 blur-3xl`}
       ></div>
-
-      {/* <div className="dutaion-1000 absolute top-0 left-0 z-2 h-[60vh] w-full bg-gradient-to-b from-[#f7f6f3]/60 via-[#f7f6f3]/90 to-[#f7f6f3] backdrop-blur-sm transition-colors dark:from-[#1d232a]/60 dark:via-[#1d232a]/90 dark:to-[#1d232a]"></div> */}
-      {/* <div
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.5), var(--background)), url(${thumbnailUrl})`,
-        }}
-        className={`absolute top-0 left-0 z-1 h-[60vh] w-full bg-cover bg-center bg-no-repeat dark:brightness-50`}
-      ></div> */}
     </>
   );
 }
 
-export default BlogContentHeader;
-
-{
+function BlogContentTags({ tags }: { tags: string[] }) {
+  return (
+    <div className="flex gap-x-2 sm:items-center">
+      <span>Tags</span>
+      <div className="inline-flex w-full flex-wrap items-center gap-1.5 break-keep">
+        {tags.map((tag) => {
+          return (
+            <Link
+              href={`/blog?tag=${tag}`}
+              key={tag}
+              className="ring-primary bg-link-light/20 hover:bg-primary-hover/40 rounded-full px-2 py-1 text-xs font-medium ring-1 transition-[background-color] duration-300"
+            >
+              {tag}
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
-// {tags.length > 0 && (
-//   <div className="space-x-3">
-//     <span className="text-xs text-gray-700">Tags</span>
-//     <div className="inline space-x-0.5">
-//       {tags.map((tag) => {
-//         return (
-//           <span
-//             key={tag}
-//             className="ring-ring bg-background rounded-full px-2 py-0.25 text-sm font-medium ring-[0.4px]"
-//           >
-//             {tag}
-//           </span>
-//         );
-//       })}
-//     </div>
-//   </div>
-// )}
+export default BlogContentHeader;

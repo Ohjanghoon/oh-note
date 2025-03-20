@@ -3,8 +3,9 @@
 \*****************************************/
 @layer color {
   :root {
+    --background: #fafafa;
     /* --background: #f7f6f3; */
-    --background: #f5f4f1;
+    /* --background: #f5f4f1; */
     --foreground: #171717;
 
     --primary: #3986f2;
@@ -26,13 +27,14 @@
     --bg-border: #dce3eb;
     --bg-dark: #171717;
     --bg-darker: #0f0f0f;
+    --bg-light: #eef2f7;
 
     /* 텍스트 색상 */
     --text-dark: #0f0f0f;
     --text-dark-secondary: #505050;
     --text-dark-muted: #50505088;
 
-    --text-muted: #878785;
+    --text-muted: #707070;
     --text-light: #f7f6f3;
     --text-on-dark: #ffffff;
     --text-on-muted: #aab9d2;
@@ -49,6 +51,8 @@
 
     /* 그림자 & 테두리 */
     --shadow: rgba(57, 134, 242, 0.25);
+
+    --input-border: #a19e97;
   }
 
   /* .dark {
@@ -96,14 +100,14 @@
     --background: #1d232a;
     --foreground: #f7f6f3;
 
-    --primary: #62a1f7;
+    --primary: #3986f2;
     --primary-darken: #3986f2;
     --primary-hover: #2b7fff;
     /* --primary-pressed: #2c6cd6; */
     --primary-light: #8dc1ff;
 
     --muted: #5f748e;
-    --border: #2a2a2a;
+    --border: #2e3a47;
     --ring: #4a4a4a;
     --card: #262626;
 
@@ -112,18 +116,17 @@
     /* --bg-subtle-hover: #2e343d; */
     /* --bg-subtle-hover: #323841; */
     --bg-subtle-hover: #383e47;
-    --bg-muted: #181818;
+    --bg-muted: #393939;
     --bg-border: #2a2a2a;
-    --bg-dark: #121212;
+    --bg-dark: #f7f6f3;
     --bg-darker: #0b0b0b;
-
-    /* 텍스트 색상 */
-    --text-dark: #ffffff;
-    --text-dark-secondary: #dcdbd9;
+    --bg-light: #181818; /* 텍스트 색상 */
+    --text-dark: #f2f3f5;
+    --text-dark-secondary: #d6d5d4;
     --text-dark-muted: #dcdbd988;
 
-    --text-muted: #aab9d2;
-    --text-light: #101010;
+    --text-muted: #b6becd;
+    --text-light: #ffffff;
     --text-on-dark: #ffffff;
     --text-on-muted: #c7d1e0;
 
@@ -165,6 +168,7 @@
   --color-bg-border: var(--bg-border);
   --color-bg-dark: var(--bg-dark);
   --color-bg-darker: var(--bg-darker);
+  --color-bg-light: var(--bg-light);
 
   /* ✅ 텍스트 색상 */
   --color-text-default: var(--text-default);
@@ -191,4 +195,9 @@
 
   /* ✅ 그라디언트 */
   --color-bg-gradient: var(--background-gradient);
+
+  --color-point1: #6175f4;
+  --color-point2: #06e0e0;
+
+  --color-input-border: var(--input-border);
 }

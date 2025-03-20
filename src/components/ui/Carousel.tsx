@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useState, ReactNode } from "react";
+import { ReactNode } from "react";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // icons
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -10,68 +17,35 @@ interface CarouselProps {
   intervalTime?: number; // 자동 슬라이드 시간 설정 (기본값 5000ms)
 }
 
-function Carousel({ children, intervalTime = 5000 }: CarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const totalSlides = children.length;
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-  };
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    if (currentIndex === totalSlides) {
-      setCurrentIndex(0);
-    }
-
-    const interval = setInterval(nextSlide, intervalTime);
-    return () => clearInterval(interval);
-  }, [currentIndex, intervalTime]);
-
+function Carousel({ children }: CarouselProps) {
   return (
-    <div className="group relative w-full overflow-hidden pb-8">
-      <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {children.map((child, index) => (
-          <div key={index} className="w-full flex-shrink-0">
-            {child}
-          </div>
-        ))}
-      </div>
-
-      {/* 좌우 버튼 */}
-      <button
-        onClick={prevSlide}
-        className="absolute top-1/2 left-2 -translate-y-1/2 transform rounded-full bg-gray-800/50 p-2 text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-      >
+    <div className="group relative">
+      <button className="custom-prev duraion-300 absolute top-1/2 -left-10 z-1 -translate-y-[45px] text-4xl opacity-0 transition-opacity md:group-hover:opacity-100">
         <IoIosArrowBack />
       </button>
-      <button
-        onClick={nextSlide}
-        className="absolute top-1/2 right-2 -translate-y-1/2 transform rounded-full bg-gray-800/50 p-2 text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-      >
+      <button className="custom-next absolute top-1/2 -right-10 z-1 -translate-y-[45px] text-4xl opacity-0 transition-opacity md:group-hover:opacity-100">
         <IoIosArrowForward />
       </button>
-
-      {/* 인디케이터 (점) */}
-      <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 transform space-x-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-        {children.map((_, index) => (
-          <button
-            key={index}
-            className={`h-2.5 w-2.5 rounded-full transition-all ${
-              currentIndex === index ? "bg-primary" : "bg-muted"
-            }`}
-            onClick={() => setCurrentIndex(index)}
-          />
+      <Swiper
+        modules={[Autoplay, Navigation, Pagination]}
+        autoplay={{
+          delay: 4000,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false,
+        }} // 자동 재생
+        navigation={{
+          prevEl: ".custom-prev",
+          nextEl: ".custom-next",
+        }}
+        pagination={{ clickable: true }} // 페이지네이션 (인디케이터)
+        loop // 무한 루프
+        className="w-full"
+      >
+        {children.map((card, index) => (
+          <SwiperSlide key={index}>{card}</SwiperSlide>
         ))}
-      </div>
+      </Swiper>
+      {/* 커스텀 화살표 버튼 */}
     </div>
   );
 }

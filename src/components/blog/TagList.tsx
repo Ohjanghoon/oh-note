@@ -1,96 +1,126 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // store
-import { getTags } from "@/store/slices/blogTagSlice";
-import { AppDispatch, RootState } from "@/store/store";
+import { RootState } from "@/store/store";
 
-// icons
+// contexts
+import { useSearchModal } from "@/contexts/SearchModalContext";
+
+// types
 import { Tag } from "@/types/postTypes";
+import { FiSearch } from "react-icons/fi";
 
-interface TagProps extends Tag {
-  href: string;
-  isSelected: boolean;
-}
-
-function TagList() {
-  const { tags } = useSelector((state: RootState) => state.tag);
-
+function TagList({ toggleSidebar }: { toggleSidebar?: () => void }) {
+  const { openSearchModal, setSearchTab } = useSearchModal();
+  const pathName = usePathname();
   const searchParams = useSearchParams();
-  const searchTag = searchParams.get("tag");
+  const searchTag = searchParams.get("tag") || "All";
 
-  const [showLeftShadow, setShowLeftShadow] = useState(false);
-  const [showRightShadow, setShowRightShadow] = useState(true);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const { tags } = useSelector((state: RootState) => state.tag);
+  const [tagList, setTagList] = useState<Tag[]>([]);
+
+  const [showToptShadow, setShowToptShadow] = useState(false);
+  const [showBottomShadow, setShowBottomShadow] = useState(true);
+  const scrollContainerRef = useRef<HTMLUListElement>(null);
 
   const handleScroll = () => {
     if (!scrollContainerRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+    const { scrollTop, scrollHeight, clientHeight } =
+      scrollContainerRef.current;
 
-    setShowLeftShadow(scrollLeft > 0);
-    setShowRightShadow(scrollLeft + clientWidth < scrollWidth);
+    setShowToptShadow(scrollTop > 10);
+
+    // 스크롤이 가능할 때만 bottomShadow를 업데이트
+    const isScrollable = scrollHeight > clientHeight;
+    setShowBottomShadow(
+      isScrollable && scrollTop + clientHeight + 10 < scrollHeight,
+    );
   };
 
+  useEffect(() => {
+    if (!scrollContainerRef.current) return;
+
+    const { scrollHeight, clientHeight } = scrollContainerRef.current;
+    const isScrollable = scrollHeight > clientHeight;
+
+    // 컴포넌트가 마운트될 때 스크롤 가능 여부에 따라 bottomShadow 설정
+    setShowBottomShadow(isScrollable);
+  }, [tagList]); // tagList가 변경될 때마다 확인
+
+  function onSearchModalOpen() {
+    openSearchModal();
+    setSearchTab("tag");
+  }
+
+  useEffect(() => {
+    if (!tags.length) return;
+
+    const sliceTagList = [...tags].toSorted((a, b) => b.count - a.count);
+
+    setTagList(sliceTagList);
+  }, [tags]);
+
   return (
-    <div className="relative w-full">
-      {/* 왼쪽 그림자 (showLeftShadow가 true일 때만 보이도록 처리) */}
-      {showLeftShadow && (
-        <div className="from-primary-light/20 l pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r to-transparent py-1"></div>
-      )}
+    <div className="sidebar-tag_container">
+      <div className="tag_title text-text-dark-secondary flex min-w-[175px] items-center justify-between px-2 text-lg">
+        <span>Tags</span>
+        <button
+          className="search_tag_btn ring-text-muted/60 text-text-dark-muted hover:bg-bg-muted/50 flex items-center justify-center rounded-lg p-1 ring-1 transition-[background-color] duration-300"
+          onClick={onSearchModalOpen}
+        >
+          <span>
+            <FiSearch className="text-xl md:text-base" />
+          </span>
+        </button>
+      </div>
+      <div className="bg-bg-muted mt-2 h-[0.5px] w-full"></div>
+      <div className="tag_list relative mt-4">
+        <div
+          className={`top_shadow from-bg-dark/8 pointer-events-none absolute top-0 left-0 h-7 w-full bg-gradient-to-b to-transparent py-1 transition-opacity duration-500 ${showToptShadow ? "opacity-100" : "opacity-0"}`}
+        ></div>
 
-      {/* 스크롤 가능한 태그 리스트 */}
-      <nav
-        ref={scrollContainerRef}
-        onScroll={handleScroll}
-        className="blog-tag_list scrollbar-hide flex w-full items-center gap-1 overflow-x-auto p-1 whitespace-nowrap"
-      >
-        {tags.map((tag: Tag) => {
-          const { tagName, count } = tag;
-          const href =
-            tagName.toLowerCase() === "all" ? "/blog" : `/blog?tag=${tagName}`;
-          const isSelected =
-            tagName.toLowerCase() === "all"
-              ? !searchTag
-              : tagName.toLowerCase() === searchTag?.toLowerCase();
-          return (
-            <TagLink
-              props={{ tagName, count, href, isSelected }}
-              key={tag.tagName}
-            />
-          );
-        })}
-      </nav>
+        <ul
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          className="scrollbar-hide max-h-150 overflow-y-auto"
+        >
+          {tagList?.map((tag) => {
+            const src =
+              tag.tagName === "All" ? "/blog" : `/blog?tag=${tag.tagName}`;
+            const isActive =
+              pathName === "/blog" &&
+              searchTag?.toLowerCase() === tag.tagName.toLowerCase();
+            return (
+              <Link
+                key={tag.tagName}
+                href={src}
+                className={`${isActive ? "pointer-events-none" : "pointer-events-auto"}`}
+                onClick={toggleSidebar}
+              >
+                <li
+                  className={`hover:bg-bg-subtle-hover z-1 flex min-w-[175px] items-center justify-between rounded-lg px-2 py-3 text-[13px] transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}
+                >
+                  <span>
+                    {tag.tagName === "All" ? "전체 게시글 보기" : tag.tagName}
+                  </span>
+                  <span>{tag.count}</span>
+                </li>
+              </Link>
+            );
+          })}
+          {tagList.length >= 10 && <li className="px-1 py-5"></li>}
+        </ul>
 
-      {/* 오른쪽 그림자 (showRightShadow가 true일 때만 보이도록 처리) */}
-      {showRightShadow && (
-        <div className="from-primary-light/20 pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l to-transparent py-1"></div>
-      )}
+        <div
+          className={`bottom_shadow from-bg-dark/8 pointer-events-none absolute bottom-0 left-0 h-7 w-full bg-gradient-to-t to-transparent py-1 transition-opacity duration-500 ${showBottomShadow ? "opacity-100" : "opacity-0"}`}
+        ></div>
+      </div>
     </div>
-  );
-}
-
-function TagLink({ props }: { props: TagProps }) {
-  const { tagName, count, href, isSelected } = props;
-  return (
-    <Link
-      href={href}
-      className={`tag_link ring-primary hover:bg-link-light group hover:text-text-light inline-flex max-w-full items-center justify-center gap-1 rounded-full px-3 py-1 ring-1 transition-[background-color] duration-300 ${
-        isSelected ? "bg-primary text-text-light pointer-events-none" : ""
-      }`}
-    >
-      <span>{tagName}</span>
-      <span
-        className={`text-primary-darken group-hover:text-text-light text-xs ${
-          isSelected ? "text-text-light" : ""
-        }`}
-      >
-        {count}
-      </span>
-    </Link>
   );
 }
 

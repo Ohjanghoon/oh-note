@@ -1,18 +1,91 @@
-import TagList from "@/components/TagList";
-import PostCardList from "@/components/PostCardList";
+"use client";
 
-export default async function Home() {
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+// types
+import { Guestbook } from "@/types/guestbookTypes";
+
+// lib
+import { selectGuestbook } from "@/lib/supabase/guestbook";
+
+// components
+import TitleHeader from "@/components/common/TitleHeader";
+import GuestbookWrite from "@/components/guestbook/GuestbookWrite";
+import GuestbookList from "@/components/guestbook/GuestbookList";
+import { supabase } from "@/server/supabase";
+import { RealtimePostgresInsertPayload } from "@supabase/supabase-js";
+import { formatDateTime } from "@/utils/utils";
+
+function GuestBook() {
+  const [guestbooks, setGuestbooks] = useState<Guestbook[]>([]);
+
+  useEffect(() => {
+    const fetchGuestbook = async () => {
+      try {
+        // API 요청
+        const data = await selectGuestbook();
+
+        if (data) setGuestbooks(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchGuestbook();
+
+    /** Supabase Realtime 구독 설정 => 데이터가 추가되면 자동 반영 */
+    const subscription = supabase
+      .channel("guestbook")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "guestbook" },
+        (payload: RealtimePostgresInsertPayload<Guestbook>) => {
+          const newGuestbook = {
+            id: payload.new.id,
+            nickname: payload.new.nickname,
+            content: payload.new.content,
+            emoji: payload.new.emoji,
+            createdAt: formatDateTime(payload.new.createdAt || "9999-99-99"),
+          };
+          setGuestbooks((prev) => [...prev, newGuestbook]);
+        },
+      )
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
   return (
-    <section className="main-section">
-      <div>
-        {/* 제목 영역 */}
-        <h2 className="relative inline-block font-extrabold">
-          Home
-          <span className="from-accent-primary absolute bottom-1 left-0 -z-10 h-[10px] w-full rounded-full bg-gradient-to-r"></span>
-        </h2>
-      </div>
-      <p className="mt-2 text-sm">개발 블로그 포스팅 공간입니다.</p>
-      {/* <PostCard posts={posts} /> */}
-    </section>
+    <div className="guestbook-container">
+      <header className="guestbook-header">
+        <TitleHeader
+          title="Guestbook"
+          description="방명록을 자유롭게 남겨주세요."
+        />
+      </header>
+
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            delay: 0.2,
+            duration: 0.6,
+            ease: "easeInOut",
+          },
+        }}
+        className="guestbook-section"
+      >
+        <section className="guestbook-board ring-ring bg-primary/10 relative flex flex-col gap-8 rounded-xl p-3 ring-1 dark:bg-[#1F2937]">
+          <GuestbookList guestbooks={guestbooks} />
+          <GuestbookWrite />
+        </section>
+      </motion.section>
+    </div>
   );
 }
+
+export default GuestBook;

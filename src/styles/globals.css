@@ -2,8 +2,6 @@
 @import "../styles/layer/color.css";
 @import "../styles/layer/components.css";
 
-@plugin "@tailwindcss/typography";
-
 /* @custom-variant dark (&:is(.dark *)); */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -12,16 +10,8 @@
     @apply focus-visible:outline-none;
   }
 
-  body {
-    @apply bg-background;
-
-    /* ::-webkit-scrollbar-track {
-      display: none;
-    } */
-    /* ::-webkit-scrollbar-track:hover {
-      display: none;
-      background-color: transparent !important;
-    } */
+  html {
+    @apply font-sans;
   }
 
   html,
@@ -31,15 +21,11 @@
   }
 
   body {
-    @apply min-h-screen text-sm leading-relaxed font-medium;
-  }
-
-  footer {
-    @apply my-6 h-10 w-full bg-transparent;
+    @apply bg-background min-h-screen text-sm leading-relaxed font-medium;
   }
 
   h1 {
-    @apply text-5xl leading-[1.1] font-extrabold xl:text-[44px];
+    @apply text-[36px] leading-[1.1] font-extrabold xl:text-[44px];
   }
   h2 {
     @apply text-4xl leading-[1.1] font-semibold xl:text-[40px];
@@ -71,6 +57,9 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4xl: 2560px;
+  --breakpoint-5xl: 3840px;
 }
 
 @theme typography {
@@ -78,17 +67,71 @@
   --text-3xs: 8px;
 }
 
-pre.shiki {
+/* pre.shiki {
   padding: 1rem;
   border-radius: 0.5rem;
-  overflow-x: auto;
+  overflow-x: scroll;
 
   pre::-webkit-scrollbar {
     display: none;
   }
-  /* Fenced Code block - hide horizontal scrollbar: mozila */
+  
   pre {
     scrollbar-width: none;
+  }
+} */
+
+.swiper {
+  .swiper-pagination {
+    @apply !relative mt-7;
+  }
+  .swiper-pagination-bullet {
+    @apply p-0.5;
+  }
+}
+
+.custom-zoom [data-rmiz-modal-overlay],
+.custom-zoom [data-rmiz-modal-img] {
+  transition-duration: 0.8s;
+  transition-timing-function: linear;
+}
+
+.custom-zoom [data-rmiz-modal-overlay="hidden"] {
+  background-color: rgb(56, 58, 89, 0);
+}
+[data-rmiz-modal-overlay="visible"] {
+  @apply !bg-black/50 !backdrop-blur-md;
+}
+.custom-zoom [data-rmiz-btn-unzoom] {
+  background-color: #bd93f9;
+  color: #000;
+}
+.custom-zoom [data-rmiz-btn-unzoom]:focus-visible {
+  outline-offset: 0.4rem;
+  outline: 0.2rem solid #bd93f9;
+}
+
+@layer utilities {
+  @keyframes horizontal-vibration {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(5px);
+    }
+    50% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-horizontal-vibration {
+    animation: horizontal-vibration 0.3s linear forwards;
   }
 }
 
