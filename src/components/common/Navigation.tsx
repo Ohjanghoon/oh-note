@@ -55,7 +55,7 @@ function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
             target={nav.isBlank ? "_blank" : undefined}
             rel={nav.isBlank ? "noopener noreferrer" : undefined}
             key={nav.name}
-            className={`${isActive ? "text-primary pointer-events-none font-semibold" : "text-text-dark-secondary hover:text-text-dark"} flex items-center gap-1 p-2.5`}
+            className={`${isActive ? "text-primary font-semibold" : "text-text-dark-secondary hover:text-text-dark"} flex items-center gap-1 p-2.5`}
             onClick={toggleMenu}
           >
             {nav.name}
