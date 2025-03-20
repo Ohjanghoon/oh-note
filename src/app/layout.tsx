@@ -7,7 +7,6 @@ import "@/styles/globals.css";
 
 // components
 import ClientLayout from "@/components/ClientLayout";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "oh-note 개발 블로그",

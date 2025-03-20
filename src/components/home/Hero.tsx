@@ -73,10 +73,6 @@ function HeroSection() {
         <AnimatePresence>
           <h1 className="heading_container-title text-7xl tracking-tight sm:text-7xl md:text-8xl lg:text-8xl 2xl:text-9xl">
             {title.map((letter, index) => {
-              // const rotate = Math.random() * 360 - Math.random() * 360;
-              const translateX = 0;
-              const translateY = -200 + index * 40;
-
               return (
                 <motion.span
                   key={index}
