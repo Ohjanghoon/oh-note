@@ -32,7 +32,7 @@ function Hero() {
   }, [posts]);
 
   return (
-    // <div className="hero-section relative z-10"></div>
+    // <div className="relative z-10 hero-section"></div>
     <>
       <HeroSection />
       <RecentPostsSection recentPosts={recentPosts} />
@@ -44,7 +44,7 @@ function Hero() {
 function HeroSection() {
   return (
     <section className="home-hero flex items-center justify-center">
-      {/* <div className="hero-image_wrapper absolute bottom-1/2 left-1/2 translate-y-1/6 md:translate-y-1/3">
+      {/* <div className="absolute hero-image_wrapper bottom-1/2 left-1/2 translate-y-1/6 md:translate-y-1/3">
         <ImageConvert
           props={{
             width: 411,
@@ -61,8 +61,8 @@ function HeroSection() {
         animate={{
           opacity: 1,
           transition: {
-            delay: 0.2,
-            duration: 0.8,
+            delay: 0.8,
+            duration: 1.3,
             ease: "easeInOut",
           },
         }}

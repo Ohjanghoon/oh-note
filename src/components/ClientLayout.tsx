@@ -13,7 +13,7 @@ import usePostsInitializer from "@/hooks/usePostsInitializer";
 import ContextProviders from "@/contexts/ContextProviders";
 
 // components
-import BackToTopButton from "@/components/common/BackToTopButton";
+import BackToButton from "@/components/common/BackToButton";
 import GradientBackground from "@/components/ui/GradientBackground";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
@@ -40,8 +40,8 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
             </aside>
           )}
           <main className="root-main">{children}</main>
-          <aside className="back_to_top z-50 hidden md:block">
-            <BackToTopButton />
+          <aside className="back_to_btn">
+            <BackToButton />
           </aside>
           <Footer />
 

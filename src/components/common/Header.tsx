@@ -99,7 +99,7 @@ function MobileNav({
       </button>
 
       <div
-        className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} bg-bg-subtle fixed top-16 left-0 z-50 h-[calc(100vh-4rem)] w-full space-y-10 px-5 transition-[opacity,background-color] duration-300`}
+        className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} bg-bg-subtle fixed top-13 left-0 z-50 h-[calc(100vh-3.25rem)] w-full space-y-10 px-5 transition-[opacity,background-color] duration-300`}
       >
         <Navigation toggleMenu={toggleMenu} />
         <div className="space-y-3 p-2.5">
