@@ -46,14 +46,14 @@ function Comments() {
 
   return (
     <div className="comments-container dark:bg-bg-subtle border-border mx-auto max-w-screen-md rounded-lg border-[0.2px] bg-[#F5F8FA]/50 shadow-md">
-      <div className="border-border bg-bg-subtle flex items-center gap-5 border-b-1 px-3 pt-1 text-sm">
+      <div className="border-border bg-bg-subtle flex items-center gap-5 rounded-t-lg border-b-1 px-3 pt-1 text-sm">
         <div className="flex items-center gap-2">
           <div className="h-2.5 w-2.5 rounded-full bg-sky-400"></div>
           <div className="h-2.5 w-2.5 rounded-full bg-green-400"></div>
           <div className="bg-primary h-2.5 w-2.5 rounded-full"></div>
         </div>
         <div className="border-border dark:bg-bg-subtle-hover/70 rounded-t-lg border-1 border-b-0 bg-[#F5F8FA] px-5 py-2">
-          <span>반응과 댓글은 큰 힘이 됩니다 :)</span>
+          <span className="text-xs">반응과 댓글은 큰 힘이 됩니다 :)</span>
         </div>
         <span>+</span>
       </div>
