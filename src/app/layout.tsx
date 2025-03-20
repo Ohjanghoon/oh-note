@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 // styles
 import "@/styles/globals.css";
 
 // components
 import ClientLayout from "@/components/ClientLayout";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "oh-note 개발 블로그",
@@ -19,7 +21,9 @@ export default function RootLayout({
     <html lang="en" className={`antialiased`}>
       <body>
         <ClientLayout>
-          {children} <Analytics />
+          <GoogleAnalytics trackPageViews />
+          {children}
+          <Analytics />
         </ClientLayout>
       </body>
     </html>

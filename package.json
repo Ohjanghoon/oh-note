@@ -27,6 +27,7 @@
     "gray-matter": "^4.0.3",
     "next": "^15.2.2",
     "next-mdx-remote": "^5.0.0",
+    "nextjs-google-analytics": "^2.3.7",
     "node-fetch": "^3.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
