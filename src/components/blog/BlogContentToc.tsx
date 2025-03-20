@@ -17,7 +17,7 @@ function BlogContentToc() {
     const postArticle = document.querySelector(".blog-content-article");
     if (!postArticle) return;
 
-    const headings = postArticle.querySelectorAll("h1, h2, h3");
+    const headings = postArticle.querySelectorAll("h2, h3, h4");
     const tocItems: TocItem[] = [];
 
     headings.forEach((heading) => {

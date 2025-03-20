@@ -65,9 +65,9 @@ function BlogContentTitle({
             </span>
             <span>{formatDate(publishDate)}</span>
           </p>
-          <h3 className="title text-text-dark leading-tight font-extrabold md:text-[40px]">
+          <h1 className="title text-text-dark leading-tight font-extrabold md:text-[40px]">
             {title}
-          </h3>
+          </h1>
         </div>
 
         <div className="text-text-dark-secondary flex flex-col gap-5 md:flex-row md:items-center">
