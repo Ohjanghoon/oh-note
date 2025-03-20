@@ -11,10 +11,10 @@
     @apply bg-background text-foreground max-w-screen-5xl relative mx-auto min-h-screen w-full overflow-hidden transition-[background-color,color,border-color,border] duration-300;
   }
   .root-header {
-    @apply max-w-screen-5xl z-20 mx-auto h-16 w-full px-4 py-1 md:px-10 md:py-2;
+    @apply max-w-screen-5xl z-20 mx-auto h-13 w-full px-4 py-1 md:h-14 md:px-10 md:py-2;
   }
-  .back_to_top {
-    @apply fixed right-10 bottom-10;
+  .back_to_btn {
+    @apply fixed right-5 bottom-10 z-50;
   }
   /* .root-main {
     @apply;
@@ -73,13 +73,13 @@
 
       /* Headers */
       h1 {
-        @apply text-2xl leading-relaxed font-extrabold md:text-3xl;
+        @apply text-2xl leading-relaxed font-extrabold md:text-[30px];
       }
       h2 {
-        @apply text-2xl leading-relaxed font-medium md:text-3xl;
+        @apply py-1 text-2xl leading-relaxed font-extrabold md:text-[26px];
       }
       h3 {
-        @apply py-1 text-xl leading-relaxed font-semibold md:text-2xl;
+        @apply py-1 text-xl leading-relaxed font-extrabold md:text-[24px];
       }
       h4 {
         @apply text-xl leading-relaxed font-medium md:text-2xl;

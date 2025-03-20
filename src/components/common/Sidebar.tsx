@@ -20,7 +20,7 @@ function Sidebar() {
   return (
     <aside className={`left_sidebar-aside z-1`}>
       <div
-        className={`border-border hidden h-[calc(100vh-4rem)] space-y-2 border-r shadow-lg transition-[width,opacity,background-color,color,border-color] duration-300 ${isOpen || isPinnedDesktop ? "bg-bg-subtle w-58" : "bg-bg-subtle/80 w-19"} fixed top-16 z-50 lg:block`}
+        className={`border-border hidden h-[calc(100vh-3.25rem)] space-y-2 border-r shadow-lg transition-[width,opacity,background-color,color,border-color] duration-300 ${isOpen || isPinnedDesktop ? "bg-bg-subtle w-58" : "bg-bg-subtle/80 w-19"} fixed top-14 z-50 lg:block`}
         onMouseEnter={() => !isPinnedDesktop && setIsOpen(true)}
         onMouseLeave={() => !isPinnedDesktop && setIsOpen(false)}
       >
@@ -31,7 +31,7 @@ function Sidebar() {
         />
       </div>
       <div
-        className={`border-border bg-bg-subtle block w-full border-b transition-[background-color,color,border-color] duration-300 ease-linear ${isPinnedMobile ? "h-[calc(100vh-4rem)]" : "h-12"} fixed top-16 z-10 lg:hidden`}
+        className={`border-border bg-bg-subtle dark:bg-bg-subtle block w-full border-b transition-[background-color,color,border-color] duration-100 ease-linear ${isPinnedMobile ? "h-[calc(100vh-3.25rem)]" : "h-12"} fixed top-13 z-10 lg:hidden`}
       >
         <MobileSidebarMenu
           isPinned={isPinnedMobile}
