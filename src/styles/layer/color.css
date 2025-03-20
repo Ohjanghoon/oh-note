@@ -3,8 +3,8 @@
 \*****************************************/
 @layer color {
   :root {
-    /* --background: #f7f6f3; */
-    --background: #f5f4f1;
+    --background: #f7f6f3;
+    /* --background: #f5f4f1; */
     --foreground: #171717;
 
     --primary: #3986f2;
