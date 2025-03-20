@@ -13,9 +13,7 @@ function TitleHeader({ title, description }: Props) {
         <span className="relative z-2">{title}</span>
         <span className="from-primary absolute bottom-0 left-0 z-1 h-[10px] w-full rounded-full bg-gradient-to-r"></span>
       </h1>
-      <p className="text-text-dark-secondary mt-2 text-sm font-light md:font-medium">
-        {description}
-      </p>
+      <p className="text-text-dark-secondary mt-2 text-sm">{description}</p>
     </>
   );
 }
