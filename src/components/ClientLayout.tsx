@@ -3,6 +3,8 @@
 import { Provider } from "react-redux";
 import { usePathname } from "next/navigation";
 
+import { GoogleAnalytics } from "nextjs-google-analytics";
+
 // store
 import store from "@/store/store";
 
@@ -28,6 +30,8 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <Provider store={store}>
+      <GoogleAnalytics trackPageViews />
+
       <PostsInitializer />
       <ContextProviders>
         <div className="root-container">
