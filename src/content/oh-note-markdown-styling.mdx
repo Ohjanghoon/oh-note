@@ -3,7 +3,7 @@ export const metadata = {
   description:
     "oh-note 블로그 게시글에서 사용 중인 markdown 스타일링 테스트 게시글입니다.",
   publishDate: "2025-03-19T03:59:00Z",
-  thumbnailUrl: "/assets/blog/posts/post-1/post-1_thumbnail.png",
+  thumbnailUrl: "/assets/blog/posts/oh-note-markdown-styling/00-thumbnail.png",
   tags: ["Blog", "Markdown", "Style"],
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 <BlogArticle>
 
-# Headers
+## Headers
 ---
 # This is a Heading h1
 ## This is a Heading h2
@@ -22,7 +22,7 @@ export const metadata = {
 <br />
 <br />
 
-# Emphasis
+## Emphasis
 ---
 _This text will be italic_  
 _This will also be italic_
@@ -34,7 +34,7 @@ _You **can** combine them_
 <br />
 <br />
 
-# Lists
+## Lists
 ---
 ### Unordered
 - 1 Depth Item 1
@@ -54,26 +54,26 @@ _You **can** combine them_
 <br />
 <br />
 
-# Images
+## Images
 ---
-<ImageBox src={"/assets/blog/posts/post-1/post-1_01-4k_image.png"} alt="this sample image" about="Horizontal Image test"/>
+<ImageBox src={"/assets/blog/posts/oh-note-markdown-styling/01-4k_image.png"} alt="this sample image" about="Horizontal Image test"/>
 가로 반응형 테스트 이미지 입니다.
 <br/>
-<ImageBox src={"/assets/blog/posts/post-1/post-1_02-small_image.png"} alt="this sample image" about="Original Image test"/>
+<ImageBox src={"/assets/blog/posts/oh-note-markdown-styling/02-small_image.png"} alt="this sample image" about="Original Image test"/>
 이미지 비율 반응형 테스트 이미지 입니다.
 <br/>
-<ImageBox src={"/assets/blog/posts/post-1/post-1_03-vertical_image.jpg"} alt="this sample image" about="Vertical Image test"/>
+<ImageBox src={"/assets/blog/posts/oh-note-markdown-styling/03-vertical_image.jpg"} alt="this sample image" about="Vertical Image test"/>
 세로 반응형 테스트 이미지 입니다.
 <br />
 <br />
 
-# Links
+## Links
 ---
 This is My GitHub Link [Go to GitHub](https://github.com/Ohjanghoon).
 <br />
 <br />
 
-# Blockquotes
+## Blockquotes
 ---
 > Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita quaerat soluta vel aliquid, consectetur porro enim non distinctio voluptatem sunt!
 
@@ -86,13 +86,13 @@ This is My GitHub Link [Go to GitHub](https://github.com/Ohjanghoon).
 <br />
 <br />
 
-# Inline code
+## Inline code
 ---
-This post path is `/blog/mdx-test-file`.
+This post path is `/blog/oh-note-markdown-styling`.
 <br />
 <br />
 
-# Block code
+## Block code
 ---
 ```
 let message = 'Hello world';
@@ -107,7 +107,7 @@ alert(message);
 <br />
 <br />
 
-# Callout
+## Callout
 ---
 <Callout type="info">
   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut porro repellat
@@ -133,7 +133,7 @@ alert(message);
 
 <br/>
 <br/>
-# Tables
+## Tables
 ---
 <div className="table-container">
 <table suppressHydrationWarning>
@@ -164,8 +164,5 @@ alert(message);
   </tbody>
 </table>
 </div>
-
-
-
 
 </BlogArticle>

@@ -72,24 +72,24 @@
       }
 
       /* Headers */
-      h1 {
+      h2 {
         @apply text-2xl leading-relaxed font-extrabold md:text-[30px];
       }
-      h2 {
+      h3 {
         @apply py-1 text-2xl leading-relaxed font-extrabold md:text-[26px];
       }
-      h3 {
+      h4 {
         @apply py-1 text-xl leading-relaxed font-extrabold md:text-[24px];
       }
-      h4 {
+      h5 {
         @apply text-xl leading-relaxed font-medium md:text-2xl;
       }
-      h5 {
+      h6 {
         @apply text-lg leading-relaxed font-bold md:text-xl;
       }
-      h6 {
-        @apply text-lg leading-relaxed font-medium md:text-xl;
-      }
+      /* h6 {
+        @apply text-lg font-medium leading-relaxed md:text-xl;
+      } */
 
       /* Typography */
       p {
