@@ -9,7 +9,7 @@ export const metadata = {
 
 <BlogHeader props={{ ...metadata }} />
 
-<article className="blog-content-article">
+<BlogArticle>
 
 # 개요 👋
 ---
@@ -21,7 +21,7 @@ export const metadata = {
 <br/>
 <br/>
 
-# utterances란?
+## utterances란?
 utterances는 GitHub 이슈 기반으로 동작하는 가벼운 댓글 시스템입니다.
 - 장점
   - 별도의 데이터베이스 없이 이슈로 댓글 관리 가능
@@ -147,7 +147,7 @@ export default PostPage;
 <br/>
 <br/>
 
-### 최종 코드
+## 최종 코드
 <CodeBlock lang="tsx" file="/src/components/blog/Comments.tsx">
 {`"use client";
 
@@ -210,11 +210,11 @@ postMessage는 iframe 내부에 있는 utterances에게 특정 명령을 전달�
 <br/>
 <br/>
 
-# 참고 👍
+# 참고
 ---
 - [https://velog.io/@outstandingboy/Github-블로그에-댓글-기능-추가하기-ft.-Utterances](https://velog.io/@outstandingboy/Github-%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%97%90-%EB%8C%93%EA%B8%80-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0-ft.-Utterances)
 - [https://mungyu.tistory.com/10](https://mungyu.tistory.com/10)
 - [https://github.com/utterance/utterances/issues/549](https://github.com/utterance/utterances/issues/549)
 
-</article>
+</BlogArticle>
 
