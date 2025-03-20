@@ -65,7 +65,7 @@
 
     /* 게시글 스타일 */
     .blog-content-article {
-      @apply text-foreground mx-auto min-h-screen pt-10 pb-80 text-[16px] lg:max-w-screen-md 2xl:max-w-screen-lg;
+      @apply text-foreground mx-auto min-h-screen pt-10 pb-50 text-[16px] lg:max-w-screen-md 2xl:max-w-screen-lg;
 
       hr {
         @apply border-border my-2 border-t-2;
@@ -136,7 +136,7 @@
 
       /* Link */
       a {
-        @apply text-primary leading-relaxed font-semibold underline underline-offset-1;
+        @apply text-primary leading-relaxed font-semibold break-all underline underline-offset-1;
       }
 
       /* Blockqute */
