@@ -6,10 +6,11 @@ import React, { useEffect, useState } from "react";
 import { deleteLikes, insertLikes, selectLikes } from "@/lib/supabase/likes";
 import { usePathname } from "next/navigation";
 
+// hooks
+import useClientToken from "@/hooks/useClientToken";
+
 // icons
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
-import { FaRegShareFromSquare } from "react-icons/fa6";
-import useClientToken from "@/hooks/useClientToken";
 
 function LikesBtn({ styleClassName }: { styleClassName: string }) {
   const clientToken = useClientToken();
@@ -54,7 +55,7 @@ function LikesBtn({ styleClassName }: { styleClassName: string }) {
 
   return (
     <button
-      className={`border-primary text-primary dark:border-primary-light dark:text-primary-light flex items-center justify-center gap-3 border-1 ${styleClassName}`}
+      className={`border-primary text-primary flex items-center justify-center gap-3 border-1 transition-[box-shadow] duration-300 hover:shadow-sm ${styleClassName}`}
       onClick={handleLikes}
     >
       <span className="text-lg">
