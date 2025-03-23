@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 // lib
-import { selectLikes } from "@/lib/supabase/likes";
+import { deleteLikes, insertLikes, selectLikes } from "@/lib/supabase/likes";
 import { usePathname } from "next/navigation";
 
 // icons
@@ -18,6 +18,24 @@ function LikesBtn({ styleClassName }: { styleClassName: string }) {
 
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+
+  const handleLikes = async () => {
+    if (!clientToken) return;
+
+    if (isLiked) {
+      const { success } = await deleteLikes(postId, clientToken);
+      if (success) {
+        setIsLiked(false);
+        setLikes((prev) => prev - 1);
+      }
+    } else {
+      const { success } = await insertLikes(postId, clientToken);
+      if (success) {
+        setIsLiked(true);
+        setLikes((prev) => prev + 1);
+      }
+    }
+  };
 
   useEffect(() => {
     if (!clientToken) return;
@@ -37,7 +55,7 @@ function LikesBtn({ styleClassName }: { styleClassName: string }) {
   return (
     <button
       className={`border-primary text-primary dark:border-primary-light dark:text-primary-light flex items-center justify-center gap-3 border-1 ${styleClassName}`}
-      onClick={() => setIsLiked((prev) => !prev)}
+      onClick={handleLikes}
     >
       <span className="text-lg">
         {isLiked ? <FaThumbsUp /> : <FaRegThumbsUp />}
