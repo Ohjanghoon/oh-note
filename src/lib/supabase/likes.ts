@@ -45,7 +45,7 @@ export async function deleteLikes(
   postId: string,
   clientToken: string,
 ): Promise<{ success: boolean }> {
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("likes")
     .delete()
     .eq("postId", postId)

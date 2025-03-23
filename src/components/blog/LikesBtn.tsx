@@ -51,7 +51,7 @@ function LikesBtn({ styleClassName }: { styleClassName: string }) {
       }
     }
     getLikes();
-  }, [clientToken]);
+  }, [clientToken, postId]);
 
   return (
     <button
