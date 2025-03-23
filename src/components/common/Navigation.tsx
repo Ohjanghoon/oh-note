@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { JSX } from "react";
 
 // icons
-import { FaExternalLinkAlt } from "react-icons/fa";
+// import { FaExternalLinkAlt } from "react-icons/fa";
 
 interface Navigation {
   name: string;
@@ -30,12 +30,12 @@ const NavList: Navigation[] = [
     path: "/guestbook",
     isBlank: false,
   },
-  {
-    name: "Portfolio",
-    path: "https://dev-oh.web.app",
-    isBlank: true,
-    icon: <FaExternalLinkAlt />,
-  },
+  // {
+  //   name: "Portfolio",
+  //   path: "https://dev-oh.web.app",
+  //   isBlank: true,
+  //   icon: <FaExternalLinkAlt />,
+  // },
 ];
 
 function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
