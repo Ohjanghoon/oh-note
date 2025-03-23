@@ -2,12 +2,19 @@
 import path from "path";
 import fs from "fs";
 
+// lib
+import { selectLikes } from "@/lib/supabase/likes";
+
 // types
 import { PostMetadata } from "@/types/postTypes";
 import { Tag } from "@/types/postTypes";
 
+interface PostType extends PostMetadata {
+  likes: number;
+}
+
 /** 모든 블로그 게시글 가져오기 */
-export async function getPosts(): Promise<PostMetadata[]> {
+export async function getPosts(): Promise<PostType[]> {
   const postPath = path.resolve(process.cwd(), "src", "content");
 
   const filenames = fs.readdirSync(postPath);
@@ -25,7 +32,8 @@ export async function getPosts(): Promise<PostMetadata[]> {
   const posts = await Promise.all(
     slugs.map(async ({ name }) => {
       const { metadata } = await import(`@/content/${name}.mdx`);
-      return { slug: name, ...metadata };
+      const { count: likes } = await selectLikes(name);
+      return { slug: name, likes, ...metadata };
     }),
   );
 
