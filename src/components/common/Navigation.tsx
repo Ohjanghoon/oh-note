@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { JSX } from "react";
 
 // icons
-import { FaExternalLinkAlt } from "react-icons/fa";
+// import { FaExternalLinkAlt } from "react-icons/fa";
 
 interface Navigation {
   name: string;
