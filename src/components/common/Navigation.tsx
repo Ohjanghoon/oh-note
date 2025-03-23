@@ -30,12 +30,12 @@ const NavList: Navigation[] = [
     path: "/guestbook",
     isBlank: false,
   },
-  {
-    name: "Portfolio",
-    path: "https://dev-oh.web.app",
-    isBlank: true,
-    icon: <FaExternalLinkAlt />,
-  },
+  // {
+  //   name: "Portfolio",
+  //   path: "https://dev-oh.web.app",
+  //   isBlank: true,
+  //   icon: <FaExternalLinkAlt />,
+  // },
 ];
 
 function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
