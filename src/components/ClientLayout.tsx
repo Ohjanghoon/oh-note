@@ -10,6 +10,7 @@ import store from "@/store/store";
 
 // hooks
 import usePostsInitializer from "@/hooks/usePostsInitializer";
+import useClientToken from "@/hooks/useClientToken";
 
 // contexts
 import ContextProviders from "@/contexts/ContextProviders";
@@ -27,6 +28,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const pathname = usePathname();
+  useClientToken();
 
   return (
     <Provider store={store}>
