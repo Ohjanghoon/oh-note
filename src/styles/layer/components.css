@@ -73,13 +73,13 @@
 
       /* Headers */
       h2 {
-        @apply text-2xl leading-relaxed font-extrabold md:text-[30px];
+        @apply text-2xl leading-relaxed font-bold md:text-[30px];
       }
       h3 {
-        @apply py-1 text-2xl leading-relaxed font-extrabold md:text-[26px];
+        @apply py-1 text-2xl leading-relaxed font-semibold md:text-[26px];
       }
       h4 {
-        @apply py-1 text-xl leading-relaxed font-extrabold md:text-[24px];
+        @apply py-1 text-xl leading-relaxed font-semibold md:text-[24px];
       }
       h5 {
         @apply text-xl leading-relaxed font-medium md:text-2xl;
@@ -141,7 +141,7 @@
 
       /* Blockqute */
       blockquote {
-        @apply border-primary bg-bg-subtle text-text-dark-secondary my-2 rounded-r-md border-l-4 py-2 pl-4 transition-[background-color] duration-300;
+        @apply border-primary bg-bg-subtle/30 text-text-dark-secondary my-2 rounded-r-md border-l-4 py-2 pl-4 transition-[background-color] duration-300;
       }
 
       /* List */
