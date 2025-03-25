@@ -77,7 +77,7 @@ function BlogContentToc() {
     }
   };
   return (
-    <nav className="toc_nav h-full max-h-80 overflow-auto xl:max-h-full">
+    <nav className="h-full overflow-auto toc_nav max-h-80 xl:max-h-full">
       <ul>
         {toc.map((item, index) => {
           return (
