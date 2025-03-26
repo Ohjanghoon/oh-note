@@ -96,8 +96,8 @@
   } */
 
   .dark {
-    /* --background: #191919; */
-    --background: #1d232a;
+    --background: #191919;
+    /* --background: #1d232a; */
     --foreground: #f7f6f3;
 
     --primary: #3986f2;
@@ -107,12 +107,12 @@
     --primary-light: #8dc1ff;
 
     --muted: #5f748e;
-    --border: #2e3a47;
+    --border: #3c4145;
     --ring: #4a4a4a;
     --card: #262626;
 
     /* 배경 색상 */
-    --bg-subtle: #252b33;
+    --bg-subtle: #202020;
     /* --bg-subtle-hover: #2e343d; */
     /* --bg-subtle-hover: #323841; */
     --bg-subtle-hover: #383e47;
