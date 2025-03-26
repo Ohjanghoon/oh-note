@@ -1,0 +1,204 @@
+export const metadata = {
+  title: "Next.js + MDX 블로그 제작 - 기획 및 회고",
+  description:
+    "해당 포스팅은 블로그를 만들게 된 계기와 기획 과정, 느낀 점에 대한 내용을 담고 있습니다.",
+  publishDate: "2025-03-20T04:57:00Z",
+  thumbnailUrl: "/assets/blog/posts/nextjs-mdx-blog/00-thumbnail.png",
+  tags: ["Blog", "회고"],
+};
+
+<BlogHeader props={{ ...metadata }} />
+
+<BlogArticle>
+## 👋 개요
+---
+
+몇주간 개발에 몰두하다보니 드디어 블로그 제작 글을 쓰게될 날이 왔네요! 🥳
+
+개발 초창기에 구상했던 기능 개발의 대부분을 완료하여 되돌아보고자 이 글을 작성하게 되었습니다.<br/>
+
+**해당 글은 블로그 제작 과정 중 기획 과정을 주로 담고 있습니다.**
+
+<br/>
+<br/>
+<br/>
+<br/>
+## 📘 Next.js 블로그 개발 계기
+---
+<ImageBox src={"/assets/blog/posts/nextjs-mdx-blog/01-agonize.png"} alt="agonize image" about="agonize image"/>
+
+
+###### 1. Next.js 기술 학습
+Next.js에 대해 공부하며 적용해 볼 사이드 프로젝트의 주제를 고민하던 중,<br/>
+여러 개발자 분들이 Next.js를 사용해 블로그를 제작하고 다양한 기술과 경험을 기록하는 모습을 보게 되었습니다.
+
+정말 단순하게 “우와 멋지다.. 나도 내가 쓸 개발 블로그를 저렇게 만들어볼까?”<br/> 라는 생각이 들게 되어 가능성을 고민하기 시작했습니다.
+
+<br/>
+<br/>
+###### 2. 블로그 Customizing 및 실제 운영 서비스 제작 경험
+이미 유명하고 많이 사용되고 있는 velog나 tistory 등 블로그 플랫폼이 있지만, 직접 사용할 서비스라면 필요한 기능을 원하는 방식으로 구현해보고 싶어졌습니다. <s>그래도 개발잔데 자기가 쓰고 싶은 기능을 직접 만들 수 있으면 멋지잖아요?ㅎㅎ</s>
+
+그렇게 Next.js를 학습하며 블로그를 직접 제작하기로 마음먹었고, 이를 통해 기술적인 도전뿐만 아니라 실제 운영 가능한 서비스를 만들어 나가는 경험을 쌓고자 했습니다.
+
+<br/>
+<br/>
+<br/>
+<br/>
+## 📘 기획
+---
+### 📝 블로그 레퍼런스 수집
+아래의 블로그와 영상, 글들을 참고하며 기술적인 많은 도움과 영감이 되었습니다.
+
+이 외에도 수 많은 블로그와 커뮤니티, 영상을 참고하여 제작하였으며 감사의 말씀 전합니다!!
+
+- [[이현준님 블로그] - @next/mdx로 블로그 만들기 (App router)
+](https://www.leehyeonjun.com/blog/next_mdx_blog)
+- [[김도형님 블로그] - Next.js 블로그 만들기 (14.1 최신 버전 + tailwind)](https://d5br5.dev/blog/nextjs_blog/setup)
+- [[민상로그] - NextJS로 블로그를 만들어보자](https://velog.io/@minsang9735/NextJS%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90)
+- [[임통님 블로그] - Next.js로 블로그 만들기](https://www.limtong.com/post/create-a-blog-with-nextjs)
+- [heropy.dev](https://www.heropy.dev/)
+- [[Next.js] - mdx](https://nextjs.org/docs/app/building-your-application/configuring/mdx)
+- [Next.js에서 MDX를 활용한 고급 마크다운 및 JSX 통합](https://reactnext-central.xyz/blog/nextjs/mdx)
+- [[미량님 블로그] - Next.js로 나만의 블로그 만들기 with 정적 생성
+](https://miryang.dev/blog/build-blog-with-nextjs)
+- [How to build a blog with Next.js and MDX](https://honghong.me/blog/how-to-build-a-blog-with-nextjs-and-mdx)
+- [[YouTube(leerob)] - MDX with Next.js App Router](https://www.youtube.com/watch?v=34bRv6cQezo&t=145s)
+- [[YouTube(Colby Fayock)] - MDX in Next.js is Easy Now](https://www.youtube.com/watch?v=MsSUAOkepCw&t=127s)
+
+<br/>
+<br/>
+### 📝 디자인 컨셉 기획
+- 개인 [Portfolio](https://dev-oh.web.app) 사이트와 메인 컬러 컨셉 유지(파란 계열)
+- 개인 기록용으로 사용 중인 Notion 디자인 벤치마킹
+
+<br/>
+<br/>
+### 📝 기능 기획
+
+<Callout type="quote">
+{`정적 블로그를 운영할 예정으로, 블로그 게시글의 추가/수정/삭제 기능은 기획에 고려하지 않았습니다.`}
+</Callout>
+
+- ⭐️ 필수 기능
+    - 게시글 목록 보기
+        - 태그별 필터링 기능
+    - 게시글 상세 보기
+        - 코드블럭 스타일링
+    - 방명록 기능
+    - 검색 기능
+    - 반응형(PC ↔ Tablet ↔ Mobile) UI
+<br/>
+- 🎁 보조 기능
+    - 테마(라이트/다크) 변경 기능
+    - 목차(ToC: Table of Contents) 기능
+    - 홈 화면 최신 게시글 기능
+    - 게시글 코드블럭 복사 기능
+    - 게시글 이미지 확대 기능
+    - GitHub 댓글 기능
+    - 좋아요/공유버튼 기능
+    - 방문자수 카운팅 기능
+    - 참고하기 좋은 기술 블로그 모음 링크를 제공하는 별도의 페이지
+    - 리딩 타임 제공
+
+<br/>
+<br/>
+### 📝 개발 스택 선정
+위에 기획한 기능들을 구현하기 위해 가장 우선시한 기준은 **"개발이 편리한가?"**, **"빠른 개발과 유지보수가 가능한가?"** 였습니다.
+
+이러한 기준을 바탕으로 아래와 같은 특징들을 고려하여 개발 스택을 선정하였습니다.
+
+<br/>
+###### 1. Framework: [Next.js 15.2](https://nextjs.org/)(with. TypeScript)
+
+제 포트폴리오 사이트는 **React 기반**으로 제작했지만, 블로그의 경우 **SEO 최적화, 빠른 페이지 로딩, 서버 기능 지원**이 필요해 Next.js를 선택하게 되었습니다. 가장 최신 버전을 접해보고 13버전 이후부터 새로 도입된 App Router를 학습하고자 Next.js 15버전을 사용하였습니다.
+
+
+1. **SEO 최적화**
+    - 블로그는 검색 엔진 유입이 중요하므로, 검색 노출도를 높이기 위해 <b>Next.js의 SSG(Static Site Generation)</b>를 활용하기로 하였습니다.
+2. **빠른 로딩 속도**
+    - SSG를 통해 정적 페이지를 미리 생성하여 **React CSR보다 성능이 우수**.
+3. **서버 기능 활용**
+    - API Routes를 이용해 **조회수, 좋아요, 방명록 기능**구현 필요.
+4. **배포 및 유지보수 용이**
+    - **Vercel과의 최적화된 호환성** 덕분에 배포 및 관리가 간편합니다.
+
+<Callout type="tip">
+{`SSG를 활용하면 검색 노출도가 높아지는 이유가 뭘까요?`}<br/>
+SSG를 사용하면 페이지가 요청될 때마다 새로 생성되는 것이 아닌, 빌드 시 미리 생성된 정적 페이지를 빠르게 제공하여 검색 엔진이 쉽게 읽을 수 있습니다.
+또한, 빠른 로딩 속도로 인해 SEO 점수가 향상되어 검색 노출도를 올릴 수 있습니다.
+
+(+) 검색 엔진은 정적인 HTML 페이지를 선호하며, JavaScript가 필요 없는 페이지일수록 색인(Indexing) 속도가 빠릅니다.
+</Callout>
+<br/>
+<br/>
+###### 2. Blog Posting: [MDX](https://mdxjs.com/)
+
+간편한 글 작성과 유연한 확장성을 고려하여 MDX 파일 기반으로 블로그 게시글을 포스팅하기로 하였습니다.
+
+1. Markdown의 간단한 문법으로 글 작성이 가능하고, 컴포넌트를 직접 삽입하여 코드블록과 같은 인터랙티브한 요소를 추가할 수 있음.
+2. 파일 기반으로 관리하여 유지보수가 용이.
+3. 필요에 따라 다크모드와 코드 하이라이팅 등 다양한 기능으로 확장 가능.
+
+<br/>
+<br/>
+###### 3. Style: [Tailwind CSS 4.0](https://tailwindcss.com/)
+
+블로그의 스타일링은 다음과 같은 장점으로 Tailwind CSS를 활용하였습니다.
+
+1. Tailwind CSS의 직관적인 클래스 네이밍과 유지보수의 편의성
+2. UI의 일관성 유지
+3. 브레이크 포인트에 따른 반응형 디자인 적용 가능
+4. 다크 모드 지원
+
+<br/>
+<br/>
+###### 4. Database: [Supabase](https://supabase.com/)
+
+PostgreSQL 기반으로 한 Supabase는 이번 블로그 개발을 하며 처음 접해본 서비스인데요.
+
+1. 간단한 설정과 직관적인 조작법
+2. 서버리스 데이터베이스 지원이 가능
+
+한 점이 가장 마음에 들었습니다. 데이터베이스가 필요한 **익명 방명록과 게시글 좋아요 기능**을 구현할 때 유용하다고 판단되어 선택하게 되었습니다.
+
+<br/>
+<br/>
+###### 5. Deployment: [Vercel](https://vercel.com/)
+
+1. Next.js 프로젝트에 최적화된 호환성
+    - Next.js를 만든 Vercel에서 제공하는 배포 플랫폼으로, 별도의 설정 없이도 **자동 최적화된 빌드 및 캐싱**이 적용
+2. CI/CD 및 GitHub Branch Tracking
+    - GitHub와 연동하여 브랜치 푸쉬만으로 자동 배포가 이루어짐.
+    - 브랜치 별로 미리보기(Preview Deployment) 환경을 제공하여 변경사항을 확인하고 서비스를 배포할 수 있음.
+3. 내장된 Analytics 기능
+    - 복잡한 설정 없이 Vercel Analytics를 통해 실시간 트래픽 및 페이지 뷰 수를 모니터링 할 수 있음.
+
+<br/>
+<br/>
+<br/>
+<br/>
+## 👋 마치며..
+---
+개발에 들어가기에 앞서 개발 기간을 굉장히 타이트하게 잡았는데 그 기간을 넘어 개발을 완료하긴 하였지만,<br/>
+기획했던 기능 중 몇 가지를 제외한 **1차 목표로 한 기능 개발을 모두 구현**하여 나름의 값진 성과라 생각됩니다.🥲
+
+<br/>
+Next.js로 실제 서비스될 사이트를 개발하며 여러 이슈를 경험했고, 해결해 나가는 과정에서 많은 것을 배울 수 있었습니다.
+
+특히, 어떤 문제가 발생했을 때 먼저 스스로 고민해보고 개발 공식 문서나 GitHub Issues, Stack Overflow, 다른 개발자들의 블로그를 살펴보는 습관을 기르게 되었습니다. 
+
+이를 통해 다양한 시도와 해결 과정을 접하며 조금 더 깊이 있는 학습을 할 수 있었고 커뮤니티를 활용하는 것의 중요성도 깨닫게 되었습니다.
+여러 자료를 참고하고 고민하는 과정 자체가 개발자로서 성장하는 데 큰 도움이 된다는 점을 실감하게 되었습니다.
+
+<br/>
+아직 추가적으로 개발할 기능들과 성능 최적화, SEO 최적화 등 개선해야 할 남아있는 문제들은 차차 적용해나가보도록 하겠습니다.<s>(이 포스팅이 여러분들께 보인다면 SEO 최적화를 적용했겠네요ㅎ)</s>
+
+이제 갓 2년차 프론트엔드 개발자로 아직은 부족한 점이 굉장히 많겠지만, “**앞으로 꾸준하게**” 제가 학습해나가며 배운 지식을 기록해나가보고자 합니다.
+
+“Next.js + MDX 블로그 제작”의 다음 포스팅부턴 제가 블로그 제작한 개발 과정과 이슈 등을 정리해보도록 하겠습니다.
+
+<br/>
+<br/>
+읽어주셔서 감사합니다.
+</BlogArticle>
