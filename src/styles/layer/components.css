@@ -65,7 +65,7 @@
 
     /* 게시글 스타일 */
     .blog-content-article {
-      @apply text-foreground mx-auto min-h-screen pt-10 pb-50 text-[16px] lg:max-w-screen-md 2xl:max-w-screen-lg;
+      @apply text-foreground border-border mx-auto min-h-screen border-b-2 border-dotted pt-10 pb-30 text-[16px] lg:max-w-screen-md 2xl:max-w-screen-lg;
 
       hr {
         @apply border-border my-2 border-t-2;
@@ -76,13 +76,13 @@
         @apply text-2xl leading-relaxed font-bold md:text-[30px];
       }
       h3 {
-        @apply py-1 text-2xl leading-relaxed font-semibold md:text-[26px];
+        @apply py-1 text-2xl leading-relaxed font-bold md:text-[26px];
       }
       h4 {
-        @apply py-1 text-xl leading-relaxed font-semibold md:text-[24px];
+        @apply py-1 text-xl leading-relaxed font-bold md:text-[24px];
       }
       h5 {
-        @apply text-xl leading-relaxed font-medium md:text-2xl;
+        @apply text-xl leading-relaxed font-bold md:text-2xl;
       }
       h6 {
         @apply text-lg leading-relaxed font-bold md:text-xl;
@@ -93,7 +93,7 @@
 
       /* Typography */
       p {
-        @apply text-[16px] leading-relaxed font-medium;
+        @apply mt-2 text-[16px] leading-relaxed font-medium;
       }
 
       /* Emphasis */
@@ -136,7 +136,7 @@
 
       /* Link */
       a {
-        @apply text-primary leading-relaxed font-semibold break-all underline underline-offset-1;
+        @apply text-primary hover:bg-primary/10 rounded-xs leading-relaxed font-semibold break-all hover:underline hover:underline-offset-1;
       }
 
       /* Blockqute */
