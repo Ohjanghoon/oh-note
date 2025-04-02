@@ -1,0 +1,547 @@
+export const metadata = {
+  title: "React Hook",
+  description:
+    "React Hook의 개념과 자주 사용되는 Hook 알아보기",
+  publishDate: "2025-03-29T09:18:00Z",
+  thumbnailUrl: "/assets/blog/posts/react-hooks/00-thumbnail.png",
+  tags: ["React", "React Hooks"],
+};
+
+<BlogHeader props={{ ...metadata }} />
+
+<BlogArticle>
+{/* ====================================== */}
+## 📘 React Hook이란?
+---
+Hook은 React 버전 16.8부터 새로 추가된 함수형 컴포넌트에서도 클래스형 컴포넌트의 기능을 사용할 수 있게 하는 기능입니다.
+
+Hook을 이용하여 기존 Class 바탕의 코드를 작성할 필요 없이 상태 값과 여러 React의 기능을 사용할 수 있습니다.
+
+<br/>
+<br/>
+### 📝 React Hook의 장점
+1. **클래스 없이 상태 관리 가능(useState)**
+    - 기존 클래스 컴포넌트에서는 `this.state`와 `this.setState`를 사용하여 상태를 관리하기 위해 복잡하게 코드를 작성해야 했지만, Hook을 사용하면 함수형 컴포넌트에서도 `useState`를 사용하여 간결하고 쉽게 관리할 수 있습니다.
+
+<br/>
+📍 클래스 컴포넌트에서 상태 관리(`this.state`, `this.setState`)
+<CodeBlock lang="jsx">
+{`
+import React, { Component } from "react";
+
+class Counter extends Component {
+    constructor(props) {
+      super(props);
+      this.state = { count: 0 }; // 초기 상태 선언
+    }
+
+    increment = () => {
+      this.setState({ count: this.state.count + 1 }); // 상태 업데이트
+    };
+
+    render() {
+      return (
+        <div>
+          <p>카운트: {this.state.count}</p>
+          <button onClick={this.increment}>증가</button>
+        </div>
+      );
+    }
+}
+
+export default Counter;
+`}
+</CodeBlock>
+    
+<br/>
+📍 함수형 컴포넌트에서 상태 관리(`useState`)
+<CodeBlock lang="jsx">
+{`
+import React, { useState } from "react";
+
+const Counter = () => {
+    const [count, setCount] = useState(0); // useState를 활용한 상태 관리
+
+    return (
+      <div>
+        <p>카운트: {count}</p>
+        <button onClick={() => setCount(count + 1)}>증가</button>
+      </div>
+    );
+};
+
+export default Counter;
+`}
+</CodeBlock>
+
+<br/>
+2. **직관적인 코드로 간결해짐**
+3. **재사용 가능한 로직을 쉽게 만들 수 있음(Custom Hook)**
+4. **성능 최적화에 용이해짐(`useMemo`, `useCallback`)**
+{/* ====================================== */}
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+{/* ====================================== */}
+## 📘 기본 Hook
+---
+### 📝 useState
+<Callout type="quote"> 공식문서: [react-useState](https://ko.react.dev/reference/react/useState)</Callout>
+
+컴포넌트 내부에서 **상태를 선언하고 변경**하는 기본적인 Hook
+
+<CodeBlock lang="jsx" file="useState 기본 구조">
+{`const [state, setState] = useState(initialState)`}
+</CodeBlock>
+
+<br/>
+📍 카운터 구현 예제
+<CodeBlock lang="jsx" file="useState 사용 예제">
+{`
+import { useState } from "react";
+
+const Counter = () => {
+    const [count, setCount] = useState(0); // 상태 선언
+
+    return (
+      <div>
+        <p>카운트: {count}</p>
+        <button onClick={() => setCount(count + 1)}>증가</button>
+        <button onClick={() => setCount(count - 1)}>감소</button>
+      </div>
+    );
+};
+
+export default Counter;
+`}
+</CodeBlock>
+- ex) 버튼 클릭시 상태값 변경, 모달창 열기/닫기 등에서 활용 가능
+
+<br/>
+<br/>
+
+### 📝 useEffect
+<Callout type="quote">
+공식문서: [react-useEffect](https://ko.react.dev/reference/react/useEffect)
+</Callout>
+
+컴포넌트가 **마운트, 업데이트, 언마운트될 때 특정한 작업을 수행.**
+
+`useEffect`를 통해 함수형 컴포넌트의 생명주기 관리할 수 있습니다.
+
+<CodeBlock lang="jsx" file="useEffect 기본 구조">
+{`useEffect(setup, dependencies?)`}
+</CodeBlock>
+
+<br/>
+📍 화면 크기 감지 예제
+<CodeBlock lang="jsx" file="useEffect 사용 예제">
+{`
+import { useState, useEffect } from "react";
+
+const WindowSize = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleResize = () => setWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize); // 정리(clean-up) 작업
+      };
+    }, []); // 빈 배열이면 처음 한 번 실행됨
+
+    return <p>현재 창 너비: {width}px</p>;
+};
+
+export default WindowSize;
+`}
+</CodeBlock>
+
+<br/>
+###### **useEffect의 의존성(dependencies)**
+1. 의존성 배열이 없는 경우(`useEffect(() => {…}`)
+    - **컴포넌트가 렌더링될 때마다 실행.**
+    - 상태(state)나 props가 변경될 때마다 실행.
+    - 주로 디버깅 용도로 사용 ⇒ 잦은 실행으로 성능 문제를 유발할 수도 있음.
+    
+<CodeBlock lang="jsx">
+{`
+useEffect(() => {
+    console.log("렌더링될 때마다 실행됩니다!");
+});
+`}
+</CodeBlock>
+    
+<br/>
+2. 의존성 배열이 빈 경우(`useEffect(() => {…}, []`)
+    - 컴포넌트가 **처음 마운트될 때 한 번만 실행.**
+    - API 호출, 이벤트 리스너 등록 등의 작업에 적합.
+    
+<CodeBlock lang="jsx">
+{`
+useEffect(() => {
+    console.log("컴포넌트가 처음 마운트될 때 실행됩니다!");
+}, []);
+`}
+</CodeBlock>
+
+<br/>
+3. 의존성 배열안에 값이 있는 경우(`useEffect(() => {…}, [value]`)
+    - 의존성 배열 안에 있는 값(`value`)이 변경될 때 실행.
+    - 특정 상태의 값 변경에 따른 효과를 적용할 때 사용.
+
+<CodeBlock lang="jsx">
+{`
+useEffect(() => {
+    console.log("count 값이 변경될 때마다 실행됩니다!");
+}, [count]);
+`}
+</CodeBlock>
+
+<br/>
+<br/>
+### 📝 useContext
+<Callout type="quote">
+공식문서: [react-useContext](https://ko.react.dev/reference/react/useContext)
+</Callout>
+
+컴포넌트 트리에서 props 없이 데이터를 공유할 수 있습니다.
+
+`useContext`를 컴포넌트의 최상위 수준에서 호출하여 [Context](https://ko.react.dev/learn/passing-data-deeply-with-context)를 읽고 구독합니다.
+
+<CodeBlock lang="jsx" file="useContext 기본 구조">
+{`const value = useContext(SomeContext)`}
+</CodeBlock>
+
+<br/>
+📍 다크모드 토글 예제
+<CodeBlock lang="jsx" file="useContext 사용 예제">
+{`
+import { createContext, useState, useContext } from "react";
+
+const ThemeContext = createContext();
+
+const ThemeProvider = ({ children }) => {
+    const [darkMode, setDarkMode] = useState(false);
+    return (
+      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+        {children}
+      </ThemeContext.Provider>
+    );
+};
+
+const ThemeButton = () => {
+    const { darkMode, setDarkMode } = useContext(ThemeContext);
+    return (
+      <button onClick={() => setDarkMode(!darkMode)}>
+        {darkMode ? "라이트 모드" : "다크 모드"}
+      </button>
+    );
+};
+
+export default function App() {
+    return (
+      <ThemeProvider>
+        <ThemeButton />
+      </ThemeProvider>
+    );
+}
+`}
+</CodeBlock>
+
+- ex) 테마, 언어, 사용자 인증 정보 등 전역 설정 관리에 활용 가능.
+
+<br/>
+<Callout type="info">
+`useContext`의 경우, 모든 상태관리에 적합한 것은 아니며 전역 상태 변경이 자주 발생하지 않는 경우에 적절하고, 특정 상황(복잡한 상태 관리)에 따라서는 `Redux Toolkit`이나 `Zustand`와 같은 상태 관리 라이브러리의 활용이 더 나은 선택일 수도 있습니다.
+</Callout>
+{/* ====================================== */}
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+{/* ====================================== */}
+## 📘 추가 Hook
+---
+### 📝 useRef
+<Callout type="quote">
+공식문서: [react-useRef](https://ko.react.dev/reference/react/useRef)
+</Callout>
+
+DOM 요소에 접근하거나, 값이 변경되어도 리렌더링되지 않는 변수를 유지할 수 있습니다.
+
+<CodeBlock lang="jsx" file="useRef 기본 구조">
+{`const ref = useRef(initialValue)`}
+</CodeBlock>
+
+<br/>
+📍 input 창 포커스 예제
+<CodeBlock lang="jsx" file="useRef 기본 구조">
+{`
+import { useRef, useEffect } from "react";
+
+const InputFocus = () => {
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+      inputRef.current.focus(); // 마운트 시 자동으로 포커스
+    }, []);
+
+    return <input ref={inputRef} placeholder="자동 포커스" />;
+};
+
+export default InputFocus;
+`}
+</CodeBlock>
+
+<br/>
+<Callout type="info">
+ref를 사용하면 다음을 보장합니다:
+
+- (렌더링할 때마다 재설정되는 일반 변수와 달리) 리렌더링 사이에 **정보를 저장**할 수 있습니다.
+- (리렌더링을 촉발하는 state 변수와 달리) 변경해도 **리렌더링을 촉발하지 않습니다.**
+- (정보가 공유되는 외부 변수와 달리) 각각의 컴포넌트에 **로컬로 저장됩니다.**
+
+<br/>
+ref를 변경해도 다시 렌더링되지 않으므로 화면에 표시되는 정보를 저장하는 데는 ref가 적합하지 않습니다. 대신 state를 사용하세요. 더 자세한 내용은 [useRef와 useState 중 선택하기](https://ko.react.dev/learn/referencing-values-with-refs#differences-between-refs-and-state)에서 확인하세요.
+</Callout>
+
+<br/>
+<br/>
+### 📝 useReducer
+<Callout type="quote">
+공식문서: [react-useReducer](https://ko.react.dev/reference/react/useReducer)
+</Callout>
+
+`useState`보다 복잡한 상태 관리가 필요할 때 유용한 Hook입니다.
+
+특히 상태가 여러 개의 값을 포함하거나, 다양한 업데이트 로직을 수행해야 하는 경우 사용됩니다.
+
+<CodeBlock lang="jsx" file="useReducer 기본 구조">
+{`const [state, dispatch] = useReducer(reducer, initialState);`}
+</CodeBlock>
+
+<br/>
+**reducer 함수**
+- 상태를 변경하는 로직을 정의하는 함수로, `state`와 `action`을 받아 새로운 상태를 반환합니다.
+
+<br/>
+📍 `useReducer` 사용하여 카운터 구현 예제
+<CodeBlock lang="jsx" file="useReducer 사용 예제">
+{`
+import { useReducer } from "react";
+
+// 1. 초기 상태 정의
+const initialState = { count: 0 };
+
+// 2. Reducer 함수 정의
+const reducer = (state, action) => {
+    switch (action.type) {
+      case "INCREMENT":
+        return { count: state.count + 1 };
+      case "DECREMENT":
+        return { count: state.count - 1 };
+      case "RESET":
+        return { count: 0 };
+      default:
+        throw new Error("알 수 없는 액션 타입");
+    }
+};
+
+// 3. 컴포넌트에서 useReducer 사용
+const Counter = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    return (
+      <div>
+        <h1>{state.count}</h1>
+        <button onClick={() => dispatch({ type: "INCREMENT" })}>+1</button>
+        <button onClick={() => dispatch({ type: "DECREMENT" })}>-1</button>
+        <button onClick={() => dispatch({ type: "RESET" })}>초기화</button>
+      </div>
+    );
+};
+
+export default Counter;
+`}
+</CodeBlock>
+
+<br/>
+📍 여러 상태 관리가 필요한 폼 입력 예제
+<CodeBlock lang="jsx" file="useReducer 사용 예제">
+{`
+import { useReducer } from "react";
+
+// 1. 초기 상태 정의
+const initialState = {
+    name: "",
+    email: "",
+    age: "",
+};
+
+// 2. Reducer 함수 정의
+const reducer = (state, action) => {
+    switch (action.type) {
+      case "CHANGE_INPUT":
+        return { ...state, [action.field]: action.value };
+      case "RESET":
+        return initialState;
+      default:
+        return state;
+    }
+};
+
+// 3 컴포넌트에서 useReducer 사용
+const Form = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    return (
+      <div>
+        <input
+          type="text"
+          placeholder="이름"
+          value={state.name}
+          onChange={(e) => dispatch({ type: "CHANGE_INPUT", field: "name", value: e.target.value })}
+        />
+        <input
+          type="email"
+          placeholder="이메일"
+          value={state.email}
+          onChange={(e) => dispatch({ type: "CHANGE_INPUT", field: "email", value: e.target.value })}
+        />
+        <input
+          type="number"
+          placeholder="나이"
+          value={state.age}
+          onChange={(e) => dispatch({ type: "CHANGE_INPUT", field: "age", value: e.target.value })}
+        />
+        <button onClick={() => dispatch({ type: "RESET" })}>초기화</button>
+        <p>이름: {state.name}</p>
+        <p>이메일: {state.email}</p>
+        <p>나이: {state.age}</p>
+      </div>
+    );
+};
+
+export default Form;
+`}
+</CodeBlock>
+
+<br/>
+<br/>
+### 📝 useMemo, useCallback
+<Callout type="quote">
+공식문서: [react-useMemo](https://ko.react.dev/reference/react/useMemo),
+ [react-useCallback](https://ko.react.dev/reference/react/useCallback)
+</Callout>
+- [React memoization에 대해 알아보기](http://oh-note.vercel.app/blog/react-deep-dive-memoization)
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+## 📘  Custom Hook
+---
+### 📝 Custom Hook이란?
+React의 기본 Hook을 조합하여 **반복되는 로직을 추상화**하여 가독성을 높이고, 여러 컴포넌트에서 쉽게 **재사용 가능**하도록 만든 Hook을 의미합니다.
+
+<br/>
+<br/>
+### 📝 Custom Hook 기본 구조
+- `use`로 시작하는 **함수 형태** ex) `useLocalStorage`, `useWindowWidth` …
+- 내부에서 다른 **Hook을 사용할 수 있음**
+- 상태 값과 함수(로직)를 반환
+
+<CodeBlock lang="jsx" file="Custom Hook 기본 구조">
+{`
+const useCustomHook = (param) => {
+    const [state, setState] = useState(param);
+
+    useEffect(() => {
+      console.log("상태가 변경됨:", state);
+    }, [state]);
+
+    return [state, setState];
+};
+`}
+</CodeBlock>
+
+<br/>
+📍 로컬 스토리지 관리 Hook 예제
+<CodeBlock lang="jsx">
+{`
+import { useState, useEffect } from "react";
+
+const useLocalStorage = (key, initialValue) => {
+    const [storedValue, setStoredValue] = useState(() => {
+      const savedValue = localStorage.getItem(key);
+      return savedValue ? JSON.parse(savedValue) : initialValue;
+    });
+
+    useEffect(() => {
+      localStorage.setItem(key, JSON.stringify(storedValue));
+    }, [key, storedValue]);
+
+    return [storedValue, setStoredValue];
+};
+
+// 사용 예시
+const ExampleComponent = () => {
+    const [name, setName] = useLocalStorage("username", "Guest");
+
+    return (
+      <div>
+        <p>이름: {name}</p>
+        <input value={name} onChange={(e) => setName(e.target.value)} />
+      </div>
+    );
+};
+`}
+</CodeBlock>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+## 📘 React Hook 사용시 주의사항
+---
+**Hook은 컴포넌트 내 최상위에서만 호출해야 함.
+⇒ 조건문/반복문 내부에서 호출 X**
+
+<CodeBlock lang="jsx" file="잘못된 사용">
+{`
+const Example = () => {
+    if (true) {  // 조건문 안에서 Hook 호출
+      const [count, setCount] = useState(0);
+    }
+
+    return <div>예제</div>;
+};
+`}
+</CodeBlock>
+
+<Callout type="tip">
+왜 최상위에서만 호출해야 할까요?
+<br/>
+React는 **Hook이 호출되는 순서** 를 기반으로 상태를 관리합니다.
+조건문/반복문 내부에서 Hook을 호출하면 순서가 꼬일 가능성이 있어 **예상치 못한 버그**가 발생할 수 있습니다.
+</Callout>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+## 마치며
+---
+가장 기본적으로 자주 사용되는 hook들에 대해 정리해보았습니다. 이외에도 [react 공식문서에 Hook](https://ko.react.dev/reference/react/hooks)을 참고하면 더 많은 hook의 사용법과 예제 코드를 확인할 수 있습니다.
+
+</BlogArticle>
