@@ -47,7 +47,8 @@ Memoization은 계산된 값을 메모리에 저장하여 동일한 입력이 �
 <br/>
 
 <CodeBlock lang="tsx">
-{`import React from "react";
+{`
+import React from "react";
 
 const ChildComponent = React.memo(({ count }: { count: number }) => {
     console.log("ChildComponent 렌더링!!");
@@ -65,13 +66,15 @@ export default function ParentComponent() {
         <input value={text} onChange={(e) => setText(e.target.value)} placeholder="입력하세요" />
       </div>
     );
-}`}
+}
+`}
 </CodeBlock>
 - `text` 입력을 변경해도 `ChildComponent`는 리렌더링되지 않고, `count`가 변경될 때만 `ChildComponent`가 렌더링됩니다.
 <br/>
 
 <CodeBlock lang="tsx">
-{`import React from "react";
+{`
+import React from "react";
 
 const ChildComponent = React.memo(({ user }: { user: { name: string } }) => {
     console.log("ChildComponent 렌더링!!");
@@ -88,7 +91,8 @@ export default function ParentComponent() {
         <button onClick={() => setCount(count + 1)}>Count 증가</button>
       </div>
     );
-}`}
+}
+`}
 </CodeBlock>
 
 - 하지만 `React.memo`는 얕은 비교(Shallow Comparison)를 수행하므로, 객체나 함수가 props로 전달되면 여전히 불필요한 렌더링이 발생할 수 있습니다.
@@ -124,7 +128,8 @@ export default function ParentComponent() {
 <br/>
 
 <CodeBlock lang="tsx" file="useMemo 예제 코드">
-{`import React, { useMemo, useState } from "react";
+{`
+import React, { useMemo, useState } from "react";
 
 const ChildComponent = React.memo(({ user }: { user: { name: string } }) => {
     console.log("ChildComponent 렌더링!!");
@@ -155,7 +160,8 @@ export default function ParentComponent() {
 - `useCallback`은 함수를 메모이제이션하여 불필요한 함수 재생성을 방지.
 
 <CodeBlock lang="tsx">
-{`import React, { useMemo, useCallback, useState } from "react";
+{`
+import React, { useMemo, useCallback, useState } from "react";
 
 const ChildComponent = React.memo(({ user, onGreet }: { user: { name: string }; onGreet: () => void }) => {
     console.log("ChildComponent 렌더링!!");
@@ -173,7 +179,7 @@ export default function ParentComponent() {
     // user 객체를 useMemo로 캐싱하여 불필요한 객체 생성 방지
     const user = useMemo(() => ({ name: "Alice" }), []);
 
-    // 🔥 useCallback을 사용하여 함수의 재생성을 방지
+    // useCallback을 사용하여 함수의 재생성을 방지
     const handleGreet = useCallback(() => {
       console.log(\`Hello, \${user.name}!\`);
     }, [user]); // user가 변경되지 않으므로, 이 함수도 다시 생성되지 않음
