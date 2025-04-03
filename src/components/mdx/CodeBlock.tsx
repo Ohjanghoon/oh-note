@@ -19,7 +19,7 @@ export default function CodeBlock({
   file,
 }: CodeBlockProps) {
   // const lang = className?.split("lang-")[1] || "";
-  const code = children?.toString() || "";
+  const code = children?.toString().trimStart() || "";
 
   const [highlightedCode, setHighlightedCode] = useState<string>("");
   const [copyIcon, setCopyIcon] = useState<string>("copy");
