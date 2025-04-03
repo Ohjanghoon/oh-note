@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: "https://oh-note.vercel.app",
     images: [
       {
-        url: "/assets/logo/logo_light.svg",
+        url: "/assets/site_thumbnail.png",
         width: 1200,
         height: 630,
         alt: "oh-note logo",
