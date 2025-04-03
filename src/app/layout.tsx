@@ -24,6 +24,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  verification: {
+    google: "ONvPsH0vX1CDngTKU17U0G1Zar7x5PuwWp-pat-jTjs",
+  },
+  category: "Technology",
 };
 
 export default function RootLayout({
