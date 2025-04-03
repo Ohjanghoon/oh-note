@@ -130,7 +130,7 @@
       td,
       th {
         code {
-          @apply bg-bg-subtle-hover/50 rounded-md p-1 px-1.5 text-sm font-light text-[#DF6B74];
+          @apply bg-bg-subtle-hover/50 rounded-md p-1 px-1.5 text-sm font-extralight text-[#429ebc];
         }
       }
 
@@ -198,6 +198,11 @@
 
       th {
         @apply bg-primary/10 font-bold;
+      }
+
+      /* Callout */
+      .callout-content > p {
+        @apply mt-0;
       }
     }
   }
