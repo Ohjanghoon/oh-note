@@ -1,5 +1,36 @@
+import { PostMetadata } from "@/types/postTypes";
 import fs from "fs";
 import path from "path";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const postModule = await import(`@/content/${slug}.mdx`);
+  const metadata: PostMetadata = await postModule.metadata;
+
+  return {
+    title: `${metadata.title} | oh-note`,
+    description: metadata.description,
+    keywords: metadata.tags,
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      url: `https://oh-note.vercel.app/blog/${metadata.slug}`,
+      images: [
+        {
+          url: metadata.thumbnailUrl,
+          width: 1200,
+          height: 630,
+          alt: `${metadata.title} thumbnail`,
+        },
+      ],
+    },
+    category: "Technology",
+  };
+}
 
 export default async function BlogSlugPage({
   params,
