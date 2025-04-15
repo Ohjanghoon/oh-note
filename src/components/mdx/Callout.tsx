@@ -1,11 +1,6 @@
 import { FiInfo } from "react-icons/fi";
-import {
-  PiWarning,
-  PiCheckCircle,
-  PiLightbulb,
-  PiMapPin,
-} from "react-icons/pi";
-import { BsChatDots } from "react-icons/bs";
+import { PiWarning, PiCheckCircle, PiLightbulb } from "react-icons/pi";
+import { BsChatDots, BsQuestionCircle } from "react-icons/bs";
 
 import { BiCommentError } from "react-icons/bi";
 
@@ -55,11 +50,11 @@ const typeList = [
       "bg-purple-300/10 dark:bg-purple-400/5 border-purple-400 dark:border-purple-400/40",
   },
   {
-    name: "pin",
-    icon: PiMapPin,
-    textColor: "text-[#e31ea1] dark:text-[#f244b8]",
+    name: "quest",
+    icon: BsQuestionCircle,
+    textColor: "text-[#ff964f] dark:text-[#ff964f]",
     bgColor:
-      "bg-[#e31ea1]/10 dark:bg-[#e31ea1]/5 border-[#e31ea1] dark:border-[#e31ea1]/40",
+      "bg-[#ff964f]/10 dark:bg-[#ff964f]/5 border-[#ff964f] dark:border-[#ff964f]/40",
   },
 
   {
