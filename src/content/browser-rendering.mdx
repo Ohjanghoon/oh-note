@@ -21,7 +21,7 @@ export const metadata = {
 <br/>
 <br/>
 <br/>
-## 📘 브라우저 렌더링 과정
+## 📘 브라우저 동작 과정
 ---
 ### 📝 1. 사용자의 주소 입력과 URL 파싱
 브라우저 주소창에 `https://www.google.com`을 입력하면, 브라우저는 가장 먼저 해당 주소를 구성 요소별로 해석하게 됩니다.
@@ -122,7 +122,7 @@ User-Agent: Mozilla/5.0...
 <br/>
 <br/>
 <br/>
-## 📘 브라우저 내부 렌더링 파이프라인
+## 📘 브라우저 렌더링 과정
 ---
 ### 📝 5. HTML 파싱 및 DOM 트리 생성
 - 브라우저는 서버에서 받은 **HTML 문자열**을 위에서부터 한 줄씩 읽으며 **토큰(token)** 으로 나눕니다.<br/>
@@ -222,9 +222,14 @@ JS가 DOM을 조작하면 **Layout 단계가 다시 발생**할 수 있으며, �
 
 <br/>
 <br/>
+### 📝 정리
+<ImageBox src="/assets/blog/posts/browser-rendering/01-browser_rendering_process.png" alt="browser_rendering_process" about="browser_rendering_process image" refTitle="https://enjoydev.life/blog/frontend/2-browser-rendering" refUrl="https://enjoydev.life/blog/frontend/2-browser-rendering" />
+<br/>
+<br/>
 <br/>
 <br/>
 ## 참고
 ---
-- [Suhyeon Park 브라우저 렌더링 과정 쉽게 이해하기](https://enjoydev.life/blog/frontend/2-browser-rendering)
+- [(블로그) Suhyeon Park 브라우저 렌더링 과정 쉽게 이해하기](https://enjoydev.life/blog/frontend/2-browser-rendering)
+- [(영상) 브라우저 렌더링 과정](https://www.youtube.com/watch?v=R23JmhbPnVo)
 </BlogArticle>
